@@ -11,10 +11,10 @@ def download_all_data():
         
         print(q)
         
-        '''res = query(q)
+        res = query(q) # limit your results in templates.py before testing!
         for entry in res["results"]["bindings"]:
             for key in entry:
-                print(key, entry[key]["value"])'''
+                print(key, entry[key]["value"])
 
 if __name__ == '__main__':
     download_all_data()
