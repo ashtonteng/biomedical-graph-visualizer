@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biomedical Graph Visualizer</title>
+
+    <!-- links to stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- scripts for bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!-- container of elements in the navbar -->
+        <div class="container-fluid">
+            <!-- bold text on the left side -->
+            <div class="navbar-header">
+                <!-- toggle button that appears on small screens -->
+                <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse"
+                        data-target="#myNavbar">
+                    <span class="icon-bar navbar-inverse"></span>
+                    <span class="icon-bar navbar-inverse"></span>
+                    <span class="icon-bar navbar-inverse"></span>
+                </button>
+                <a class="navbar-brand" href="#">Biomedical Graph Visualizer</a>
+            </div>
+
+            <!-- Collapse if screen is too small -->
+            <div class="collapse navbar-collapse" id="myNavbar">
+
+                <!-- elements on the right side of the bar -->
+                <ul class="nav navbar-nav" id="navElements">
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/tool1">Subgraph Tool</a></li>
+                    <li><a href="/tool2">Similarity Tool</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <p>This is tool 1</p>
+</main>
+
+</body>
+</html>
