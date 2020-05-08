@@ -1,4 +1,6 @@
 isodate==0.6.0
+networkx==2.4
+node2vec==0.3.2
 pyparsing==2.4.7
 rdflib==5.0.0
 six==1.14.0
