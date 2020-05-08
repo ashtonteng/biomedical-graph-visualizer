@@ -1,23 +1,31 @@
+import os
+
 from downloader import query
-from queries.templates import *
 from queries.constants import *
+
+DOWNLOAD_DIR = "./queries/download"
 
 
 def download_all_data():
     print("Downloading....")
-    for (core_concept, periphery_concept) in EDGES_DICT:
-        relation, query_template = EDGES_DICT[(core_concept, periphery_concept)]
-        q = query_template(CONCEPT_ID_DICT[core_concept], RELATION_ID_DICT[relation])
+    if not os.path.exists(DOWNLOAD_DIR):
+        os.mkdir(DOWNLOAD_DIR)
+    for (concept1, concept2) in EDGES_DICT:
+        relation, query_template = EDGES_DICT[(concept1, concept2)]
+        concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
+        relation_id = RELATION_LABEL_ID_DICT[relation]
+        q = query_template(concept1_id, relation_id)
         print(q)
-        print('-'*50)
-        res = query(q) # limit your results in templates.py before testing!
-        for entry in res["results"]["bindings"]:
-            concept = entry['concept']['value']
-            concept_label = entry['conceptLabel']['value']
-            peripheral_concept = entry['peripheralConcept']['value']
-            peripheral_concept_label = entry['peripheralConceptLabel']['value']
-            print(concept, concept_label, peripheral_concept, peripheral_concept_label)
+        res = query(q)
+
+        with open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "w") as f:
+            for entry in res["results"]["bindings"]:
+                instance1_id = entry['concept']['value'].split("/")[-1] # returns wikidata  http://www.wikidata.org/entity/Q17815615. Only want id Q17815615.
+                instance1_label = entry['conceptLabel']['value']
+                instance2_id = entry['peripheralConcept']['value'].split("/")[-1]
+                instance2_label = entry['peripheralConceptLabel']['value']
+                f.write("{}\t{}\t{}\t{}\n".format(instance1_id, instance1_label, instance2_id, instance2_label))
+
 
 if __name__ == '__main__':
     download_all_data()
-    
