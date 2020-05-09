@@ -4,9 +4,19 @@ import networkx as nx
 
 from node2vec import Node2Vec
 
-def gen_embeddings(graph, ndim, window, min_count, batch_words, savepath, walk_length, num_walks, workers):
+def gen_embeddings(
+        G,
+        ndim=10,
+        window=10,
+        min_count=1,
+        batch_words=4,
+        savepath='./embeddings.emb',
+        walk_length=30,
+        num_walks=200,
+        workers=4
+    ):
     # Precompute probabilities and generate walks
-    node2vec = Node2Vec(G, dimensions=ndim, walk_length=walk_length, num_walks=num_walks, workers=workesr)
+    node2vec = Node2Vec(G, dimensions=ndim, walk_length=walk_length, num_walks=num_walks, workers=workers)
     # Embed nodes
     model = node2vec.fit(window=window, min_count=min_count, batch_words=batch_words)
     # Save embeddings for later use
