@@ -1,7 +1,7 @@
 import argparse
 import fire
 import gensim
-import pickle
+import json
 
 from typing            import Union
 from collections       import defaultdict
@@ -17,7 +17,7 @@ def get_k_neighbors(targets: Union[list, str],
                     n_neighbors: int = 5, 
                     algorithm: str = "cosine_similarity",
                     save_output: bool = True,
-                    output_path: str = "./nearest_neighbors.pkl",
+                    output_path: str = "./nearest_neighbors.json",
                     ):
     f"""Restrive k nearest neighbors for each of the provided targets
 
@@ -41,8 +41,8 @@ def get_k_neighbors(targets: Union[list, str],
         targets = [targets]
     if algorithm not in NN_ALGORITHMS:
         raise Exception("NN algorithm must be one of {NN_ALGORITHMS}")
-    if output_path.split(".")[-1] != "pkl":
-        output_path = output_path + ".pkl"
+    if output_path.split(".")[-1] != "json":
+        output_path = output_path + ".json"
 
     # read in trained node2vec embeddings
     model = gensim.models.keyedvectors.KeyedVectors.load_word2vec_format(emb_file_path)
@@ -87,7 +87,7 @@ def get_k_neighbors(targets: Union[list, str],
 
     # save nearest_neighbors
     if save_output:
-        pickle.dump(nearest_neighbors, open(output_path, "wb"))
+        json.dump(nearest_neighbors, open(output_path, "w"), indent=4)
 
     return nearest_neighbors
 
