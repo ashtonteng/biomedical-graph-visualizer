@@ -1,13 +1,12 @@
 import os
+import json
 
 from downloader import query
 from queries.constants import *
 
-DOWNLOAD_DIR = "./queries/download"
-
 
 def download_all_data():
-    print("Downloading....")
+    print("Downloading from Wikidata....")
     if not os.path.exists(DOWNLOAD_DIR):
         os.mkdir(DOWNLOAD_DIR)
     for (concept1, concept2) in EDGES_DICT:
@@ -20,7 +19,8 @@ def download_all_data():
 
         with open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "w") as f:
             for entry in res["results"]["bindings"]:
-                instance1_id = entry['concept']['value'].split("/")[-1] # returns wikidata  http://www.wikidata.org/entity/Q17815615. Only want id Q17815615.
+                # entry['concept']['value'] returns http://www.wikidata.org/entity/Q17815615. Only want id Q17815615.
+                instance1_id = entry['concept']['value'].split("/")[-1]
                 instance1_label = entry['conceptLabel']['value']
                 instance2_id = entry['peripheralConcept']['value'].split("/")[-1]
                 instance2_label = entry['peripheralConceptLabel']['value']

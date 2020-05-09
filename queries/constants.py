@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 
 from .templates import *
 
+### PATHS
+QUERIES_DIR = os.path.dirname(os.path.abspath(__file__))
+DOWNLOAD_DIR = os.path.join(QUERIES_DIR, "download")
+
 ### CORE CONCEPTS
 DRUG = "Drug"
-DRUG_ID = "Q8386" # this is actually ‘drug’
+DRUG_ID = "Q8386"
 CHEMICAL_COMPOUND = "Chemical Compound"
 CHEMICAL_COMPOUND_ID = "Q11173"
-GENE = "Gene" # Homo Sapiens
+GENE = "Gene"
 GENE_ID = "Q7187"
-PROTEIN = "Protein" # Homo Sapiens
+PROTEIN = "Protein"
 PROTEIN_ID = "Q8054"
 DISEASE = "Diseases"
 DISEASE_ID = "Q12136"

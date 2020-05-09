@@ -1,11 +1,6 @@
-import os
-
 import networkx as nx
 
 from .constants import *
-
-
-DOWNLOAD_DIR = "./queries/download"
 
 
 class Graph:
@@ -22,17 +17,20 @@ class Graph:
             relation, query_template = EDGES_DICT[(concept1, concept2)]
             concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
             relation_id = RELATION_LABEL_ID_DICT[relation]
-
-            f = open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "r")
-            for line in f:
-                instance1_id, instance1_label, instance2_id, instance2_label = line.split("\t")
-                node1 = Node(instance1_id, instance1_label, concept1_id)
-                node2 = Node(instance2_id, instance2_label, concept2_id)
-                if instance1_id not in self.G:
-                    self.G.add_node(instance1_id, data=node1)
-                if instance2_id not in self.G:
-                    self.G.add_node(instance2_id, data=node2)
-                self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
+            fpath = os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id))
+            if not os.path.exists(fpath):
+                print("Warning: {} does not exist. Skipping...".format(fpath))
+                continue
+            with open(fpath, "r") as f:
+                for line in f:
+                    instance1_id, instance1_label, instance2_id, instance2_label = line.split("\t")
+                    node1 = Node(instance1_id, instance1_label, concept1_id)
+                    node2 = Node(instance2_id, instance2_label, concept2_id)
+                    if instance1_id not in self.G:
+                        self.G.add_node(instance1_id, data=node1)
+                    if instance2_id not in self.G:
+                        self.G.add_node(instance2_id, data=node2)
+                    self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
 
     def get_node(self, instance_id):
         """
