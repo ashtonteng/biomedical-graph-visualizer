@@ -40,4 +40,4 @@ if __name__=="__main__":
     G = nx.read_edgelist(args.graph)
     gen_embeddings(
         G,
-        args.ndim, args.window, args.min_count, args.batch_words, args.outfile, args.walk_length, args.num_walks, args.workers)
+        args.ndim, args.window, args.min_count, args.batch_words, args.outfile, args.walk_length, args.num_walks, args.num_workers)
