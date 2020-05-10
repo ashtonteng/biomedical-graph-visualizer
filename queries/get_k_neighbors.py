@@ -2,14 +2,14 @@ import argparse
 import fire
 import gensim
 import json
+import os
+import sys
+sys.path.append(os.getcwd())
 
+from queries.constants import NN_ALGORITHMS
 from typing            import Union
 from collections       import defaultdict
 from sklearn.neighbors import NearestNeighbors
-
-
-# Nearest Neighbors
-NN_ALGORITHMS = ['cosine_similarity', 'ball_tree', 'kd_tree', 'brute', 'auto']
 
 
 def get_k_neighbors(targets: Union[list, str],
@@ -22,8 +22,8 @@ def get_k_neighbors(targets: Union[list, str],
     f"""Restrive k nearest neighbors for each of the provided targets
 
     Args:
-        tragets (list, str): the target name for getting nearest neighbors
-            OR list of target names for retriving nearest neighbors.
+        targets (list, str): the target name for getting nearest neighbors
+            OR list of target names for retrieving nearest neighbors.
         emb_file_path (str): path to the node2vec embedding file.
         n_neighbors (int): number of nearest neighbors to retrieve
         algorithm (str): the choice of neighbors search algorithm, which must be
@@ -33,7 +33,7 @@ def get_k_neighbors(targets: Union[list, str],
     
     Returns:
         A dictionary with targets as keys and a another dictionary of neighbors
-        and distances to neighbors as value.
+        and distances to neighbors as values.
     """
 
     # check inputs
@@ -46,9 +46,7 @@ def get_k_neighbors(targets: Union[list, str],
 
     # read in trained node2vec embeddings
     model = gensim.models.keyedvectors.KeyedVectors.load_word2vec_format(emb_file_path)
-    unknown_targets = [t for t in targets if t not in model.wv.index2word]
-    if len(unknown_targets) != 0:
-        raise Exception(f"{unknown_targets} not in node2vec embedding vocabulary")
+    targets = [str(t) for t in targets]
 
     # get nearest neighbors
     nearest_neighbors = defaultdict(dict)

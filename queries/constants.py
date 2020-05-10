@@ -198,3 +198,6 @@ EDGES_DICT = {
 	(DRUG, DRUG_FUNCTION): (SUBJECT_HAS_ROLE, WILDCARD),
 	(DRUG, PHARMACEUTICAL_PRODUCT): (ACTIVE_INGREDIENT_IN, WILDCARD)
 }
+
+# Nearest Neighbors
+NN_ALGORITHMS = ['cosine_similarity', 'ball_tree', 'kd_tree', 'brute', 'auto']
