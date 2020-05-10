@@ -39,5 +39,5 @@ if __name__=="__main__":
     # Load graph for fitting embeddings
     G = nx.read_edgelist(args.graph)
     gen_embeddings(
-        graph,
+        G,
         args.ndim, args.window, args.min_count, args.batch_words, args.outfile, args.walk_length, args.num_walks, args.workers)
