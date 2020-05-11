@@ -3,6 +3,7 @@ main {
     text-align: center;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 0px;
 }
 
 .bold {
@@ -45,4 +46,8 @@ footer {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+}
+
+.footer-container p, .footer-container span {
+    color: whitesmoke;
 }

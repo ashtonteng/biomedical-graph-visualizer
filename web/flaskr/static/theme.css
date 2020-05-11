@@ -1,5 +1,5 @@
 body {
-    background-color: black !important;
+    background-color: whitesmoke !important;
 }
 
 * {
@@ -7,6 +7,32 @@ body {
     color: #AFAFAF;
 }
 
+p, span {
+    color: black;
+}
+
 h1, h2, h3, h4, h5, h6 {
-    text-shadow: 1px 1px whitesmoke;
+    text-shadow: 1px 1px black;
+}
+
+.navbar-inverse {
+    background-color: #b1040e !important;
+    border-color: #7d0309 !important;
+}
+
+.navbar-inverse .navbar-brand {
+    color: whitesmoke !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: whitesmoke !important;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover{
+    background-color: #630307 !important;
+    color: whitesmoke !important;
+}
+
+.navbar-inverse .navbar-nav a:hover {
+    color: #630307 !important;
 }
