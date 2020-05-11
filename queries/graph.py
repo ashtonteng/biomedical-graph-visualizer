@@ -8,11 +8,16 @@ class Graph:
     Backend Graph for Biomedical Graph Visualizer. Wrapper around NetworkX.MultiDiGraph.
     """
 
-    def __init__(self):
-        self.G = None
-        print("Building graph from local files, please wait for success message...")
-        self.build_graph()
-        print("Success: done building graph! Graph has {} nodes.".format(self.G.number_of_nodes()))
+    def __init__(self, g=None):
+        """
+        :param g: (networkx.classes.multidigraph.MultiDiGraph) networkx graph to initialize Graph
+        """
+        if g is None:
+            print("Building graph from local files, please wait for success message...")
+            self.build_graph()
+            print("Success: done building graph! Graph has {} nodes.".format(self.G.number_of_nodes()))
+        else:
+            self.G = g
 
     def __iter__(self):
         """
@@ -165,6 +170,18 @@ class Graph:
         else:
             edge_tuples = [(instance1_id, instance2_id) for _ in range(len(edges))]
             self.G.remove_edges_from(edge_tuples)
+
+    def get_subgraph(self, instance_ids, new_copy=True):
+        """
+        :param instance_ids: (list/iterable) of instance_ids which nodes should be included in the subgraph.
+        :param new_copy: (bool) whether or not to produce a deep copy of the graph, edge, and node attributes.
+                                so that changes to attributes in subgraph does not affect original graph.
+        :return: (Graph) subgraph induced on nodes in instance_ids (all nodes and edges between).
+        """
+        if new_copy:
+            return Graph(g=self.G.subgraph(instance_ids).copy())
+        else:
+            return Graph(g=self.G.subgraph(instance_ids))
 
 
 # class Node:
