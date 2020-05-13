@@ -3,6 +3,7 @@ import json
 
 from downloader import query
 from queries.constants import *
+from queries.graph_utils import *
 
 
 def download_all_data():
@@ -29,3 +30,6 @@ def download_all_data():
 
 if __name__ == '__main__':
     download_all_data()
+    g = build_and_pickle_graph()
+    save_all_node_names_ids_json(g)
+    save_all_concept_names_ids_json()
