@@ -1,5 +1,10 @@
+decorator==4.4.2
 isodate==0.6.0
+networkx==2.4
+node2vec==0.3.2
 pyparsing==2.4.7
 rdflib==5.0.0
 six==1.14.0
 SPARQLWrapper==1.8.5
+fire==0.3.1
+scikit-learn==0.22.2.post1
