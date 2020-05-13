@@ -15,11 +15,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Autocomplete-->
+    <script  type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
-<body>
+<body onload="init();">
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <!-- container of elements in the navbar -->
@@ -54,10 +57,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
-                <label>Starting Node:<br><input type="text" id="starting_node"></label>
+                <label>Starting Node:<br><input type="text" id="starting_node" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false"></label>
             </div>
             <div class="col-md-5">
-                <label>Ending Node:<br><input type="text" id="ending_node"></label>
+                <label>Ending Node:<br><input type="text" id="ending_node" placeholder="Protein..." class="typeahead tt-query" spellcheck="false"></label>
             </div>
             <div class="col-md-1">
                 <label>Maximum Hops:<br><input type="text" id="hops"></label>
@@ -123,6 +126,72 @@
 </footer>
 
 <script>
+
+    function httpRequest(url, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                callback(xmlHttp.response);
+            }
+        }
+        xmlHttp.open("GET", url, true);
+        xmlHttp.responseType = 'json';
+        xmlHttp.send(null);
+    }
+
+    function init() {
+        httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
+            let autocomplete_names = Object.keys(data);
+            let bhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: autocomplete_names
+            });
+
+            $('#starting_node').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'nodes',
+                    source: bhound
+                }
+            );
+
+            $('#starting_node').on('typeahead:select', function(evt, item) {
+                console.log("Item selected!");
+                console.log(evt);
+                console.log(item);
+            });
+        });
+
+        httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
+            let autocomplete_names = Object.keys(data);
+            let bhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: autocomplete_names
+            });
+
+            $('#ending_node').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'concepts',
+                    source: bhound
+                }
+            );
+
+            $('#starting_node').on('typeahead:select', function(evt, item) {
+                console.log("Item selected!");
+                console.log(evt);
+                console.log(item);
+            });
+        });
+    }
 
     d3.json("static/example_network.json", function (data) {
 

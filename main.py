@@ -18,7 +18,7 @@ def download_all_data():
         print(q)
         res = query(q)
 
-        with open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "w") as f:
+        with open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "w", encoding="utf-8") as f:
             for entry in res["results"]["bindings"]:
                 # entry['concept']['value'] returns http://www.wikidata.org/entity/Q17815615. Only want id Q17815615.
                 instance1_id = entry['concept']['value'].split("/")[-1]
