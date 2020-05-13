@@ -36,3 +36,23 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-inverse .navbar-nav a:hover {
     color: #630307 !important;
 }
+
+footer {
+    margin-bottom: 0px !important;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-container p, .footer-container span {
+    color: whitesmoke;
+}
+
+.bold {
+    font-weight: bold;
+}
