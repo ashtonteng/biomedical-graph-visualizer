@@ -16,7 +16,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Autocomplete-->
-    <script  type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script type="text/javascript"
+            src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -58,11 +59,12 @@
         <h2>Select Starting Nodes</h2>
         <input type="button" id="add_target" value="Add Target Node" onclick="add_target_node()">
         <br> <br>
-        <div class="container-fluid" id ="input-list">
+        <div class="container-fluid" id="input-list">
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="node_0">
+                    <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false"
+                           id="node_0">
                 </div>
                 <div class="col-sm-2">
                     <input type="button" id="del_target" value="Delete Target Node">
@@ -73,38 +75,28 @@
         <br>
         <input type="button" value="Search!" onclick="onSearch()">
     </div>
-    <div>
-        <svg id="landing_page_viz"></svg>
-    </div>
+    <div id="my_dataviz"></div>
     <div class="results-panel">
         <h1>Results:</h1>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Starting Node</th>
-                    <th>Ending Node</th>
-                    <th>Ending Node Type</th>
-                    <th>Path Length</th>
+                    <th>Node Name</th>
+                    <th>Similarity Score</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
                     <td>1</td>
                 </tr>
                 <tr>
                     <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
                     <td>1</td>
                 </tr>
                 <tr>
                     <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
                     <td>1</td>
                 </tr>
                 </tbody>
@@ -135,7 +127,7 @@
         target_node_index++;
         let list = document.getElementById("input-list");
         let template =
-                `
+            `
                 <div class="col-sm-3"></div>
                 <div class="col-sm-4">
                     <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="node_${target_node_index}">
@@ -191,8 +183,8 @@
 
     function init() {
 
-        httpRequest("static/example_network.json", function(data) {
-            drawGraph(data);
+        d3.csv("static/example_scatter.csv", function (data) {
+            drawScatterPlot(data);
         });
 
         httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
@@ -232,7 +224,7 @@
             xhr.open("POST", '/tool2/search', true);
             xhr.setRequestHeader("Content-Type", "application/json");
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     console.log(xhr.response);
                     //drawGraph(xhr.response);
@@ -242,82 +234,92 @@
         }
     }
 
-    function drawGraph(data) {
-        const width = window.innerWidth;
-        const height = 500;
-        const svg = d3.select('#landing_page_viz')
-            .attr('width', width)
-            .attr('height', height);
+    function drawScatterPlot(data) {
 
-        function getNodeColor(node) {
-            return node.level === 1 ? 'red' : 'gray'
+        let margin = {top: 10, right: 30, bottom: 30, left: 60}
+        const width = window.innerWidth - margin.left - margin.right;
+        const height = 500 - margin.top - margin.bottom;
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#my_dataviz")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // Add X axis
+        var x = d3.scaleLinear()
+            .domain([0, 3000])
+            .range([0, width]);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+
+        // Add Y axis
+        var y = d3.scaleLinear()
+            .domain([0, 400000])
+            .range([height, 0]);
+        svg.append("g")
+            .call(d3.axisLeft(y));
+
+        // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
+        // Its opacity is set to 0: we don't see it by default.
+        var tooltip = d3.select("#my_dataviz")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "white")
+            .style("border", "solid")
+            .style("border-width", "1px")
+            .style("border-radius", "5px")
+            .style("padding", "10px")
+
+
+        // A function that change this tooltip when the user hover a point.
+        // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
+        var mouseover = function (d) {
+            tooltip
+                .style("opacity", 1)
         }
 
-        const nodeElements = svg.append('g')
-            .selectAll('circle')
-            .data(data.nodes)
-            .enter().append('circle')
-            .attr('r', 20)
-            .attr('fill', getNodeColor);
+        var mousemove = function (d) {
+            tooltip
+                .html("The exact value of<br>the Ground Living area is: " + d.GrLivArea)
+                .style("left", (d3.mouse(this)[0] + 90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+                .style("top", (d3.mouse(this)[1] + 150) + "px")
+        }
 
-        const textElements = svg.append('g')
-            .selectAll('text')
-            .data(data.nodes)
-            .enter().append('text')
-            .text(node => node.label)
-            .attr('font-size', 15)
-            .attr('dx', 15)
-            .attr('dy', 4)
-            .attr('fill', "#AFAFAF");
+        // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+        var mouseleave = function (d) {
+            tooltip
+                .transition()
+                .duration(200)
+                .style("opacity", 0)
+        }
 
-        const linkElements = svg.append('g')
-            .selectAll('line')
-            .data(data.links)
-            .enter().append('line')
-            .attr('stroke-width', 1)
-            .attr('stroke', '#E5E5E5');
-
-        const simulation = d3.forceSimulation(data.nodes)
-            .force('charge', d3.forceManyBody().strength(-400))
-            .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('link', d3.forceLink()
-                .id(link => link.id)
-                .strength(link => link.strength)
-                .links(data.links));
-
-        simulation.nodes(data.nodes).on('tick', () => {
-            nodeElements
-                .attr('cx', node => node.x)
-                .attr('cy', node => node.y);
-            textElements
-                .attr('x', node => node.x)
-                .attr('y', node => node.y);
-            linkElements
-                .attr('x1', link => link.source.x)
-                .attr('y1', link => link.source.y)
-                .attr('x2', link => link.target.x)
-                .attr('y2', link => link.target.y)
-        });
-
-        const dragDrop = d3.drag()
-            .on('start', node => {
-                node.fx = node.x;
-                node.fy = node.y;
+        // Add dots
+        svg.append('g')
+            .selectAll("dot")
+            .data(data.filter(function (d, i) {
+                return i < 50
+            })) // the .filter part is just to keep a few dots on the chart, not all of them
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) {
+                return x(d.GrLivArea);
             })
-            .on('drag', node => {
-                simulation.alphaTarget(0.7).restart();
-                node.fx = d3.event.x;
-                node.fy = d3.event.y;
+            .attr("cy", function (d) {
+                return y(d.SalePrice);
             })
-            .on('end', node => {
-                if (!d3.event.active) {
-                    simulation.alphaTarget(0);
-                }
-                node.fx = null;
-                node.fy = null;
-            });
-
-        nodeElements.call(dragDrop);
+            .attr("r", 7)
+            .style("fill", "#69b3a2")
+            .style("opacity", 0.3)
+            .style("stroke", "white")
+            .on("mouseover", mouseover)
+            .on("mousemove", mousemove)
+            .on("mouseleave", mouseleave)
     }
 
 
