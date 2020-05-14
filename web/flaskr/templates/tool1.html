@@ -71,13 +71,11 @@
             </div>
         </div>
     </div>
-    <div>
-        <svg id="landing_page_viz"></svg>
-    </div>
+    <div id="network_viz"></div>
     <div class="results-panel">
         <h1>Results:</h1>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="results_table">
                 <thead>
                 <tr>
                     <th>Starting Node</th>
@@ -141,8 +139,8 @@
 
     function init() {
 
-        httpRequest("static/example_network.json", function(data) {
-            drawGraph(data);
+        httpRequest("/tool1/search", function(data) {
+            drawGraph(data["graph"]);
         });
 
         httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
@@ -198,8 +196,10 @@
 
             xhr.onreadystatechange = function() {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    console.log(xhr.response);
-                    //drawGraph(xhr.response);
+                    let response = JSON.parse(xhr.response);
+                    let results = response["results"];
+                    drawGraph(response["graph"]);
+                    updateTable(results);
                 }
             }
             let params = "starting_node=" + start;
@@ -216,12 +216,24 @@
     function drawGraph(data) {
         const width = window.innerWidth;
         const height = 500;
-        const svg = d3.select('#landing_page_viz')
+
+        let el = document.getElementById("network_viz");
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
+        const svg = d3.select('#network_viz')
+            .append('svg')
             .attr('width', width)
             .attr('height', height);
 
         function getNodeColor(node) {
-            return node.level === 1 ? 'red' : 'gray'
+            switch (node.domain) {
+                case "Drug": return "green";
+                case "Protein": return "pink";
+                case "Gene": return "blue";
+                default: "gray";
+            }
         }
 
         const nodeElements = svg.append('g')
@@ -248,12 +260,22 @@
             .attr('stroke-width', 1)
             .attr('stroke', '#E5E5E5');
 
+        const linkLabels = svg.append('g')
+            .selectAll('text')
+            .data(data.links)
+            .enter().append('text')
+            .text(link => link.label)
+            .attr('font-size', 10)
+            .attr('dx', 0)
+            .attr('dy', 0)
+            .attr('fill', "#AFAFAF");
+
         const simulation = d3.forceSimulation(data.nodes)
             .force('charge', d3.forceManyBody().strength(-400))
             .force('center', d3.forceCenter(width / 2, height / 2))
             .force('link', d3.forceLink()
-                .id(link => link.id)
-                .strength(link => link.strength)
+                .id(node => node.qid)
+                .strength(link => link.weight)
                 .links(data.links));
 
         simulation.nodes(data.nodes).on('tick', () => {
@@ -263,6 +285,9 @@
             textElements
                 .attr('x', node => node.x)
                 .attr('y', node => node.y);
+            linkLabels
+                .attr('x', link => (link.source.x + link.target.x) / 2)
+                .attr('y', link => (link.source.y + link.target.y) / 2)
             linkElements
                 .attr('x1', link => link.source.x)
                 .attr('y1', link => link.source.y)
@@ -289,6 +314,25 @@
             });
 
         nodeElements.call(dragDrop);
+    }
+
+    function updateTable(results) {
+        let start = document.getElementById("starting_node").value;
+        let el = document.getElementById("results_table").querySelector("tbody");
+
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
+        for (let i = 0; i < results.length; i++) {
+            let row = document.createElement("tr");
+            let template = `<td>${start}</td>
+                            <td>${results[i]["name"]}</td>
+                            <td>${results[i]["domain"]}</td>
+                            <td>${results[i]["path_length"]}</td>`
+            row.innerHTML = template;
+            el.append(row);
+        }
     }
 
 
