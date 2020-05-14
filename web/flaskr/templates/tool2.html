@@ -6,15 +6,23 @@
     <title>Biomedical Graph Visualizer</title>
 
     <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/tool2.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- scripts for bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Autocomplete-->
+    <script  type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
 </head>
-<body>
+<body onload="init();">
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <!-- container of elements in the navbar -->
@@ -46,8 +54,274 @@
 </header>
 
 <main>
-    <p>This is tool 2</p>
+    <div>
+        <h2>Select Starting Nodes</h2>
+        <input type="button" id="add_target" value="Add Target Node" onclick="add_target_node()">
+        <br> <br>
+        <div class="container-fluid" id ="input-list">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="node_0">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" id="del_target" value="Delete Target Node">
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        <br>
+        <input type="button" value="Search!" onclick="onSearch()">
+    </div>
+    <div>
+        <svg id="landing_page_viz"></svg>
+    </div>
+    <div class="results-panel">
+        <h1>Results:</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Starting Node</th>
+                    <th>Ending Node</th>
+                    <th>Ending Node Type</th>
+                    <th>Path Length</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
+<footer class="navbar navbar-inverse footer-container">
+    <div style="flex-grow: 1">
+        <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>
+    </div>
+    <div style="flex-grow: 20; color: white">
+        <p>License: XXXX</p>
+    </div>
+    <div style="flex-grow: 1">
+        <a href="/"><span class="fa fa-facebook"></span></a>
+        <a href="/"><span class="fa fa-github"></span></a>
+        <a href="/"><span class="fa fa-twitter"></span></a>
+        <a href="/"><span class="fa fa-instagram"></span></a>
+    </div>
+</footer>
+
+<script>
+
+    let target_node_index = 0;
+
+    function add_target_node() {
+        target_node_index++;
+        let list = document.getElementById("input-list");
+        let template =
+                `
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4">
+                    <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="node_${target_node_index}">
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" id="del_target" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
+                </div>
+                <div class="col-sm-3"></div>`;
+
+        let el = document.createElement("div");
+        el.setAttribute("id", "input_" + target_node_index);
+        el.setAttribute("class", "row");
+        el.innerHTML = template;
+
+        list.appendChild(el);
+
+        let bhound = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: autocomplete_data
+        });
+
+        $('#node_' + target_node_index).typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'nodes',
+                source: bhound
+            }
+        );
+    }
+
+    function del_target_node(index) {
+        let list = document.getElementById("input-list");
+        list.removeChild(document.getElementById("input_" + index));
+    }
+
+    function httpRequest(url, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                callback(xmlHttp.response);
+            }
+        }
+        xmlHttp.open("GET", url, true);
+        xmlHttp.responseType = 'json';
+        xmlHttp.send(null);
+    }
+
+    let autocomplete_data = [];
+
+    function init() {
+
+        httpRequest("static/example_network.json", function(data) {
+            drawGraph(data);
+        });
+
+        httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
+            autocomplete_data = Object.keys(data);
+            let autocomplete_names = Object.keys(data);
+            let bhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: autocomplete_data
+            });
+
+            $('#node_0').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'nodes',
+                    source: bhound
+                }
+            );
+
+        });
+    }
+
+    function onSearch() {
+        let elements = document.querySelectorAll("input[type='text'][id]");
+        let targets = [];
+        for (let i = 0; i < elements.length; i++) {
+            let val = elements[i].value;
+            if (val) {
+                targets.push(val);
+            }
+        }
+        if (targets.length > 0) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/tool2/search', true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log(xhr.response);
+                    //drawGraph(xhr.response);
+                }
+            }
+            xhr.send(JSON.stringify({"targets": targets}));
+        }
+    }
+
+    function drawGraph(data) {
+        const width = window.innerWidth;
+        const height = 500;
+        const svg = d3.select('#landing_page_viz')
+            .attr('width', width)
+            .attr('height', height);
+
+        function getNodeColor(node) {
+            return node.level === 1 ? 'red' : 'gray'
+        }
+
+        const nodeElements = svg.append('g')
+            .selectAll('circle')
+            .data(data.nodes)
+            .enter().append('circle')
+            .attr('r', 20)
+            .attr('fill', getNodeColor);
+
+        const textElements = svg.append('g')
+            .selectAll('text')
+            .data(data.nodes)
+            .enter().append('text')
+            .text(node => node.label)
+            .attr('font-size', 15)
+            .attr('dx', 15)
+            .attr('dy', 4)
+            .attr('fill', "#AFAFAF");
+
+        const linkElements = svg.append('g')
+            .selectAll('line')
+            .data(data.links)
+            .enter().append('line')
+            .attr('stroke-width', 1)
+            .attr('stroke', '#E5E5E5');
+
+        const simulation = d3.forceSimulation(data.nodes)
+            .force('charge', d3.forceManyBody().strength(-400))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('link', d3.forceLink()
+                .id(link => link.id)
+                .strength(link => link.strength)
+                .links(data.links));
+
+        simulation.nodes(data.nodes).on('tick', () => {
+            nodeElements
+                .attr('cx', node => node.x)
+                .attr('cy', node => node.y);
+            textElements
+                .attr('x', node => node.x)
+                .attr('y', node => node.y);
+            linkElements
+                .attr('x1', link => link.source.x)
+                .attr('y1', link => link.source.y)
+                .attr('x2', link => link.target.x)
+                .attr('y2', link => link.target.y)
+        });
+
+        const dragDrop = d3.drag()
+            .on('start', node => {
+                node.fx = node.x;
+                node.fy = node.y;
+            })
+            .on('drag', node => {
+                simulation.alphaTarget(0.7).restart();
+                node.fx = d3.event.x;
+                node.fy = d3.event.y;
+            })
+            .on('end', node => {
+                if (!d3.event.active) {
+                    simulation.alphaTarget(0);
+                }
+                node.fx = null;
+                node.fy = null;
+            });
+
+        nodeElements.call(dragDrop);
+    }
+
+
+</script>
 
 </body>
 </html>

@@ -42,4 +42,12 @@ def create_app(config=None):
         hops = request.form.get('hops', default = 3, type = int)
         return {"start" : starting_node, "end": ending_node, "hops": hops}
 
+    @app.route('/tool2/search', methods=['POST'])
+    def similarity_search():
+        data = request.get_json()
+        targets = []
+        if "targets" in data:
+            targets = data["targets"]
+        return {"targets" : targets}
+
     return app
