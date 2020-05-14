@@ -62,12 +62,18 @@ def create_app(config=None):
 
         return jsonify(example)
 
-    @app.route('/tool2/search', methods=['POST'])
+    @app.route('/tool2/search', methods=['GET', 'POST'])
     def similarity_search():
         data = request.get_json()
         targets = []
         if "targets" in data:
             targets = data["targets"]
-        return {"targets" : targets}
+
+        example = [
+            {"label": "Metformin", "id": "Q19484", "sim_score": 1.5 , "pc1": 100, "pc2": 100},
+            {"label": "BRCA1", "id": "Q227339", "sim_score": 3 , "pc1": 250, "pc2": 105},
+            {"label": "BRCA1 DNA repair associated", "id": "Q17487737", "sim_score": 10 , "pc1": 40, "pc2": 182},
+        ]
+        return jsonify(example)
 
     return app

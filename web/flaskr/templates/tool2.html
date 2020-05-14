@@ -79,7 +79,7 @@
     <div class="results-panel">
         <h1>Results:</h1>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="results_table">
                 <thead>
                 <tr>
                     <th>Node Name</th>
@@ -226,8 +226,9 @@
 
             xhr.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    console.log(xhr.response);
-                    //drawGraph(xhr.response);
+                    let response = JSON.parse(xhr.response);
+                    drawScatterPlot(response);
+                    updateTable(response);
                 }
             }
             xhr.send(JSON.stringify({"targets": targets}));
@@ -240,6 +241,11 @@
         const width = window.innerWidth - margin.left - margin.right;
         const height = 500 - margin.top - margin.bottom;
 
+        let el = document.getElementById("my_dataviz");
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
         // append the svg object to the body of the page
         var svg = d3.select("#my_dataviz")
             .append("svg")
@@ -251,7 +257,7 @@
 
         // Add X axis
         var x = d3.scaleLinear()
-            .domain([0, 3000])
+            .domain([0, 500])
             .range([0, width]);
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -259,7 +265,7 @@
 
         // Add Y axis
         var y = d3.scaleLinear()
-            .domain([0, 400000])
+            .domain([0, 500])
             .range([height, 0]);
         svg.append("g")
             .call(d3.axisLeft(y));
@@ -286,7 +292,7 @@
 
         var mousemove = function (d) {
             tooltip
-                .html("The exact value of<br>the Ground Living area is: " + d.GrLivArea)
+                .html(d.id + ": " + d.label)
                 .style("left", (d3.mouse(this)[0] + 90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
                 .style("top", (d3.mouse(this)[1] + 150) + "px")
         }
@@ -308,10 +314,10 @@
             .enter()
             .append("circle")
             .attr("cx", function (d) {
-                return x(d.GrLivArea);
+                return d.pc1;
             })
             .attr("cy", function (d) {
-                return y(d.SalePrice);
+                return d.pc2;
             })
             .attr("r", 7)
             .style("fill", "#69b3a2")
@@ -320,6 +326,22 @@
             .on("mouseover", mouseover)
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
+    }
+
+    function updateTable(results) {
+        let el = document.getElementById("results_table").querySelector("tbody");
+
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
+        for (let i = 0; i < results.length; i++) {
+            let row = document.createElement("tr");
+            let template = `<td>${results[i]["label"]}</td>
+                            <td>${results[i]["sim_score"]}</td>`
+            row.innerHTML = template;
+            el.append(row);
+        }
     }
 
 
