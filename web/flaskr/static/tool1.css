@@ -27,9 +27,8 @@ table {
 .tt-query, /* UPDATE: newer versions use tt-input instead of tt-query */
 .tt-hint {
     padding: 2px;
-    font-size: 12px;
     border: 2px solid #ccc;
-    border-radius: 8px;
+    border-radius: 2px;
     width: 100%;
 }
 

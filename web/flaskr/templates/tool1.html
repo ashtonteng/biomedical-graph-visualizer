@@ -63,11 +63,11 @@
                 <label>Ending Node:<br><input type="text" id="ending_node" placeholder="Protein..." class="typeahead tt-query" spellcheck="false"></label>
             </div>
             <div class="col-md-1">
-                <label>Maximum Hops:<br><input type="text" id="hops"></label>
+                <label>Hops:<br><input type="text" id="hops"></label>
             </div>
             <div class="col-md-1">
                 <br>
-                <input type="button" id="submit" value="Search!">
+                <input type="button" id="submit" value="Search!" onclick="onSearch()">
             </div>
         </div>
     </div>
@@ -140,6 +140,11 @@
     }
 
     function init() {
+
+        httpRequest("static/example_network.json", function(data) {
+            drawGraph(data);
+        });
+
         httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
             let autocomplete_names = Object.keys(data);
             let bhound = new Bloodhound({
@@ -159,11 +164,6 @@
                 }
             );
 
-            $('#starting_node').on('typeahead:select', function(evt, item) {
-                console.log("Item selected!");
-                console.log(evt);
-                console.log(item);
-            });
         });
 
         httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
@@ -184,17 +184,36 @@
                     source: bhound
                 }
             );
-
-            $('#starting_node').on('typeahead:select', function(evt, item) {
-                console.log("Item selected!");
-                console.log(evt);
-                console.log(item);
-            });
         });
     }
 
-    d3.json("static/example_network.json", function (data) {
+    function onSearch() {
+        let start = document.getElementById("starting_node").value;
+        let end = document.getElementById("ending_node").value;
+        let hops = document.getElementById("hops").value;
+        if (start) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/tool1/search', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    console.log(xhr.response);
+                    //drawGraph(xhr.response);
+                }
+            }
+            let params = "starting_node=" + start;
+            if (end) {
+                params += "&ending_node=" + end;
+            }
+            if (hops) {
+                params += "&hops=" + hops;
+            }
+            xhr.send(params);
+        }
+    }
+
+    function drawGraph(data) {
         const width = window.innerWidth;
         const height = 500;
         const svg = d3.select('#landing_page_viz')
@@ -270,8 +289,7 @@
             });
 
         nodeElements.call(dragDrop);
-
-    });
+    }
 
 
 </script>

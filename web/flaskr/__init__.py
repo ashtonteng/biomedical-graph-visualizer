@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 def create_app(config=None):
     # create and configure the app
@@ -34,5 +34,12 @@ def create_app(config=None):
     @app.route('/tool2')
     def tool2():
         return render_template("tool2.html")
+
+    @app.route('/tool1/search', methods=['POST'])
+    def graph_search():
+        starting_node = request.form.get('starting_node', default = None, type = str)
+        ending_node = request.form.get('ending_node', default = None, type = str)
+        hops = request.form.get('hops', default = 3, type = int)
+        return {"start" : starting_node, "end": ending_node, "hops": hops}
 
     return app
