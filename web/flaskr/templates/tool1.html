@@ -6,15 +6,23 @@
     <title>Biomedical Graph Visualizer</title>
 
     <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/tool1.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- scripts for bootstrap -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Autocomplete-->
+    <script  type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
 </head>
-<body>
+<body onload="init();">
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <!-- container of elements in the navbar -->
@@ -46,8 +54,289 @@
 </header>
 
 <main>
-    <p>This is tool 1</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <label>Starting Node:<br><input type="text" id="starting_node" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false"></label>
+            </div>
+            <div class="col-md-5">
+                <label>Ending Node:<br><input type="text" id="ending_node" placeholder="Protein..." class="typeahead tt-query" spellcheck="false"></label>
+            </div>
+            <div class="col-md-1">
+                <label>Hops:<br><input type="text" id="hops"></label>
+            </div>
+            <div class="col-md-1">
+                <br>
+                <input type="button" id="submit" value="Search!" onclick="onSearch()">
+            </div>
+        </div>
+    </div>
+    <div id="network_viz"></div>
+    <div class="results-panel">
+        <h1>Results:</h1>
+        <div class="table-responsive">
+            <table class="table table-striped" id="results_table">
+                <thead>
+                <tr>
+                    <th>Starting Node</th>
+                    <th>Ending Node</th>
+                    <th>Ending Node Type</th>
+                    <th>Path Length</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>Moe</td>
+                    <td>mary@example.com</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>July</td>
+                    <td>Dooley</td>
+                    <td>july@example.com</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
+<footer class="navbar navbar-inverse footer-container">
+    <div style="flex-grow: 1">
+        <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>
+    </div>
+    <div style="flex-grow: 20; color: white">
+        <p>License: XXXX</p>
+    </div>
+    <div style="flex-grow: 1">
+        <a href="/"><span class="fa fa-facebook"></span></a>
+        <a href="/"><span class="fa fa-github"></span></a>
+        <a href="/"><span class="fa fa-twitter"></span></a>
+        <a href="/"><span class="fa fa-instagram"></span></a>
+    </div>
+</footer>
+
+<script>
+
+    function httpRequest(url, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                callback(xmlHttp.response);
+            }
+        }
+        xmlHttp.open("GET", url, true);
+        xmlHttp.responseType = 'json';
+        xmlHttp.send(null);
+    }
+
+    function init() {
+
+        httpRequest("/tool1/search", function(data) {
+            drawGraph(data["graph"]);
+        });
+
+        httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
+            let autocomplete_names = Object.keys(data);
+            let bhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: autocomplete_names
+            });
+
+            $('#starting_node').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'nodes',
+                    source: bhound
+                }
+            );
+
+        });
+
+        httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
+            let autocomplete_names = Object.keys(data);
+            let bhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local: autocomplete_names
+            });
+
+            $('#ending_node').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                },
+                {
+                    name: 'concepts',
+                    source: bhound
+                }
+            );
+        });
+    }
+
+    function onSearch() {
+        let start = document.getElementById("starting_node").value;
+        let end = document.getElementById("ending_node").value;
+        let hops = document.getElementById("hops").value;
+        if (start) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/tool1/search', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    let response = JSON.parse(xhr.response);
+                    let results = response["results"];
+                    drawGraph(response["graph"]);
+                    updateTable(results);
+                }
+            }
+            let params = "starting_node=" + start;
+            if (end) {
+                params += "&ending_node=" + end;
+            }
+            if (hops) {
+                params += "&hops=" + hops;
+            }
+            xhr.send(params);
+        }
+    }
+
+    function drawGraph(data) {
+        const width = window.innerWidth;
+        const height = 500;
+
+        let el = document.getElementById("network_viz");
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
+        const svg = d3.select('#network_viz')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        function getNodeColor(node) {
+            switch (node.domain) {
+                case "Drug": return "green";
+                case "Protein": return "pink";
+                case "Gene": return "blue";
+                default: "gray";
+            }
+        }
+
+        const nodeElements = svg.append('g')
+            .selectAll('circle')
+            .data(data.nodes)
+            .enter().append('circle')
+            .attr('r', 20)
+            .attr('fill', getNodeColor);
+
+        const textElements = svg.append('g')
+            .selectAll('text')
+            .data(data.nodes)
+            .enter().append('text')
+            .text(node => node.label)
+            .attr('font-size', 15)
+            .attr('dx', 15)
+            .attr('dy', 4)
+            .attr('fill', "#AFAFAF");
+
+        const linkElements = svg.append('g')
+            .selectAll('line')
+            .data(data.links)
+            .enter().append('line')
+            .attr('stroke-width', 1)
+            .attr('stroke', '#E5E5E5');
+
+        const linkLabels = svg.append('g')
+            .selectAll('text')
+            .data(data.links)
+            .enter().append('text')
+            .text(link => link.label)
+            .attr('font-size', 10)
+            .attr('dx', 0)
+            .attr('dy', 0)
+            .attr('fill', "#AFAFAF");
+
+        const simulation = d3.forceSimulation(data.nodes)
+            .force('charge', d3.forceManyBody().strength(-400))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('link', d3.forceLink()
+                .id(node => node.qid)
+                .strength(link => link.weight)
+                .links(data.links));
+
+        simulation.nodes(data.nodes).on('tick', () => {
+            nodeElements
+                .attr('cx', node => node.x)
+                .attr('cy', node => node.y);
+            textElements
+                .attr('x', node => node.x)
+                .attr('y', node => node.y);
+            linkLabels
+                .attr('x', link => (link.source.x + link.target.x) / 2)
+                .attr('y', link => (link.source.y + link.target.y) / 2)
+            linkElements
+                .attr('x1', link => link.source.x)
+                .attr('y1', link => link.source.y)
+                .attr('x2', link => link.target.x)
+                .attr('y2', link => link.target.y)
+        });
+
+        const dragDrop = d3.drag()
+            .on('start', node => {
+                node.fx = node.x;
+                node.fy = node.y;
+            })
+            .on('drag', node => {
+                simulation.alphaTarget(0.7).restart();
+                node.fx = d3.event.x;
+                node.fy = d3.event.y;
+            })
+            .on('end', node => {
+                if (!d3.event.active) {
+                    simulation.alphaTarget(0);
+                }
+                node.fx = null;
+                node.fy = null;
+            });
+
+        nodeElements.call(dragDrop);
+    }
+
+    function updateTable(results) {
+        let start = document.getElementById("starting_node").value;
+        let el = document.getElementById("results_table").querySelector("tbody");
+
+        while (el.childElementCount > 0) {
+            el.removeChild(el.childNodes[0]);
+        }
+
+        for (let i = 0; i < results.length; i++) {
+            let row = document.createElement("tr");
+            let template = `<td>${start}</td>
+                            <td>${results[i]["name"]}</td>
+                            <td>${results[i]["domain"]}</td>
+                            <td>${results[i]["path_length"]}</td>`
+            row.innerHTML = template;
+            el.append(row);
+        }
+    }
+
+
+</script>
 
 </body>
 </html>
