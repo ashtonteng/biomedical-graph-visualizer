@@ -31,12 +31,12 @@ class NearestNeighbors:
     """
 
     def __init__(self, 
-                   targets: Union[list, str],
-                   emb_file_path: str = "./embeddigns.emb",
-                   n_neighbors: int = 5, 
-                   algorithm: str = "cosine_similarity", 
-                   exclude_targets: bool = True 
-                   ):
+                 targets: Union[list, str],
+                 emb_file_path: str = "./embeddigns.emb",
+                 n_neighbors: int = 5, 
+                 algorithm: str = "cosine_similarity", 
+                 exclude_targets: bool = True 
+                 ):
 
         # check inputs
         if type(targets) == str:
@@ -47,7 +47,7 @@ class NearestNeighbors:
         # read in trained node2vec embeddings
         self.model = keyedvectors.KeyedVectors.load_word2vec_format(emb_file_path)
         self.targets = [str(t) for t in targets]
-        self.n_neighbors = 5
+        self.n_neighbors = n_neighbors
         self.algorithm = algorithm
         self.exclude_targets = exclude_targets
 
@@ -67,7 +67,7 @@ class NearestNeighbors:
                 aggregating method should be one of {AGGREGATION_METHODS}.
                 nearest -> aggregate and pick top k neighbor based on distance
                 mean -> takes the mean distance for each neighbor and pick nearest
-                friendliest -> pick the neighbors that appears most frequently 
+                majority -> pick the neighbors that appears most frequently 
         """
         if method not in AGGREGATION_METHODS:
             raise Exception(f"Method has to be one of {AGGREGATION_METHODS}")
@@ -88,7 +88,7 @@ class NearestNeighbors:
             for n, d in zip(neighbors, distances):
                 neigh_dist[n].append(d)
             neigh_dist_pair = [(n,np.mean(d)) for n,d in neigh_dist.items()]
-        elif method == "friendliest":
+        elif method == "majority":
             neigh_count = Counter()
             for n in neighbors:
                 neigh_count[n] += 1

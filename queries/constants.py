@@ -201,4 +201,4 @@ EDGES_DICT = {
 
 # Nearest Neighbors
 NN_ALGORITHMS = ['cosine_similarity', 'ball_tree', 'kd_tree', 'brute', 'auto']
-AGGREGATION_METHODS = ['nearest','mean','friendliest']
+AGGREGATION_METHODS = ['nearest','mean','majority']
