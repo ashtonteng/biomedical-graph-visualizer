@@ -3,3 +3,4 @@ pyparsing==2.4.7
 rdflib==5.0.0
 six==1.14.0
 SPARQLWrapper==1.8.5
+flask
