@@ -1,35 +1,62 @@
 import os
-import json
+from flask import Flask, render_template, request, Response, jsonify
 
-from downloader import query
-from queries.constants import *
-from queries.graph_utils import *
+app = Flask(__name__)
 
+# define routing
+@app.route('/')
+@app.route('/home')
+def main():
+    return render_template("home.html")
 
-def download_all_data():
-    print("Downloading from Wikidata....")
-    if not os.path.exists(DOWNLOAD_DIR):
-        os.mkdir(DOWNLOAD_DIR)
-    for (concept1, concept2) in EDGES_DICT:
-        relation, query_template = EDGES_DICT[(concept1, concept2)]
-        concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
-        relation_id = RELATION_LABEL_ID_DICT[relation]
-        q = query_template(concept1_id, relation_id)
-        print(q)
-        res = query(q)
+@app.route('/tool1')
+def tool1():
+    return render_template("tool1.html")
 
-        with open(os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id)), "w", encoding="utf-8") as f:
-            for entry in res["results"]["bindings"]:
-                # entry['concept']['value'] returns http://www.wikidata.org/entity/Q17815615. Only want id Q17815615.
-                instance1_id = entry['concept']['value'].split("/")[-1]
-                instance1_label = entry['conceptLabel']['value']
-                instance2_id = entry['peripheralConcept']['value'].split("/")[-1]
-                instance2_label = entry['peripheralConceptLabel']['value']
-                f.write("{}\t{}\t{}\t{}\n".format(instance1_id, instance1_label, instance2_id, instance2_label))
+@app.route('/tool2')
+def tool2():
+    return render_template("tool2.html")
 
+@app.route('/tool1/search', methods=['GET', 'POST'])
+def graph_search():
+    starting_node = request.form.get('starting_node', default = None, type = str)
+    ending_node = request.form.get('ending_node', default = None, type = str)
+    hops = request.form.get('hops', default = 3, type = int)
 
-if __name__ == '__main__':
-    download_all_data()
-    g = build_and_pickle_graph()
-    save_all_node_names_ids_json(g)
-    save_all_concept_names_ids_json()
+    example = {
+        "results": [
+            {"name": "Metformin", "domain": "Drug", "path_length": 1},
+            {"name": "BRCA1", "domain": "Gene", "path_length": 3},
+        ],
+        "graph": {
+             "nodes": [
+               { "qid": "Q227339", "label": "BRCA1", "domain": "Gene"},
+               { "qid": "Q17487737"   , "label": "BRCA1 DNA repair associated", "domain": "Protein" },
+               { "qid": "Q19484", "label": "Metformin", "domain": "Drug" }
+             ],
+             "links": [
+               { "target": "Q227339", "source": "Q17487737" , "weight": 0.01, "label": "encoded by" },
+               { "target": "Q227339", "source": "Q19484" , "weight": 0.01, "label": "Made up Edge" },
+               { "target": "Q17487737", "source": "Q19484" , "weight": 0.01, "label": "Made up Edge 2" }
+             ]
+           }
+    }
+
+    return jsonify(example)
+
+@app.route('/tool2/search', methods=['GET', 'POST'])
+def similarity_search():
+    data = request.get_json()
+    targets = []
+    if "targets" in data:
+        targets = data["targets"]
+
+    example = [
+        {"label": "Metformin", "id": "Q19484", "sim_score": 1.5 , "pc1": 100, "pc2": 100},
+        {"label": "BRCA1", "id": "Q227339", "sim_score": 3 , "pc1": 250, "pc2": 105},
+        {"label": "BRCA1 DNA repair associated", "id": "Q17487737", "sim_score": 10 , "pc1": 40, "pc2": 182},
+    ]
+    return jsonify(example)
+
+if __name__=='__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)
