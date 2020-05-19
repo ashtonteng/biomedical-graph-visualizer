@@ -6,7 +6,7 @@ import json
 from .graph import *
 
 
-def get_graph(pickle_path="BGV_Graph.pkl"):
+def get_graph(pickle_path=GRAPH_PICKLE_PATH):
     """
     if pickle_path given exists, loads pickle and returns graph.
     Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
@@ -16,7 +16,7 @@ def get_graph(pickle_path="BGV_Graph.pkl"):
         g = Graph(pickle_path=pickle_path)
         print("Loaded Graph from {}".format(pickle_path))
     else:
-        pickle_path = "BGV_Graph.pkl"
+        pickle_path = GRAPH_PICKLE_PATH
         g = Graph()
         g.save_graph_to_pickle(pickle_path=pickle_path)
         print("Saved Graph to disk as {}".format(pickle_path))
