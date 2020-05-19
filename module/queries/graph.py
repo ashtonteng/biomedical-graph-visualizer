@@ -8,22 +8,33 @@ class Graph:
     Backend Graph for Biomedical Graph Visualizer. Wrapper around NetworkX.MultiDiGraph.
     """
 
-    def __init__(self, g=None):
+    def __init__(self, g=None, pickle_path=None):
         """
         :param g: (networkx.classes.multidigraph.MultiDiGraph) networkx graph to initialize Graph
+        :param pickle_path: path of saved graph in pickle form
         """
-        if g is None:
+        if g and pickle_path:
+            raise ValueError("only provide either g or pickle_path, not both.")
+        if pickle_path:
+            self.load_graph_from_pickle(pickle_path)
+        elif g:
+            self.G = g
+        else:
             print("Building graph from local files, please wait for success message...")
             self.build_graph()
             print("Success: done building graph! Graph has {} nodes.".format(self.G.number_of_nodes()))
-        else:
-            self.G = g
 
     def __iter__(self):
         """
         :return: iterator over instance ids in G.
         """
         return self.G.__iter__()
+
+    def __len__(self):
+        return self.G.__len__()
+
+    def __contains__(self, item):
+        return self.G.__contains__(item)
 
     def build_graph(self):
         self.G = nx.MultiDiGraph()  # allows self_loops and multiedges
@@ -38,13 +49,29 @@ class Graph:
             with open(fpath, "r") as f:
                 for line in f:
                     instance1_id, instance1_label, instance2_id, instance2_label = line.split("\t")
-                    # node1 = Node(instance1_id, instance1_label, concept1_id)
-                    # node2 = Node(instance2_id, instance2_label, concept2_id)
                     if instance1_id not in self.G:
                         self.G.add_node(instance1_id, instance_label=instance1_label.strip(), concept_id=concept1_id.strip())
                     if instance2_id not in self.G:
                         self.G.add_node(instance2_id, instance_label=instance2_label.strip(), concept_id=concept2_id.strip())
                     self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
+
+    def save_graph_to_pickle(self, pickle_path):
+        """
+        Saves graph to disk as pickle.
+        :param pickle_path: path of pickle
+        :return: None
+        """
+        nx.write_gpickle(self.G, pickle_path)
+
+    def load_graph_from_pickle(self, pickle_path):
+        """
+        :param pickle_path: path of pickle
+        :return: None
+        """
+        try:
+            self.G = nx.read_gpickle(pickle_path)
+        except Exception as e:
+            raise ValueError("Error in loading pickle_path: {}".format(e))
 
     def get_node(self, instance_id):
         """
@@ -73,31 +100,31 @@ class Graph:
         """
         Gets all successors of current node. May contain current node.
         :param instance_id: id of instance
-        :return: list of successors
+        :return: set of successors
         """
         if instance_id not in self.G:
             raise ValueError("Node {} not found".format(instance_id))
-        return list(set(self.G.successors(instance_id)))
+        return set(self.G.successors(instance_id))
 
     def get_node_predecessors(self, instance_id):
         """
         Gets all predecessors of current node. May contain current node.
         :param instance_id: id of instance
-        :return: list of predecessors
+        :return: set of predecessors
         """
         if instance_id not in self.G:
             raise ValueError("Node {} not found".format(instance_id))
-        return list(set(self.G.predecessors(instance_id)))
+        return set(self.G.predecessors(instance_id))
 
     def get_node_neighbors(self, instance_id):
         """
         Gets all neighbors of current node. May contain current node.
         :param instance_id: id of instance
-        :return: list of neighbors
+        :return: set of neighbors
         """
         if instance_id not in self.G:
             raise ValueError("Node {} not found".format(instance_id))
-        return list(set(self.get_node_successors(instance_id) + self.get_node_predecessors(instance_id)))
+        return self.get_node_successors(instance_id).union(self.get_node_predecessors(instance_id))
 
     def get_directional_edges(self, instance1_id, instance2_id):
         """
@@ -182,24 +209,3 @@ class Graph:
             return Graph(g=self.G.subgraph(instance_ids).copy())
         else:
             return Graph(g=self.G.subgraph(instance_ids))
-
-
-# class Node:
-#
-#     def __init__(self, instance_id, instance_label, concept_id):
-#         """
-#         Class for all nodes in the Biomedical Graph Visualizer.
-#         :param instance_id: id of this instance
-#         :param instance_label: label of this instance
-#         :param concept_id: id of the type of this instance
-#         """
-#         self.instance_id = instance_id
-#         self.instance_label = instance_label
-#         self.concept_id = concept_id
-#
-#     def __str__(self):
-#         return "{} ({}) ({})".format(self.instance_label, self.instance_id, CONCEPT_ID_LABEL_DICT[self.concept_id])
-#
-#     def __repr__(self):
-#         return "{} ({}) ({})".format(self.instance_label, self.instance_id, CONCEPT_ID_LABEL_DICT[self.concept_id])
-#
