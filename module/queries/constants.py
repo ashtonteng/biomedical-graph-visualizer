@@ -7,6 +7,7 @@ from .templates import *
 ### PATHS
 QUERIES_DIR = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(QUERIES_DIR, "download")
+GRAPH_PICKLE_PATH = os.path.join(QUERIES_DIR, "BGV_Graph.pkl")
 
 ### CORE CONCEPTS
 DRUG = "Drug"
@@ -136,6 +137,9 @@ PERIPHERAL_CONCEPT_LABEL_ID_DICT = {
 CONCEPT_LABEL_ID_DICT = dict()
 CONCEPT_LABEL_ID_DICT.update(CORE_CONCEPT_LABEL_ID_DICT)
 CONCEPT_LABEL_ID_DICT.update(PERIPHERAL_CONCEPT_LABEL_ID_DICT)
+
+CORE_CONCEPT_ID_LABEL_DICT = {v: k for k, v in CORE_CONCEPT_LABEL_ID_DICT.items()}
+PERIPHERAL_CONCEPT_ID_LABEL_DICT = {v: k for k, v in PERIPHERAL_CONCEPT_LABEL_ID_DICT.items()}
 CONCEPT_ID_LABEL_DICT = {v: k for k, v in CONCEPT_LABEL_ID_DICT.items()}
 
 
