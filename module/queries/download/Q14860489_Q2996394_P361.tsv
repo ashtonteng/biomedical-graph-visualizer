@@ -1,0 +1,1129 @@
+Q14914275	sterol transporter activity	Q22290450	sterol transport
+Q14914286	folic acid transporter activity	Q14914290	folic acid transport
+Q14914288	thiamine transmembrane transporter activity	Q22292163	thiamine transmembrane transport
+Q14914374	cysteine-type endopeptidase activity involved in execution phase of apoptosis	Q14907291	execution phase of apoptosis
+Q14914399	transmembrane receptor protein tyrosine kinase adaptor activity	Q14863362	transmembrane receptor protein tyrosine kinase signaling pathway
+Q14914408	histone deacetylase activity	Q14914417	histone deacetylation
+Q14914410	protein deacetylase activity	Q14914414	protein deacetylation
+Q14914422	histone deacetylase activity (H3-K14 specific)	Q14914418	histone H3 deacetylation
+Q14914423	histone deacetylase activity (H3-K9 specific)	Q21120881	histone H3-K9 modification
+Q14914423	histone deacetylase activity (H3-K9 specific)	Q21120882	histone H3-K9 deacetylation
+Q14914424	histone deacetylase activity (H4-K16 specific)	Q14914419	histone H4 deacetylation
+Q14914506	histone kinase activity (H3-Y41 specific)	Q14914509	histone H3-Y41 phosphorylation
+Q14914554	taste receptor activity	Q21126651	detection of chemical stimulus involved in sensory perception of taste
+Q14916081	chemokine receptor antagonist activity	Q14916088	negative regulation of chemokine-mediated signaling pathway
+Q14916158	protein phosphatase inhibitor activity	Q21112061	negative regulation of phosphoprotein phosphatase activity
+Q14916230	amine transmembrane transporter activity	Q21106441	amine transport
+Q14916257	cytidine deaminase activity	Q14916259	cytidine deamination
+Q14916332	G-protein coupled purinergic nucleotide receptor activity	Q14916334	G-protein coupled purinergic nucleotide receptor signaling pathway
+Q14916351	epinephrine binding	Q1640582	fight-or-flight response
+Q14916361	adrenergic receptor activity	Q14916364	adrenergic receptor signaling pathway
+Q15311520	IkappaB kinase activity	Q14866208	I-kappaB phosphorylation
+Q15314366	SNAP receptor activity	Q6556360	Lipid bilayer fusion
+Q15315113	telomerase RNA reverse transcriptase activity	Q15315110	telomerase activity
+Q15315148	RNA-directed DNA polymerase activity	Q15315154	RNA-dependent DNA biosynthetic process
+Q15315862	canalicular bile acid transmembrane transporter activity	Q15315870	canalicular bile acid transport
+Q15316297	tachykinin receptor activity	Q14907963	tachykinin receptor signaling pathway
+Q15316529	gonadotropin-releasing hormone receptor activity	Q15316532	cellular response to gonadotropin-releasing hormone
+Q15316720	structural constituent of nuclear pore	Q15316725	nucleocytoplasmic transport
+Q15318367	bombesin receptor activity	Q15318372	bombesin receptor signaling pathway
+Q15320196	ionotropic glutamate receptor activity	Q14865861	ionotropic glutamate receptor signaling pathway
+Q15322323	leukotriene receptor activity	Q21469282	leukotriene signaling pathway
+Q15328099	superoxide dismutase activity	Q14864834	removal of superoxide radicals
+Q15332399	MAP kinase kinase kinase kinase activity	Q14758900	MAPK cascade
+Q15332399	MAP kinase kinase kinase kinase activity	Q15332402	activation of MAPKKK activity
+Q15332810	angiotensin type I receptor activity	Q15332822	phospholipase C-activating angiotensin-activated signaling pathway
+Q15333157	SUMO transferase activity	Q15323764	protein sumoylation
+Q15333395	G-protein coupled acetylcholine receptor activity	Q14897885	G-protein coupled acetylcholine receptor signaling pathway
+Q15334997	RNA polymerase II activity	Q14864650	transcription from RNA polymerase II promoter
+Q15335000	DNA-directed 5'-3' RNA polymerase activity	Q21170412	RNA biosynthetic process
+Q15335003	RNA-directed 5'-3' RNA polymerase activity	Q21170415	transcription, RNA-templated
+Q21095102	excitatory extracellular ligand-gated ion channel activity	Q1207387	excitatory postsynaptic potential
+Q21095103	calcium-release channel activity	Q14885200	release of sequestered calcium ion into cytosol
+Q21095317	recombinase activity	Q14862222	DNA recombination
+Q21095347	transmembrane receptor protein serine/threonine kinase activity	Q14904951	transmembrane receptor protein serine/threonine kinase signaling pathway
+Q21095467	sphingosine-1-phosphate receptor activity	Q21095470	sphingosine-1-phosphate signaling pathway
+Q21095643	cyclin-dependent protein serine/threonine kinase inhibitor activity	Q14865553	negative regulation of cyclin-dependent protein serine/threonine kinase activity
+Q21095688	urea transmembrane transporter activity	Q21836413	urea transmembrane transport
+Q21096384	voltage-gated potassium channel activity involved in atrial cardiac muscle cell action potential repolarization	Q15330553	atrial cardiac muscle cell action potential
+Q21096385	voltage-gated potassium channel activity involved in bundle of His cell action potential repolarization	Q21096392	membrane repolarization during bundle of His cell action potential
+Q21096386	voltage-gated potassium channel activity involved in SA node cell action potential repolarization	Q21096393	membrane repolarization during SA node cell action potential
+Q21096410	GTPase inhibitor activity	Q15331121	negative regulation of GTPase activity
+Q21096411	protein serine/threonine kinase activator activity	Q14862267	positive regulation of protein serine/threonine kinase activity
+Q21096459	ceramide transporter activity	Q14881704	ceramide transport
+Q21097273	MAP-kinase scaffold activity	Q14758936	positive regulation of MAPK cascade
+Q21097302	glyoxalase III activity	Q21758609	lactate biosynthetic process
+Q21097302	glyoxalase III activity	Q22282573	methylglyoxal catabolic process to lactate
+Q21097303	glyoxalase (glycolic acid-forming) activity	Q21097314	glycolate biosynthetic process
+Q21097303	glyoxalase (glycolic acid-forming) activity	Q21097315	glyoxal catabolic process
+Q21097318	tyrosine 3-monooxygenase activator activity	Q21097323	positive regulation of tyrosine 3-monooxygenase activity
+Q21097319	L-dopa decarboxylase activator activity	Q21097325	positive regulation of L-dopa decarboxylase activity
+Q21097436	DNA-binding transcription repressor activity, RNA polymerase II-specific	Q14633878	negative regulation of transcription from RNA polymerase II promoter
+Q21097475	histone methyltransferase activity	Q4117777	histone methylation
+Q14876828	sulfate transmembrane transporter activity	Q21543900	sulfate transmembrane transport
+Q14876908	methionine synthase activity	Q14864918	methionine biosynthetic process
+Q14877178	calcium ion transmembrane transporter activity	Q14891588	calcium ion transmembrane transport
+Q14877365	tumor necrosis factor-activated receptor activity	Q14864211	tumor necrosis factor-mediated signaling pathway
+Q14877400	glucocorticoid receptor activity	Q14633909	glucocorticoid receptor signaling pathway
+Q14877400	glucocorticoid receptor activity	Q22243247	glucocorticoid mediated signaling pathway
+Q14877415	endoribonuclease activity	Q21095680	RNA phosphodiester bond hydrolysis, endonucleolytic
+Q14877427	nuclease activity	Q15311580	nucleic acid phosphodiester bond hydrolysis
+Q14877430	ribonuclease activity	Q21763256	RNA phosphodiester bond hydrolysis
+Q14877692	anion transmembrane transporter activity	Q21972809	anion transmembrane transport
+Q14877693	chloride transmembrane transporter activity	Q15333422	chloride transmembrane transport
+Q14878167	enzyme activator activity	Q14863412	positive regulation of catalytic activity
+Q14878182	lipid transporter activity	Q14872727	lipid transport
+Q14878183	phospholipid transporter activity	Q14872721	phospholipid transport
+Q14878307	glutamate dehydrogenase [NAD(P)+] activity	Q417383	Glutamate dehydrogenase
+Q14878340	phosphoprotein phosphatase activity	Q14863383	protein dephosphorylation
+Q14878341	protein tyrosine phosphatase activity	Q14878357	peptidyl-tyrosine dephosphorylation
+Q14878380	phosphatase activity	Q1101143	dephosphorylation
+Q14878780	transcription factor activity, RNA polymerase II transcription factor recruiting	Q21111543	RNA polymerase II transcriptional preinitiation complex assembly
+Q14878802	iron ion transmembrane transporter activity	Q14878803	iron ion transmembrane transport
+Q14883151	urokinase plasminogen activator receptor activity	Q21095159	urokinase plasminogen activator signaling pathway
+Q14883313	protein kinase regulator activity	Q14865282	regulation of protein kinase activity
+Q14884514	copper ion transmembrane transporter activity	Q14913336	copper ion transmembrane transport
+Q14885178	interleukin-2 receptor activity	Q14885183	interleukin-2-mediated signaling pathway
+Q14885179	interleukin-4 receptor activity	Q14885182	interleukin-4-mediated signaling pathway
+Q14885180	interleukin-7 receptor activity	Q14885184	interleukin-7-mediated signaling pathway
+Q14885187	cytokine receptor activity	Q14863107	cytokine-mediated signaling pathway
+Q14886165	bitter taste receptor activity	Q14886169	detection of chemical stimulus involved in sensory perception of bitter taste
+Q14887301	glucose transmembrane transporter activity	Q21972891	glucose transmembrane transport
+Q14887309	transmembrane transporter activity	Q14820680	transmembrane transport
+Q14887667	phosphatidylinositol 3-kinase activity	Q14887688	phosphatidylinositol phosphorylation
+Q14888540	G-protein coupled adenosine receptor activity	Q14888601	adenosine receptor signaling pathway
+Q14888936	guanylate cyclase activity	Q14860784	cGMP biosynthetic process
+Q14890055	peptidyl-cysteine S-nitrosylase activity	Q21101819	peptidyl-cysteine S-nitrosylation
+Q14890095	demethylase activity	Q900386	demethylation
+Q14891379	G-protein coupled serotonin receptor activity	Q28137582	G-protein coupled serotonin receptor signaling pathway
+Q14897654	Wnt-activated receptor activity	Q155769	Wnt signaling pathway
+Q14897679	nerve growth factor receptor activity	Q14897686	nerve growth factor signaling pathway
+Q14897697	brain-derived neurotrophic factor-activated receptor activity	Q14897725	brain-derived neurotrophic factor receptor signaling pathway
+Q14897861	glycoprotein transporter activity	Q14897863	glycoprotein transport
+Q14897862	reelin receptor activity	Q14331017	reelin-mediated signaling pathway
+Q14897865	death receptor activity	Q304484	programmed cell death
+Q14897873	neurotrophin receptor activity	Q14897876	neurotrophin signaling pathway
+Q14900998	opioid receptor activity	Q14897644	opioid receptor signaling pathway
+Q14901451	insulin-like growth factor-activated receptor activity	Q14863699	insulin-like growth factor receptor signaling pathway
+Q14901487	deoxyribonuclease activity	Q14877613	DNA metabolic process
+Q14901958	cysteine-type endopeptidase activator activity involved in apoptotic process	Q14860870	activation of cysteine-type endopeptidase activity involved in apoptotic process
+Q14902082	peptidase activator activity involved in apoptotic process	Q14599311	apoptotic process
+Q14902234	DNA polymerase processivity factor activity	Q14877613	DNA metabolic process
+Q14902447	cyclin-dependent protein kinase activating kinase activity	Q22245275	positive regulation of cyclin-dependent protein kinase activity
+Q14902455	protein kinase inhibitor activity	Q14865215	negative regulation of protein kinase activity
+Q14902467	maltose alpha-glucosidase activity	Q14902468	maltose metabolic process
+Q14902497	water transmembrane transporter activity	Q14820652	water transport
+Q14902519	glycerol transmembrane transporter activity	Q14902523	glycerol transport
+Q14904758	follicle-stimulating hormone receptor activity	Q14904759	follicle-stimulating hormone signaling pathway
+Q14904836	sodium:potassium-exchanging ATPase activity	Q14905378	establishment or maintenance of transmembrane electrochemical gradient
+Q14904879	dehydroascorbic acid transporter activity	Q14904885	dehydroascorbic acid transport
+Q14904880	xenobiotic transporter activity	Q14865100	drug transmembrane transport
+Q14904880	xenobiotic transporter activity	Q14865106	xenobiotic transport
+Q14904897	erythropoietin receptor activity	Q14904898	erythropoietin-mediated signaling pathway
+Q14904907	glucagon receptor activity	Q14821390	cellular response to glucagon stimulus
+Q14904940	thyroid-stimulating hormone receptor activity	Q21120157	thyroid-stimulating hormone signaling pathway
+Q14905028	bile acid receptor activity	Q14904924	bile acid signaling pathway
+Q14905102	activin-activated receptor activity	Q14903587	activin receptor signaling pathway
+Q14905223	potassium ion transmembrane transporter activity	Q14865157	potassium ion transmembrane transport
+Q14905224	nitric oxide transmembrane transporter activity	Q14905229	nitric oxide transport
+Q14905225	carbon dioxide transmembrane transporter activity	Q14905232	carbon dioxide transmembrane transport
+Q14905282	L-glutamate transmembrane transporter activity	Q14905285	L-glutamate transport
+Q14905290	L-aspartate transmembrane transporter activity	Q22290550	L-aspartate transport
+Q14905336	complement receptor activity	Q14905333	complement receptor mediated signaling pathway
+Q14905342	sodium ion transmembrane transporter activity	Q14904837	sodium ion transmembrane transport
+Q14905504	angiotensin receptor activity	Q14905506	angiotensin-activated signaling pathway
+Q14905572	thromboxane A2 receptor activity	Q21173828	thromboxane A2 signaling pathway
+Q14905623	protein transporter activity	Q14860325	protein transport
+Q14905671	netrin receptor activity	Q14905676	netrin-activated signaling pathway
+Q14905679	eukaryotic translation initiation factor 2alpha kinase activity	Q21105860	regulation of translational initiation by eIF2 alpha phosphorylation
+Q14905692	translation initiation factor activity	Q14905693	translational initiation
+Q14905714	voltage-gated sodium channel activity involved in cardiac muscle cell action potential	Q14905723	membrane depolarization during cardiac muscle cell action potential
+Q14905732	voltage-gated sodium channel activity involved in SA node cell action potential	Q14905724	membrane depolarization during SA node cell action potential
+Q14905750	voltage-gated potassium channel activity involved in cardiac muscle cell action potential repolarization	Q14905757	membrane repolarization during cardiac muscle cell action potential
+Q14905765	voltage-gated potassium channel activity involved in ventricular cardiac muscle cell action potential repolarization	Q22292778	membrane repolarization during ventricular cardiac muscle cell action potential
+Q14906650	JUN kinase activity	Q14906672	JUN phosphorylation
+Q14906671	MAP kinase activity	Q14758900	MAPK cascade
+Q14907000	ubiquitin-protein transferase inhibitor activity	Q14904367	negative regulation of protein ubiquitination
+Q14907297	translation regulator activity	Q14863717	regulation of translation
+Q14907423	lipopolysaccharide receptor activity	Q14885627	lipopolysaccharide-mediated signaling pathway
+Q14907459	iodide transmembrane transporter activity	Q14860775	iodide transport
+Q14907585	ciliary neurotrophic factor receptor activity	Q14906190	ciliary neurotrophic factor-mediated signaling pathway
+Q14907586	interleukin-6 receptor activity	Q14865234	interleukin-6-mediated signaling pathway
+Q14907587	interleukin-11 receptor activity	Q21418786	interleukin-11-mediated signaling pathway
+Q14907588	leukemia inhibitory factor receptor activity	Q14878787	leukemia inhibitory factor signaling pathway
+Q14907589	oncostatin-M receptor activity	Q14907594	oncostatin-M-mediated signaling pathway
+Q14907592	interleukin-27 receptor activity	Q14907596	interleukin-27-mediated signaling pathway
+Q14907803	cAMP-dependent protein kinase regulator activity	Q21125177	regulation of cAMP-dependent protein kinase activity
+Q14907861	receptor ligand activity	Q828130	signal transduction
+Q14907970	peptidyl-prolyl cis-trans isomerase activity	Q14907973	protein peptidyl-prolyl isomerization
+Q14907984	zinc ion transmembrane transporter activity	Q14907989	zinc II ion transmembrane transport
+Q14907992	cation transmembrane transporter activity	Q21750224	cation transmembrane transport
+Q14907995	DNA (cytosine-5-)-methyltransferase activity	Q14908004	C-5 methylation of cytosine
+Q14907996	DNA-methyltransferase activity	Q874745	DNA methylation
+Q21101334	type I interferon receptor activity	Q14864809	type I interferon signaling pathway
+Q21101350	protein-arginine N-methyltransferase activity	Q21101351	peptidyl-arginine N-methylation
+Q21101400	IgE receptor activity	Q14874299	Fc-epsilon receptor signaling pathway
+Q21101410	IgG receptor activity	Q22243898	Fc-gamma receptor signaling pathway
+Q21101423	immunoglobulin receptor activity	Q14908030	Fc receptor signaling pathway
+Q21101444	chemorepellent activity	Q14912345	negative chemotaxis
+Q21101565	glial cell-derived neurotrophic factor receptor activity	Q21101589	glial cell-derived neurotrophic factor receptor signaling pathway
+Q21101858	histone methyltransferase activity (H3-K9 specific)	Q21101859	histone H3-K9 methylation
+Q21102061	arsenite transmembrane transporter activity	Q21756852	arsenite transport
+Q21102097	histone methyltransferase activity (H3-K4 specific)	Q21102077	histone H3-K4 methylation
+Q21102100	histone methyltransferase activity (H3-K36 specific)	Q21097196	histone H3-K36 methylation
+Q21102143	voltage-gated calcium channel activity involved in cardiac muscle cell action potential	Q14905723	membrane depolarization during cardiac muscle cell action potential
+Q21102144	voltage-gated calcium channel activity involved SA node cell action potential	Q14905724	membrane depolarization during SA node cell action potential
+Q21102236	histone methyltransferase activity (H4-K20 specific)	Q21097197	histone H4-K20 methylation
+Q21102290	C-C motif chemokine 19 receptor activity	Q21102288	chemokine (C-C motif) ligand 19 signaling pathway
+Q21102291	C-C motif chemokine 21 receptor activity	Q21102289	chemokine (C-C motif) ligand 21 signaling pathway
+Q21102316	choline kinase activity	Q21102319	CDP-choline pathway
+Q21102406	UDP-glucose:glycoprotein glucosyltransferase activity	Q21102407	UDP-glucosylation
+Q21102506	platelet-derived growth factor alpha-receptor activity	Q21102507	platelet-derived growth factor receptor-alpha signaling pathway
+Q21102522	guanylate kinase activity	Q21110381	GMP metabolic process
+Q21102522	guanylate kinase activity	Q21469909	GDP metabolic process
+Q21103102	RNA methyltransferase activity	Q21106306	RNA methylation
+Q21103205	G-protein coupled bile acid receptor activity	Q21103206	cell surface bile acid receptor signaling pathway
+Q21103324	histone kinase activity (H3-T3 specific)	Q22284011	histone H3-T3 phosphorylation
+Q21103418	phosphatidylinositol-3,4-bisphosphate 4-phosphatase activity	Q14872803	phosphatidylinositol-3-phosphate biosynthetic process
+Q21103435	nucleoside diphosphate kinase activity	Q21103436	nucleoside diphosphate phosphorylation
+Q21104644	JUN kinase kinase activity	Q14762263	activation of JUN kinase activity
+Q21104715	toxin transporter activity	Q21100636	toxin transport
+Q21104716	organic cation transmembrane transporter activity	Q21966672	organic cation transport
+Q21104756	phosphatidylinositol 3-kinase regulator activity	Q21097176	regulation of phosphatidylinositol 3-kinase activity
+Q21104916	protein tyrosine kinase inhibitor activity	Q21103077	negative regulation of protein tyrosine kinase activity
+Q21104917	signaling adaptor activity	Q14860471	positive regulation of signal transduction
+Q21104943	telomerase inhibitor activity	Q14913034	negative regulation of telomerase activity
+Q21105025	cAMP-dependent protein kinase inhibitor activity	Q21105024	negative regulation of cAMP-dependent protein kinase activity
+Q21105030	bile acid transmembrane transporter activity	Q14865026	bile acid and bile salt transport
+Q21105041	prostaglandin D2 11-ketoreductase activity	Q14881697	prostaglandin metabolic process
+Q21105116	phospholipid scramblase activity	Q21105168	phospholipid scrambling
+Q21105582	microtubule-severing ATPase activity	Q21105583	microtubule severing
+Q21105740	mannosyltransferase activity	Q21108198	mannosylation
+Q21105832	proteasome-activating ATPase activity	Q14914045	positive regulation of proteasomal protein catabolic process
+Q21105910	protein serine/threonine kinase inhibitor activity	Q14873995	negative regulation of protein serine/threonine kinase activity
+Q21106021	long-chain fatty acid transporter activity	Q14864581	long-chain fatty acid transport
+Q21106021	long-chain fatty acid transporter activity	Q14912799	peroxisomal long-chain fatty acid import
+Q21106268	hexose transmembrane transporter activity	Q14863067	hexose transport
+Q21106272	6-phosphofructokinase activity	Q21436480	glycolytic process through fructose-6-phosphate
+Q21106276	fructose transmembrane transporter activity	Q21106267	fructose transport
+Q21106311	translation repressor activity	Q14633894	negative regulation of translation
+Q21106437	purine nucleobase transmembrane transporter activity	Q22290424	purine nucleobase transmembrane transport
+Q21106438	pyrimidine nucleobase transmembrane transporter activity	Q21106442	pyrimidine nucleobase transport
+Q21106438	pyrimidine nucleobase transmembrane transporter activity	Q21106444	pyrimidine-containing compound transmembrane transport
+Q21106440	polyol transmembrane transporter activity	Q21106445	polyol transport
+Q21106443	carboxylic acid transmembrane transporter activity	Q24467030	carboxylic acid transmembrane transport
+Q21106473	nitrate transmembrane transporter activity	Q22291980	nitrate transport
+Q21106577	translation factor activity, RNA binding	Q211935	protein biosynthesis
+Q21106646	L-ascorbic acid transporter activity	Q22290665	L-ascorbic acid transport
+Q21106647	nucleobase transmembrane transporter activity	Q21106648	nucleobase transport
+Q21106697	ATPase-coupled peptide transmembrane transporter activity	Q21199321	peptide transport
+Q21106735	thrombin-activated receptor activity	Q14821018	thrombin-activated receptor signaling pathway
+Q21106763	diacylglycerol cholinephosphotransferase activity	Q21102319	CDP-choline pathway
+Q21106982	metal ion transmembrane transporter activity	Q14884612	metal ion transport
+Q21107044	gap junction channel activity involved in cell communication by electrical coupling	Q15330531	cell communication by electrical coupling
+Q21107046	gap junction channel activity involved in cardiac conduction electrical coupling	Q14905743	cell communication by electrical coupling involved in cardiac conduction
+Q21107132	polynucleotide 5'-phosphatase activity	Q21107133	polynucleotide 5' dephosphorylation
+Q21107140	tRNA dihydrouridine synthase activity	Q21107139	tRNA dihydrouridine synthesis
+Q21107147	MAP kinase phosphatase activity	Q14912630	inactivation of MAPK activity
+Q21107294	histone demethylase activity (H3-K27 specific)	Q21114806	histone H3-K27 demethylation
+Q21107341	methionyl-tRNA formyltransferase activity	Q14905693	translational initiation
+Q21107341	methionyl-tRNA formyltransferase activity	Q21107342	conversion of methionyl-tRNA to N-formyl-methionyl-tRNA
+Q21107351	tetrahydrofolylpolyglutamate synthase activity	Q21107350	tetrahydrofolylpolyglutamate biosynthetic process
+Q21107378	folic acid receptor activity	Q14914290	folic acid transport
+Q21107378	folic acid receptor activity	Q21107379	cellular response to folic acid
+Q21107506	semaphorin receptor activity	Q21106148	semaphorin-plexin signaling pathway
+Q21107559	histone demethylase activity (H3-K36 specific)	Q21107560	histone H3-K36 demethylation
+Q21107797	inositol 1,4,5-trisphosphate-sensitive calcium-release channel activity	Q14877145	inositol phosphate-mediated signaling
+Q21107966	magnesium ion transmembrane transporter activity	Q21759645	magnesium ion transmembrane transport
+Q21108046	cyclic pyranopterin monophosphate synthase activity	Q21108048	molybdopterin cofactor biosynthetic process
+Q21108157	histone demethylase activity (H3-K9 specific)	Q21108158	histone H3-K9 demethylation
+Q21108160	histone demethylase activity (H3-K4 specific)	Q21108155	histone H3-K4 demethylation
+Q21108231	guanylate cyclase inhibitor activity	Q21108230	negative regulation of guanylate cyclase activity
+Q21108296	tubulin deacetylase activity	Q21108297	tubulin deacetylation
+Q21108542	endopeptidase activator activity	Q21108541	positive regulation of endopeptidase activity
+Q21108581	protein adenylyltransferase activity	Q21108580	protein adenylylation
+Q21108619	platelet-derived growth factor-activated receptor activity	Q14863045	platelet-derived growth factor receptor signaling pathway
+Q21108619	platelet-derived growth factor-activated receptor activity	Q21096414	cellular response to platelet-derived growth factor stimulus
+Q21108620	platelet-derived growth factor beta-receptor activity	Q21108612	platelet-derived growth factor receptor-beta signaling pathway
+Q21108642	phosphatidylinositol-3,5-bisphosphate 5-phosphatase activity	Q14872803	phosphatidylinositol-3-phosphate biosynthetic process
+Q21108685	second spliceosomal transesterification activity	Q21105016	RNA splicing, via transesterification reactions
+Q21108703	adenylate cyclase inhibiting G-protein coupled glutamate receptor activity	Q21108702	adenylate cyclase-inhibiting G-protein coupled glutamate receptor signaling pathway
+Q21108766	host cell surface receptor binding	Q22299536	adhesion of symbiont to host cell
+Q21108807	MHC class Ib protein binding, via antigen binding groove	Q22312776	MHC class Ib protein complex binding
+Q21108814	organic anion transmembrane transporter activity	Q22290254	organic anion transport
+Q21108842	purinergic nucleotide receptor activity	Q21105164	purinergic nucleotide receptor signaling pathway
+Q21108928	acyl carnitine transmembrane transporter activity	Q22290334	acyl carnitine transmembrane transport
+Q21108947	thyroid hormone transmembrane transporter activity	Q21108946	thyroid hormone transport
+Q21109031	calcium:sodium antiporter activity involved in regulation of cardiac muscle cell membrane potential	Q14873905	regulation of cardiac muscle cell membrane potential
+Q21109072	urate transmembrane transporter activity	Q21109074	urate transport
+Q21109073	sodium-dependent phosphate transmembrane transporter activity	Q21109075	sodium-dependent phosphate transport
+Q21109102	olfactory receptor activity	Q21109103	detection of chemical stimulus involved in sensory perception of smell
+Q21109166	histone kinase activity (H3-T11 specific)	Q21109167	histone H3-T11 phosphorylation
+Q21109269	deubiquitinase activator activity	Q22245170	positive regulation of ubiquitin-specific protease activity
+Q14633873	protein binding involved in protein folding	Q847556	protein folding
+Q14819235	antioxidant activity	Q22271449	cellular oxidant detoxification
+Q14820643	signal transducer activity	Q828130	signal transduction
+Q14907297	translation regulator activity	Q14863717	regulation of translation
+Q15317407	nucleic acid binding transcription factor activity	Q14905278	regulation of RNA biosynthetic process
+Q21110826	cargo receptor activity	Q189814	endocytosis
+Q22313865	molecular function regulator	Q22260622	regulation of molecular function
+Q28054296	toxin activity	Q372016	pathogenesis
+Q63771572	cargo adaptor activity	Q14860403	vesicle-mediated transport
+Q14819454	peptidase activator activity	Q14819484	positive regulation of peptidase activity
+Q14820641	protein kinase activity	Q7251493	protein phosphorylation
+Q14851999	protein kinase activator activity	Q14860509	activation of protein kinase activity
+Q14859545	G-protein coupled receptor activity	Q14758909	G-protein coupled receptor signaling pathway
+Q14859883	ornithine carbamoyltransferase activity	Q14859897	ornithine metabolic process
+Q14860440	transcription coactivator activity	Q22253561	positive regulation of nucleic acid-templated transcription
+Q14860441	ubiquitin-protein transferase activity	Q3547638	protein ubiquitination
+Q14860799	serotonin:sodium symporter activity	Q14860816	serotonin uptake
+Q14860800	monoamine transmembrane transporter activity	Q14860809	monoamine transport
+Q14864469	G-protein coupled photoreceptor activity	Q14864470	detection of visible light
+Q14864500	kinase activator activity	Q14866059	positive regulation of kinase activity
+Q14864645	DNA-binding transcription factor activity, RNA polymerase II-specific	Q14852032	regulation of transcription from RNA polymerase II promoter
+Q14864664	transcription corepressor activity	Q21096397	negative regulation of nucleic acid-templated transcription
+Q14864680	transmembrane receptor protein tyrosine kinase activator activity	Q14864682	activation of transmembrane receptor protein tyrosine kinase activity
+Q14864721	histone acetyltransferase activity	Q14908264	histone acetylation
+Q14864722	H3 histone acetyltransferase activity	Q14864734	histone H3 acetylation
+Q14864723	H4 histone acetyltransferase activity	Q14864735	histone H4 acetylation
+Q14865258	retinyl-palmitate esterase activity	Q14864352	retinol metabolic process
+Q14865364	dopamine:sodium symporter activity	Q22290488	dopamine uptake
+Q14865542	MAP kinase kinase kinase activity	Q14758900	MAPK cascade
+Q14865542	MAP kinase kinase kinase activity	Q14864681	activation of MAPKK activity
+Q14865544	epidermal growth factor-activated receptor activity	Q14864683	epidermal growth factor receptor signaling pathway
+Q14865823	phosphorelay sensor kinase activity	Q14863351	signal transduction by protein phosphorylation
+Q14865823	phosphorelay sensor kinase activity	Q21114947	phosphorelay signal transduction system
+Q14866000	blue light photoreceptor activity	Q14866003	blue light signaling pathway
+Q14866048	dopamine neurotransmitter receptor activity	Q14819847	synaptic transmission, dopaminergic
+Q14866048	dopamine neurotransmitter receptor activity	Q14866054	dopamine receptor signaling pathway
+Q14866188	chemoattractant activity	Q14903362	positive chemotaxis
+Q14872781	1-phosphatidylinositol-3-kinase activity	Q14872803	phosphatidylinositol-3-phosphate biosynthetic process
+Q14872782	histone serine kinase activity	Q14872811	histone-serine phosphorylation
+Q14872988	steroid hormone receptor activity	Q14873026	steroid hormone mediated signaling pathway
+Q14872989	nuclear receptor activity	Q14873002	intracellular receptor signaling pathway
+Q14873895	enzyme inhibitor activity	Q14873900	negative regulation of catalytic activity
+Q14873922	signal transducer activity, downstream of receptor	Q14851952	intracellular signal transduction
+Q14874256	norepinephrine:sodium symporter activity	Q22290493	norepinephrine uptake
+Q14875005	DNA helicase activity	Q14883731	DNA duplex unwinding
+Q14875263	virus receptor activity	Q4118894	viral entry
+Q14875861	hepatocyte growth factor-activated receptor activity	Q14906202	hepatocyte growth factor receptor signaling pathway
+Q14875871	chemokine activity	Q14901854	cell chemotaxis
+Q14876663	heme transporter activity	Q14876667	heme transport
+Q14349613	oxidoreductase activity	Q14349764	oxidation-reduction process
+Q14358476	electron transfer activity	Q211016	electron transport chain
+Q14599673	calcidiol 1-monooxygenase activity	Q14905955	calcitriol biosynthetic process from calciol
+Q14633873	protein binding involved in protein folding	Q847556	protein folding
+Q14645703	peptidase activity	Q33123	proteolysis
+Q14762998	cysteine-type endopeptidase inhibitor activity involved in apoptotic process	Q14599311	apoptotic process
+Q14762998	cysteine-type endopeptidase inhibitor activity involved in apoptotic process	Q14599551	negative regulation of cysteine-type endopeptidase activity involved in apoptotic process
+Q14817973	DNA-binding transcription activator activity, RNA polymerase II-specific	Q14818068	positive regulation of transcription from RNA polymerase II promoter
+Q14817979	DNA-binding transcription factor activity	Q14633883	regulation of transcription, DNA-templated
+Q14817987	histone deacetylase regulator activity	Q15334055	regulation of histone deacetylation
+Q14819235	antioxidant activity	Q22271449	cellular oxidant detoxification
+Q14819284	oxygen carrier activity	Q14819302	oxygen transport
+Q14860918	oxidative phosphorylation uncoupler activity	Q21761006	hydrogen ion transmembrane transport
+Q14861063	peptidase inhibitor activity	Q14861064	negative regulation of peptidase activity
+Q14861841	endopeptidase inhibitor activity	Q14859614	negative regulation of endopeptidase activity
+Q14863056	glucokinase activity	Q14863085	glucose 6-phosphate metabolic process
+Q14863082	kinase activity	Q242736	phosphorylation
+Q14863338	protein tyrosine kinase activity	Q14330986	peptidyl-tyrosine phosphorylation
+Q14863340	insulin-activated receptor activity	Q14758913	insulin receptor signaling pathway
+Q14864106	protein tyrosine kinase activator activity	Q14331083	positive regulation of protein tyrosine kinase activity
+Q14864144	structural constituent of cytoskeleton	Q14864151	cytoskeleton organization
+Q14864357	chemokine receptor activity	Q14864360	chemokine-mediated signaling pathway
+Q14864404	vitamin D3 25-hydroxylase activity	Q14905955	calcitriol biosynthetic process from calciol
+Q21097492	ATPase activator activity	Q14911937	positive regulation of ATPase activity
+Q21097522	histone methyltransferase activity (H3-K27 specific)	Q21097525	histone H3-K27 methylation
+Q21097523	protein-lysine N-methyltransferase activity	Q21105358	peptidyl-lysine methylation
+Q21097560	ubiquitin activating enzyme activity	Q3547638	protein ubiquitination
+Q21100314	lactate transmembrane transporter activity	Q22290448	lactate transmembrane transport
+Q21100315	monocarboxylic acid transmembrane transporter activity	Q21100317	monocarboxylic acid transport
+Q21100349	neutral amino acid transmembrane transporter activity	Q21100350	neutral amino acid transport
+Q21100385	cysteine-type endopeptidase activity involved in apoptotic signaling pathway	Q14866112	apoptotic signaling pathway
+Q21100444	cyclin-dependent protein serine/threonine kinase regulator activity	Q21105499	regulation of cyclin-dependent protein serine/threonine kinase activity
+Q21100624	translation elongation factor activity	Q21101011	translational elongation
+Q21100631	riboflavin transporter activity	Q22292183	riboflavin transport
+Q21100815	interleukin-33 receptor activity	Q21427642	interleukin-33-mediated signaling pathway
+Q21100923	molybdate ion transmembrane transporter activity	Q22292585	molybdate ion transport
+Q21100944	UDP-N-acetylglucosamine transmembrane transporter activity	Q22290367	UDP-N-acetylglucosamine transmembrane transport
+Q21100945	UDP-xylose transmembrane transporter activity	Q21100947	UDP-xylose transport
+Q21100972	macrophage colony-stimulating factor receptor activity	Q21100974	macrophage colony-stimulating factor signaling pathway
+Q21100981	granulocyte colony-stimulating factor receptor activity	Q21100832	granulocyte colony-stimulating factor signaling pathway
+Q21101050	rRNA methyltransferase activity	Q21101053	rRNA methylation
+Q21101145	cell adhesive protein binding involved in bundle of His cell-Purkinje myocyte communication	Q21101147	bundle of His cell-Purkinje myocyte adhesion involved in cell communication
+Q21101178	axon guidance receptor activity	Q2034716	axon guidance
+Q21101188	ephrin receptor activity	Q14905487	ephrin receptor signaling pathway
+Q21112936	protein methyltransferase activity	Q14876922	protein methylation
+Q21112937	histone-arginine N-methyltransferase activity	Q21130991	histone arginine methylation
+Q21112940	protein-arginine omega-N asymmetric methyltransferase activity	Q21112938	peptidyl-arginine methylation, to asymmetrical-dimethyl arginine
+Q21112942	histone methyltransferase activity (H3-R17 specific)	Q21112941	histone H3-R17 methylation
+Q21112980	Lys48-specific deubiquitinase activity	Q21097544	protein K48-linked deubiquitination
+Q21113080	choline transmembrane transporter activity	Q14905712	choline transport
+Q21113091	histone demethylase activity (H3-trimethyl-K4 specific)	Q21113092	histone H3-K4 demethylation, trimethyl-H3-K4-specific
+Q21113109	MHC class II protein binding, via antigen binding groove	Q21095634	MHC class II protein complex binding
+Q21113121	interleukin-8 receptor activity	Q21113122	interleukin-8-mediated signaling pathway
+Q21113139	gap junction hemi-channel activity	Q15330512	gap junction channel activity
+Q21113147	gap junction channel activity involved in AV node cell-bundle of His cell electrical coupling	Q21113144	AV node cell to bundle of His cell communication by electrical coupling
+Q21113336	neurotransmitter transporter activity	Q14860824	neurotransmitter transport
+Q21113343	neuropeptide receptor activity	Q14819784	neuropeptide signaling pathway
+Q21113857	dolichyl pyrophosphate Man9GlcNAc2 alpha-1,3-glucosyltransferase activity	Q21113856	oligosaccharide-lipid intermediate biosynthetic process
+Q21114285	dolichyl-phosphate-mannose-protein mannosyltransferase activity	Q21095611	protein O-linked mannosylation
+Q14908023	stem cell factor receptor activity	Q14908031	Kit signaling pathway
+Q14908036	MAP kinase kinase activity	Q14758900	MAPK cascade
+Q14908036	MAP kinase kinase activity	Q14762259	activation of MAPK activity
+Q14908102	GTPase activator activity	Q14906083	positive regulation of GTPase activity
+Q14908256	transcription cofactor activity	Q21096354	regulation of nucleic acid-templated transcription
+Q14910472	enzyme regulator activity	Q14818125	regulation of catalytic activity
+Q14911525	translation termination factor activity	Q14911528	translational termination
+Q14911591	retinol transporter activity	Q14911592	retinol transport
+Q14911618	fibroblast growth factor-activated receptor activity	Q14864684	fibroblast growth factor receptor signaling pathway
+Q14911726	histone kinase activity	Q14872810	histone phosphorylation
+Q14911862	manganese ion transmembrane transporter activity	Q14877184	manganese ion transmembrane transport
+Q14911921	morphine receptor activity	Q21111901	cellular response to morphine
+Q14911954	gastric inhibitory peptide receptor activity	Q22243813	gastric inhibitory peptide signaling pathway
+Q14911967	cysteine-type endopeptidase activity involved in apoptotic process	Q14599311	apoptotic process
+Q14912224	complement component C5a receptor activity	Q14912227	complement component C5a signaling pathway
+Q14912386	vascular endothelial growth factor-activated receptor activity	Q14912397	vascular endothelial growth factor signaling pathway
+Q14912484	oxidative RNA demethylase activity	Q22280947	oxidative RNA demethylation
+Q14912485	oxidative DNA demethylase activity	Q21102626	oxidative DNA demethylation
+Q14912629	histone kinase activity (H3-T6 specific)	Q14912638	histone H3-T6 phosphorylation
+Q14912743	carnitine transmembrane transporter activity	Q22290330	carnitine transmembrane transport
+Q14912745	quaternary ammonium group transmembrane transporter activity	Q14912754	quaternary ammonium group transport
+Q14912748	antibiotic transporter activity	Q14912767	antibiotic transport
+Q14912762	ion transmembrane transporter activity	Q14865154	ion transmembrane transport
+Q14913028	histone-lysine N-methyltransferase activity	Q14913032	histone lysine methylation
+Q14913096	cysteine synthase activity	Q14913098	cysteine biosynthetic process
+Q14913109	long-chain fatty acid-CoA ligase activity	Q14864576	long-chain fatty acid metabolic process
+Q14913251	histone deacetylase inhibitor activity	Q14865625	negative regulation of histone deacetylation
+Q14914114	hydrogen ion transmembrane transporter activity	Q21761006	hydrogen ion transmembrane transport
+Q14914115	cadmium ion transmembrane transporter activity	Q14914131	cadmium ion transmembrane transport
+Q14914116	cobalt ion transmembrane transporter activity	Q14859651	cobalt ion transport
+Q14914118	lead ion transmembrane transporter activity	Q14914129	lead ion transport
+Q14914119	nickel cation transmembrane transporter activity	Q14914130	nickel cation transmembrane transport
+Q14914120	vanadium ion transmembrane transporter activity	Q14914127	vanadium ion transport
+Q14914151	interleukin-1 receptor antagonist activity	Q14905993	negative regulation of cytokine-mediated signaling pathway
+Q14914172	nucleoside kinase activity	Q14819381	nucleotide biosynthetic process
+Q14914249	amino acid transmembrane transporter activity	Q14905294	amino acid transmembrane transport
+Q14914250	basic amino acid transmembrane transporter activity	Q22290614	basic amino acid transmembrane transport
+Q14914251	L-cystine transmembrane transporter activity	Q14914254	L-cystine transport
+Q22243848	BMP receptor activity	Q14864806	BMP signaling pathway
+Q22243858	VEGF-E-activated receptor activity	Q21105731	vascular endothelial growth factor receptor-2 signaling pathway
+Q22243882	netrin receptor activity involved in chemoattraction	Q14903362	positive chemotaxis
+Q22243883	netrin receptor activity involved in chemorepulsion	Q14912345	negative chemotaxis
+Q22243885	TRAIL receptor activity	Q21100387	TRAIL-activated apoptotic signaling pathway
+Q22243888	TNFSF11 receptor activity	Q14897632	TNFSF11-mediated signaling pathway
+Q22243914	red or far-red light photoreceptor activity	Q14859551	red, far-red light phototransduction
+Q22243916	red light photoreceptor activity	Q22243915	red light signaling pathway
+Q22243919	far-red light photoreceptor activity	Q22243917	far-red light signaling pathway
+Q22243920	leucokinin receptor activity	Q14859573	hormone-mediated signaling pathway
+Q22275680	pyruvate synthase activity	Q14909041	acetyl-CoA biosynthetic process from pyruvate
+Q22299537	host cell surface binding	Q22271501	multi-organism cellular process
+Q22312539	protein binding, bridging involved in substrate recognition for ubiquitination	Q3547638	protein ubiquitination
+Q22312550	TFIIB-class transcription factor binding involved in viral suppression of host transcription initiation from RNA polymerase II promoter	Q22253547	suppression by virus of host transcription initiation from RNA polymerase II promoter
+Q22312555	protein binding involved in cell adhesion	Q187640	cell adhesion
+Q22312556	protein binding involved in cell-matrix adhesion	Q14819480	cell-matrix adhesion
+Q22312558	protein binding involved in cell-cell adhesion	Q22294691	cell-cell adhesion
+Q22312559	cell adhesive protein binding involved in SA cardiac muscle cell-atrial cardiac muscle cell communication	Q22299268	SA node cell-atrial cardiac muscle cell adhesion involved in cell communication
+Q22312560	cell adhesive protein binding involved in Purkinje myocyte-ventricular cardiac muscle cell communication	Q22299253	Purkinje myocyte-ventricular cardiac muscle cell adhesion involved in cell communication
+Q22312561	cell adhesive protein binding involved in atrial cardiac muscle cell-AV node cell communication	Q22299267	atrial cardiac muscle cell-AV node cell adhesion involved in cell communication
+Q22312563	protein binding involved in negative regulation of telomere maintenance via telomerase	Q21104926	negative regulation of telomere maintenance via telomerase
+Q22312591	TBP-class protein binding involved in viral suppression of host transcription initiation from RNA polymerase II promoter	Q22253547	suppression by virus of host transcription initiation from RNA polymerase II promoter
+Q22312779	MHC class I protein binding, via antigen binding groove	Q21108806	MHC class I protein complex binding
+Q22312821	netrin receptor binding	Q14905676	netrin-activated signaling pathway
+Q22312824	fibroblast growth factor receptor antagonist activity	Q14897869	negative regulation of fibroblast growth factor receptor signaling pathway
+Q22312826	activin receptor antagonist activity	Q14904862	negative regulation of activin receptor signaling pathway
+Q22312827	activin receptor antagonist activity involved in negative regulation of nodal signaling pathway	Q21131496	negative regulation of nodal signaling pathway
+Q22313135	pattern binding	Q22243599	pattern recognition receptor activity
+Q22313865	molecular function regulator	Q22260622	regulation of molecular function
+Q22313879	DNA topoisomerase (ATP-hydrolyzing) regulator activity	Q22299591	regulation of DNA topoisomerase (ATP-hydrolyzing) activity
+Q22313880	DNA topoisomerase (ATP-hydrolyzing) activator activity	Q21101116	positive regulation of DNA topoisomerase (ATP-hydrolyzing) activity
+Q22313881	DNA topoisomerase (ATP-hydrolyzing) inhibitor activity	Q22299592	negative regulation of DNA topoisomerase (ATP-hydrolyzing) activity
+Q22313892	peptidase regulator activity	Q21115381	regulation of peptidase activity
+Q22313900	endopeptidase regulator activity	Q14916426	regulation of endopeptidase activity
+Q22313903	ubiquitin ligase activator activity	Q22245000	positive regulation of ubiquitin protein ligase activity
+Q22313904	single-stranded DNA endodeoxyribonuclease activator activity	Q21467805	positive regulation of endodeoxyribonuclease activity
+Q22313914	cyclin-dependent protein serine/threonine kinase activator activity	Q15311859	positive regulation of cyclin-dependent protein serine/threonine kinase activity
+Q22313915	exoribonuclease activator activity	Q21133132	positive regulation of nuclease activity
+Q22313965	deoxyribonuclease inhibitor activity	Q22244447	negative regulation of deoxyribonuclease activity
+Q22313987	ornithine carbamoyltransferase inhibitor activity	Q22305798	regulation of ornithine metabolic process
+Q22314132	cyclase regulator activity	Q21110958	regulation of cyclase activity
+Q22314375	nitric oxide sensor activity	Q14907792	response to nitric oxide
+Q22314474	calcium ion binding involved in regulation of cytosolic calcium ion concentration	Q14821006	regulation of cytosolic calcium ion concentration
+Q22314478	calcium ion binding involved in regulation of presynaptic cytosolic calcium ion concentration	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q22314482	calcium ion binding involved in regulation of postsynaptic cytosolic calcium ion concentration	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q22314566	triplet codon-amino acid adaptor activity	Q211935	protein biosynthesis
+Q22314779	template for synthesis of G-rich strand of telomere DNA activity	Q15315110	telomerase activity
+Q22314965	mitochondrial RNA polymerase regulatory region sequence-specific DNA binding	Q22325116	mitochondrial sequence-specific DNA-binding transcription factor activity
+Q22314969	mitochondrial RNA polymerase core promoter proximal region sequence-specific DNA binding	Q22325116	mitochondrial sequence-specific DNA-binding transcription factor activity
+Q22314971	mitochondrial RNA polymerase termination site sequence-specific DNA binding	Q21120062	termination of mitochondrial transcription
+Q22314975	mitochondrial RNA polymerase core promoter sequence-specific DNA binding	Q22325116	mitochondrial sequence-specific DNA-binding transcription factor activity
+Q22315489	peptidyl carrier protein activity involved in nonribosomal peptide biosynthesis	Q22276387	nonribosomal peptide biosynthetic process
+Q22315674	integrase activity	Q21097432	DNA integration
+Q22315679	prophage integrase activity	Q21112679	establishment of integrated proviral latency
+Q22315685	retroviral integrase activity	Q22279540	viral genome integration into host DNA
+Q22315690	site-specific telomere resolvase activity	Q14872783	telomere maintenance
+Q22315798	DNA demethylase activity	Q5205753	DNA demethylation
+Q22315807	tRNA-(2-methylthio-N-6-(cis-hydroxy)isopentenyl adenosine)-hydroxylase activity	Q22280744	2-methylthio-N-6-(cis-hydroxy)isopentenyl adenosine-tRNA biosynthesis
+Q22316030	2-desacetyl-2-hydroxyethyl bacteriochlorophyllide a dehydrogenase activity	Q22276571	bacteriochlorophyll biosynthetic process
+Q22316136	pyruvate dehydrogenase (NAD+) activity	Q14909041	acetyl-CoA biosynthetic process from pyruvate
+Q21114339	cysteine transmembrane transporter activity	Q22290575	cysteine transmembrane transport
+Q21114350	uridine kinase activity	Q14859868	UMP biosynthetic process
+Q21114615	glycolipid transporter activity	Q22292444	glycolipid transport
+Q21114805	histone demethylase activity (H4-K20 specific)	Q21114804	histone H4-K20 demethylation
+Q21115071	endoribonuclease activity, cleaving miRNA-paired mRNA	Q21105855	mRNA cleavage involved in gene silencing by miRNA
+Q21115208	apolipoprotein A-I receptor activity	Q21096377	apolipoprotein A-I-mediated signaling pathway
+Q21115260	heme-transporting ATPase activity	Q22291692	heme transmembrane transport
+Q21115269	acetyl-CoA transporter activity	Q22292206	acetyl-CoA transport
+Q21115294	acyl carrier activity	Q14860449	fatty acid biosynthetic process
+Q21115311	bicarbonate transmembrane transporter activity	Q14864709	bicarbonate transport
+Q21115315	calcium-transporting ATPase activity involved in regulation of cardiac muscle cell membrane potential	Q14873905	regulation of cardiac muscle cell membrane potential
+Q21115364	monovalent inorganic cation transmembrane transporter activity	Q21102081	monovalent inorganic cation transport
+Q21115597	JAK pathway signal transduction adaptor activity	Q14820595	regulation of JAK-STAT cascade
+Q21115604	placental growth factor-activated receptor activity	Q21115601	vascular endothelial growth factor receptor-1 signaling pathway
+Q21115750	mevalonate transmembrane transporter activity	Q21115751	mevalonate transport
+Q21115797	dicarboxylic acid transmembrane transporter activity	Q14905284	dicarboxylic acid transport
+Q21116061	interleukin-3 receptor activity	Q15331773	cellular response to interleukin-3
+Q21116061	interleukin-3 receptor activity	Q21100986	interleukin-3-mediated signaling pathway
+Q21116067	interleukin-5 receptor activity	Q21100985	interleukin-5-mediated signaling pathway
+Q21116075	interleukin-1, Type I, activating receptor activity	Q14864810	interleukin-1-mediated signaling pathway
+Q21116194	L-glutamine transmembrane transporter activity	Q21116193	glutamine transport
+Q21116217	L-serine transmembrane transporter activity	Q21116218	L-serine transport
+Q21116220	D-serine transmembrane transporter activity	Q21109427	D-serine transport
+Q21116402	histone methyltransferase activity (H3-K79 specific)	Q22283728	histone H3-K79 methylation
+Q21116565	guanylate cyclase activator activity	Q15328574	positive regulation of guanylate cyclase activity
+Q21116590	DNA ligase activity	Q21108478	DNA ligation
+Q21116650	pyruvate kinase activity	Q162643	glycolytic process
+Q21116738	arginyltransferase activity	Q21116739	protein arginylation
+Q21116833	histone kinase activity (H3-S10 specific)	Q21116834	histone H3-S10 phosphorylation
+Q21116865	kinase regulator activity	Q21120130	regulation of kinase activity
+Q21117461	Lys63-specific deubiquitinase activity	Q21100454	protein K63-linked deubiquitination
+Q21117637	glycine transmembrane transporter activity	Q22290679	glycine transport
+Q21117708	ammonium transmembrane transporter activity	Q21104714	ammonium transmembrane transport
+Q21118195	glycogen debranching enzyme activity	Q14902477	glycogen metabolic process
+Q21118440	interleukin-21 receptor activity	Q21118441	interleukin-21-mediated signaling pathway
+Q21118487	thrombopoietin receptor activity	Q21115671	thrombopoietin-mediated signaling pathway
+Q21118636	lipoate synthase activity	Q21118635	lipoate biosynthetic process
+Q21118890	nuclear export signal receptor activity	Q14905514	nuclear export
+Q21119179	collagen receptor activity	Q21119180	collagen-activated signaling pathway
+Q21119481	somatostatin receptor activity	Q21119482	somatostatin signaling pathway
+Q21119683	choline-phosphate cytidylyltransferase activity	Q21102319	CDP-choline pathway
+Q21119759	GMP synthase activity	Q21119760	GMP synthase (glutamine-hydrolyzing) activity
+Q21119760	GMP synthase (glutamine-hydrolyzing) activity	Q21119154	GMP biosynthetic process
+Q21119976	mRNA (guanine-N7-)-methyltransferase activity	Q14908091	7-methylguanosine mRNA capping
+Q21119976	mRNA (guanine-N7-)-methyltransferase activity	Q29572870	RNA 5'-cap (guanine-N7)-methylation
+Q21120050	mannose transmembrane transporter activity	Q22292364	mannose transport
+Q21120484	DNA primase activity	Q21118241	DNA replication, synthesis of RNA primer
+Q21120561	3'-tRNA processing endoribonuclease activity	Q21120563	tRNA 3'-trailer cleavage, endonucleolytic
+Q21120641	interleukin-18 receptor activity	Q21436506	interleukin-18-mediated signaling pathway
+Q21120650	polynucleotide 3'-phosphatase activity	Q21120651	polynucleotide 3' dephosphorylation
+Q21120740	L-amino acid transmembrane transporter activity	Q21120741	L-alpha-amino acid transmembrane transport
+Q21120744	L-tryptophan transmembrane transporter activity	Q21104938	tryptophan transport
+Q21120745	L-phenylalanine transmembrane transporter activity	Q21120746	phenylalanine transport
+Q21121083	methotrexate transporter activity	Q22290318	methotrexate transport
+Q21121251	UDP-galactose transmembrane transporter activity	Q22290364	UDP-galactose transmembrane transport
+Q21121254	CMP-N-acetylneuraminate transmembrane transporter activity	Q21121255	CMP-N-acetylneuraminate transport
+Q21121258	L-alanine transmembrane transporter activity	Q21121260	L-alanine transport
+Q21121259	L-proline transmembrane transporter activity	Q21121261	proline transmembrane transport
+Q21121266	pyrimidine nucleotide-sugar transmembrane transporter activity	Q22290363	pyrimidine nucleotide-sugar transmembrane transport
+Q21121285	3'-phosphoadenosine 5'-phosphosulfate transmembrane transporter activity	Q21121286	3'-phospho-5'-adenylyl sulfate transmembrane transport
+Q21121299	UDP-glucuronic acid transmembrane transporter activity	Q21121300	UDP-glucuronic acid transport
+Q21121305	fatty acid transmembrane transporter activity	Q14864580	fatty acid transport
+Q21121322	ATP transmembrane transporter activity	Q15330534	ATP transport
+Q21121325	coenzyme A transmembrane transporter activity	Q22290386	coenzyme A transmembrane transport
+Q21121326	ADP transmembrane transporter activity	Q21121324	ADP transport
+Q21121328	AMP transmembrane transporter activity	Q21121327	AMP transport
+Q21121337	pyrimidine nucleotide transmembrane transporter activity	Q21121336	pyrimidine nucleotide transport
+Q21121344	formate transmembrane transporter activity	Q21121345	formate transport
+Q21121406	citrate transmembrane transporter activity	Q21124416	citrate transport
+Q21121417	carbohydrate kinase activity	Q14863084	carbohydrate phosphorylation
+Q21121612	luteinizing hormone receptor activity	Q14914543	luteinizing hormone signaling pathway
+Q21121674	tetracycline transporter activity	Q22290406	tetracycline transport
+Q21121802	phosphatidylinositol phosphate kinase activity	Q14887688	phosphatidylinositol phosphorylation
+Q21122242	tRNA methyltransferase activity	Q21108966	tRNA methylation
+Q21122381	creatine transmembrane transporter activity	Q21971196	creatine transport
+Q21122394	aromatic amino acid transmembrane transporter activity	Q21122395	aromatic amino acid transport
+Q21122479	FAD transmembrane transporter activity	Q22290380	FAD transmembrane transport
+Q21122481	NAD transmembrane transporter activity	Q22290402	NAD transmembrane transport
+Q21122751	L-threonine transmembrane transporter activity	Q21122754	threonine transport
+Q21122753	L-hydroxyproline transmembrane transporter activity	Q21122752	hydroxyproline transport
+Q21122877	tRNA (guanine-N7-)-methyltransferase activity	Q29572871	tRNA (guanine-N7)-methylation
+Q21123306	pyridoxamine-phosphate oxidase activity	Q21123304	pyridoxal phosphate biosynthetic process
+Q21123398	all-trans-retinyl-palmitate hydrolase, 11-cis retinol forming activity	Q14864352	retinol metabolic process
+Q21123399	all-trans-retinyl-ester hydrolase, 11-cis retinol forming activity	Q14864352	retinol metabolic process
+Q21123412	sodium:proton antiporter activity involved in regulation of cardiac muscle cell membrane potential	Q14873905	regulation of cardiac muscle cell membrane potential
+Q21123444	glucoside transmembrane transporter activity	Q21123445	glucoside transport
+Q21123686	arginine deiminase activity	Q21123676	protein citrullination
+Q21124077	transition metal ion transmembrane transporter activity	Q14914137	transition metal ion transport
+Q21124343	palmitoyl hydrolase activity	Q21124342	macromolecule depalmitoylation
+Q21124417	succinate transmembrane transporter activity	Q22290625	succinate transmembrane transport
+Q21124437	rubidium ion transmembrane transporter activity	Q21124436	rubidium ion transport
+Q21124473	RNA polymerase I core promoter sequence-specific DNA binding	Q22295267	RNA polymerase I transcriptional preinitiation complex assembly
+Q21124814	zinc-transporting ATPase activity	Q14907989	zinc II ion transmembrane transport
+Q21125091	L-asparagine transmembrane transporter activity	Q21125095	asparagine transport
+Q21125093	L-histidine transmembrane transporter activity	Q22290539	L-histidine transmembrane transport
+Q21125139	S-adenosyl-L-methionine transmembrane transporter activity	Q22290564	S-adenosyl-L-methionine transmembrane transport
+Q21125212	protein-malonyllysine demalonylase activity	Q21125216	peptidyl-lysine demalonylation
+Q21125213	protein-succinyllysine desuccinylase activity	Q21125211	peptidyl-lysine desuccinylation
+Q21125219	protein-glutaryllysine deglutarylase activity	Q21125221	peptidyl-lysine deglutarylation
+Q21125239	prostaglandin transmembrane transporter activity	Q22290646	prostaglandin transport
+Q21135939	short-chain fatty acid uptake transporter activity	Q22290655	short-chain fatty acid transport
+Q21135950	nicotinate transporter activity	Q22290631	nicotinate transport
+Q21136004	RNA transmembrane transporter activity	Q21105696	RNA transport
+Q21136424	pseudouridylate synthase activity	Q21108646	pseudouridine synthesis
+Q21149564	oligopeptide transporter activity	Q21111799	oligopeptide transport
+Q21155733	ceramide 1-phosphate transporter activity	Q22290306	ceramide 1-phosphate transport
+Q21156482	interferon-gamma receptor activity	Q14865330	interferon-gamma-mediated signaling pathway
+Q21173348	adenosine kinase activity	Q14914062	AMP biosynthetic process
+Q21173529	putrescine transmembrane transporter activity	Q21173530	putrescine transport
+Q21173628	interleukin-9 receptor activity	Q21173629	interleukin-9-mediated signaling pathway
+Q21173775	pyruvate transmembrane transporter activity	Q22290608	pyruvate transmembrane transport
+Q21173912	RNA trimethylguanosine synthase activity	Q21173914	7-methylguanosine cap hypermethylation
+Q21174006	sialic acid transmembrane transporter activity	Q21174007	sialic acid transport
+Q21199040	sigma factor activity	Q21135043	regulation of DNA-templated transcription, initiation
+Q21199051	tryptophan synthase activity	Q21198662	tryptophan biosynthetic process
+Q21199125	branched-chain amino acid transmembrane transporter activity	Q21141820	branched-chain amino acid transport
+Q21199362	biotin transporter activity	Q21127148	biotin transport
+Q21207388	peptide-O-fucosyltransferase activity	Q21095677	protein O-linked fucosylation
+Q21209181	GDP-L-fucose synthase activity	Q22278690	GDP-L-fucose biosynthetic process
+Q21209194	glucose-6-phosphate transmembrane transporter activity	Q21103114	glucose-6-phosphate transport
+Q21209361	all-trans-retinol 13,14-reductase activity	Q14864352	retinol metabolic process
+Q21296418	tryptophanase activity	Q14877303	tryptophan catabolic process
+Q21416530	enterobactin transporter activity	Q21416529	enterobactin transport
+Q21416532	sodium:potassium-exchanging ATPase activity involved in regulation of cardiac muscle cell membrane potential	Q14873905	regulation of cardiac muscle cell membrane potential
+Q21418787	interleukin-12 receptor activity	Q14914510	interleukin-12-mediated signaling pathway
+Q21418788	interleukin-23 receptor activity	Q21103368	interleukin-23-mediated signaling pathway
+Q21421090	galactose transmembrane transporter activity	Q21421089	galactose transport
+Q21423025	L-arginine transmembrane transporter activity	Q22290510	L-arginine transmembrane transport
+Q21424959	cell adhesive protein binding involved in AV node cell-bundle of His cell communication	Q21424958	AV node cell-bundle of His cell adhesion involved in cell communication
+Q21425769	PLC activating G-protein coupled glutamate receptor activity	Q21108452	phospholipase C-activating G-protein coupled glutamate receptor signaling pathway
+Q21430110	cyclin-dependent protein kinase activity	Q14818129	regulation of cell cycle
+Q21431310	malate transmembrane transporter activity	Q22290620	malate transmembrane transport
+Q21431311	thiosulfate transmembrane transporter activity	Q21431312	thiosulfate transport
+Q21431314	protein binding involved in heterotypic cell-cell adhesion	Q14905523	heterotypic cell-cell adhesion
+Q21431325	histone acetyltransferase activity (H4-K5 specific)	Q21097190	histone H4-K5 acetylation
+Q21431326	histone acetyltransferase activity (H4-K8 specific)	Q21097191	histone H4-K8 acetylation
+Q21431327	histone acetyltransferase activity (H4-K16 specific)	Q21102205	histone H4-K16 acetylation
+Q21433650	guanylate cyclase regulator activity	Q21433651	regulation of guanylate cyclase activity
+Q21436621	taurine transmembrane transporter activity	Q21121370	taurine transport
+Q21438265	glycerol-3-phosphate transmembrane transporter activity	Q21756234	glycerol-3-phosphate transport
+Q21481281	rRNA (guanosine-2'-O-)-methyltransferase activity	Q22280771	rRNA 2'-O-methylation
+Q21484291	nucleobase-containing compound transmembrane transporter activity	Q22290359	nucleobase-containing compound transport
+Q21498881	prolactin receptor activity	Q21154920	prolactin signaling pathway
+Q21499176	protein ADP-ribosylase activity	Q21104979	protein ADP-ribosylation
+Q21750223	L-valine transmembrane transporter activity	Q21750226	L-valine transmembrane transport
+Q21750228	nitrite transmembrane transporter activity	Q21124072	nitrite transport
+Q21756239	inorganic anion transmembrane transporter activity	Q14907461	inorganic anion transport
+Q21756257	maltose transmembrane transporter activity	Q22292319	maltose transport
+Q21756300	organic phosphonate transmembrane transporter activity	Q21978531	organic phosphonate transport
+Q21756581	ATPase-coupled vitamin B12 transmembrane transporter activity	Q14859653	cobalamin transport
+Q21756766	quinolinate synthetase A activity	Q14877308	quinolinate biosynthetic process
+Q21757740	phosphorelay response regulator activity	Q21114947	phosphorelay signal transduction system
+Q21757807	siderophore transmembrane transporter activity	Q21758970	siderophore transmembrane transport
+Q21758315	polysaccharide transmembrane transporter activity	Q22292328	polysaccharide transport
+Q21758859	rRNA (guanine-N7-)-methyltransferase activity	Q21469656	rRNA (guanine-N7)-methylation
+Q21759071	lipid-linked peptidoglycan transporter activity	Q22292023	lipid-linked peptidoglycan transport
+Q21759143	chromate transmembrane transporter activity	Q22293029	chromate transport
+Q21759239	nicotinamide riboside transmembrane transporter activity	Q22292051	nicotinamide riboside transport
+Q21759291	ethanolamine transmembrane transporter activity	Q22290505	ethanolamine transport
+Q21760014	benzoate transporter activity	Q22290323	benzoate transport
+Q21761030	gamma-aminobutyric acid transmembrane transporter activity	Q21121365	gamma-aminobutyric acid transport
+Q21761041	site-specific DNA-methyltransferase (adenine-specific) activity	Q22260820	DNA methylation on adenine
+Q21761160	spermidine transmembrane transporter activity	Q22290731	spermidine transmembrane transport
+Q21762339	gluconate transmembrane transporter activity	Q22290589	gluconate transmembrane transport
+Q21762613	serine transmembrane transporter activity	Q22290668	serine transport
+Q21762635	2-iminoacetate synthase activity	Q21198654	thiamine biosynthetic process
+Q21771376	lipopolysaccharide transmembrane transporter activity	Q14907572	lipopolysaccharide transport
+Q21771383	glutathione synthase activity	Q21102178	glutathione biosynthetic process
+Q21772110	site-specific DNA-methyltransferase (cytosine-N4-specific) activity	Q22260816	N-4 methylation of cytosine
+Q22242439	bacterial-type RNA polymerase transcriptional activator activity, sequence-specific DNA binding	Q14818066	positive regulation of transcription, DNA-templated
+Q22242444	DNA-binding transcription repressor activity	Q14633919	negative regulation of transcription, DNA-templated
+Q22243217	G-protein coupled receptor activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q22243218	neurotransmitter receptor activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q22243227	neurotransmitter receptor activity involved in regulation of presynaptic cytosolic calcium ion concentration	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q22243229	neurotransmitter receptor activity involved in regulation of postsynaptic cytosolic calcium ion concentration	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q22243235	serotonin-gated cation-selective channel activity	Q14891401	serotonin receptor signaling pathway
+Q22243242	coreceptor activity involved in epidermal growth factor receptor signaling pathway	Q14864683	epidermal growth factor receptor signaling pathway
+Q22243254	transcription factor activity, estrogen-activated RNA polymerase II transcription factor binding	Q14902303	intracellular estrogen receptor signaling pathway
+Q22243389	C-C motif chemokine 5 receptor activity	Q22243388	chemokine (C-C motif) ligand 5 signaling pathway
+Q22243394	C-C motif chemokine 2 receptor activity	Q22243393	chemokine (C-C motif) ligand 2 signaling pathway
+Q22243396	C-X-C motif chemokine 12 receptor activity	Q22243395	chemokine (C-X-C motif) ligand 12 signaling pathway
+Q22243403	apelin receptor activity	Q21132228	apelin receptor signaling pathway
+Q22243597	diuretic hormone receptor activity	Q14859573	hormone-mediated signaling pathway
+Q22243608	ethylene receptor activity	Q22243606	ethylene-activated signaling pathway
+Q22243613	auxin receptor activity	Q22243610	auxin-activated signaling pathway
+Q22243625	ligand-gated ion channel activity involved in regulation of presynaptic membrane potential	Q22243624	regulation of presynaptic membrane potential
+Q22243657	purinergic receptor activity	Q22243656	purinergic receptor signaling pathway
+Q22243679	interleukin-17A receptor activity	Q22243678	interleukin-17A-mediated signaling pathway
+Q22243692	interleukin-35 receptor activity	Q22243690	interleukin-35-mediated signaling pathway
+Q22243698	interleukin-13 receptor activity	Q22243696	interleukin-13-mediated signaling pathway
+Q22243701	leptin receptor activity	Q14851917	leptin-mediated signaling pathway
+Q22243721	type III interferon receptor activity	Q22243719	type III interferon signaling pathway
+Q22243724	granulocyte macrophage colony-stimulating factor receptor activity	Q22243722	granulocyte-macrophage colony-stimulating factor signaling pathway
+Q22243734	interleukin-15 receptor activity	Q21114151	interleukin-15-mediated signaling pathway
+Q22243764	cytokinin receptor activity	Q22243874	cytokinin-activated signaling pathway
+Q22243806	salty taste receptor activity	Q22243805	detection of chemical stimulus involved in sensory perception of salty taste
+Q22243808	sweet taste receptor activity	Q21126647	detection of chemical stimulus involved in sensory perception of sweet taste
+Q22243810	umami taste receptor activity	Q22243809	detection of chemical stimulus involved in sensory perception of umami taste
+Q22323280	peptidyl-arginine C-methyltransferase activity	Q22283741	peptidyl-arginine C-methylation
+Q22320485	3'-5'-exoribonuclease activity involved in mature miRNA 3'-end processing	Q22280686	mature miRNA 3'-end processing
+Q22320489	endoribonuclease activity involved in viral induction of host mRNA catabolic process	Q22260696	induction by virus of host endonucleolytic cleavage-dependent mRNA catabolic process
+Q22320489	endoribonuclease activity involved in viral induction of host mRNA catabolic process	Q22280870	cleavage by virus of host mRNA
+Q22320513	5'-3' exodeoxyribonuclease activity involved in UV-damage excision repair	Q21108210	UV-damage excision repair
+Q22320529	retroviral 3' processing activity	Q22315685	retroviral integrase activity
+Q22323525	peptidyltransferase activity	Q211935	protein biosynthesis
+Q22323662	peptide alpha-N-propionyltransferase activity	Q22284208	N-terminal protein amino acid propionylation
+Q22323692	H2A histone acetyltransferase activity	Q21096245	histone H2A acetylation
+Q22323693	histone acetyltransferase activity (H2A-K5 specific)	Q22284126	histone H2A-K5 acetylation
+Q22323694	histone acetyltransferase activity (H2A-K9 specific)	Q22284124	histone H2A-K9 acetylation
+Q22323695	histone acetyltransferase activity (H3-K56 specific)	Q22284133	histone H3-K56 acetylation
+Q22323696	histone acetyltransferase activity (H3-K23 specific)	Q22284128	histone H3-K23 acetylation
+Q22323698	histone acetyltransferase activity (H3-K18 specific)	Q22284129	histone H3-K18 acetylation
+Q22323699	histone acetyltransferase activity (H3-K9 specific)	Q21108306	histone H3-K9 acetylation
+Q22323700	histone acetyltransferase activity (H3-K14 specific)	Q21100436	histone H3-K14 acetylation
+Q22323701	histone acetyltransferase activity (H3-K27 specific)	Q22284132	histone H3-K27 acetylation
+Q22323702	histone acetyltransferase activity (H3-K4 specific)	Q21121558	histone H3-K4 acetylation
+Q22323704	histone acetyltransferase activity (H3-K36 specific)	Q22284131	histone H3-K36 acetylation
+Q22323705	H2B histone acetyltransferase activity	Q21106384	histone H2B acetylation
+Q22323706	histone acetyltransferase activity (H2B-K12 specific)	Q22284122	histone H2B-K12 acetylation
+Q22323707	histone acetyltransferase activity (H2B-K5 specific)	Q22284121	histone H2B-K5 acetylation
+Q22320610	silver ion transmembrane transporter activity	Q22292915	silver ion transmembrane transport
+Q22320618	ATPase-coupled arsenite transmembrane transporter activity	Q21756852	arsenite transport
+Q22320620	organophosphate ester transmembrane transporter activity	Q22290340	organophosphate ester transport
+Q22320622	ATPase coupled ion transmembrane transporter activity involved in regulation of presynaptic membrane potential	Q22243624	regulation of presynaptic membrane potential
+Q22320623	ATPase coupled ion transmembrane transporter activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q22320627	divalent inorganic cation transmembrane transporter activity	Q22293110	divalent inorganic cation transport
+Q22320634	ferric-enterobactin transmembrane transporter activity	Q22292197	ferric-enterobactin transport
+Q22320637	ferric-hydroxamate transmembrane transporter activity	Q22290088	ferric-hydroxamate transport
+Q22320639	thiamine pyrophosphate transporter activity	Q22290341	thiamine pyrophosphate transport
+Q22320646	amino-acid betaine transmembrane transporter activity	Q22290327	amino-acid betaine transport
+Q22324888	allantoate transmembrane transporter activity	Q22290102	allantoate transport
+Q22324890	(R)-carnitine transmembrane transporter activity	Q22290331	(R)-carnitine transmembrane transport
+Q22324893	3-phenylpropionic acid transmembrane transporter activity	Q22290636	3-phenylpropionic acid transport
+Q22324895	shikimate transmembrane transporter activity	Q22290447	shikimate transport
+Q22324897	glycolate transmembrane transporter activity	Q22290434	glycolate transmembrane transport
+Q22324898	phosphoenolpyruvate transmembrane transporter activity	Q22290350	phosphoenolpyruvate transmembrane transport
+Q22324903	methylammonium transmembrane transporter activity	Q22290738	methylammonium transmembrane transport
+Q22324909	glycine betaine:proton symporter activity	Q21763183	glycine betaine transport
+Q22324910	myo-inositol transmembrane transporter activity	Q21121866	myo-inositol transport
+Q22324915	cytosine transmembrane transporter activity	Q22290420	cytosine transport
+Q22324925	uracil transmembrane transporter activity	Q22290417	uracil transmembrane transport
+Q22324927	allantoin:proton symporter activity	Q22290097	allantoin transport
+Q22324928	auxin transmembrane transporter activity	Q22292991	auxin transport
+Q22324953	voltage-gated potassium channel activity involved in SA node cell action potential depolarization	Q14905724	membrane depolarization during SA node cell action potential
+Q22324954	voltage-gated potassium channel activity involved in Purkinje myocyte action potential repolarization	Q22292774	membrane repolarization during Purkinje myocyte action potential
+Q22324955	voltage-gated potassium channel activity involved in AV node cell action potential repolarization	Q22292764	membrane repolarization during AV node cell action potential
+Q22324959	spermine transmembrane transporter activity	Q22290733	spermine transmembrane transport
+Q22324962	mercury ion transmembrane transporter activity	Q22293113	mercury ion transport
+Q22324966	voltage-gated calcium channel activity involved in Purkinje myocyte cell action potential	Q21111384	membrane depolarization during Purkinje myocyte cell action potential
+Q22324967	voltage-gated calcium channel activity involved in AV node cell action potential	Q21111383	membrane depolarization during AV node cell action potential
+Q22324968	voltage-gated calcium channel activity involved in bundle of His cell action potential	Q21111385	membrane depolarization during bundle of His cell action potential
+Q22324970	light-activated voltage-gated calcium channel activity	Q14865170	calcium-mediated signaling
+Q22324971	voltage-gated calcium channel activity involved in regulation of cytosolic calcium levels	Q14821006	regulation of cytosolic calcium ion concentration
+Q22324973	trivalent inorganic cation transmembrane transporter activity	Q22293100	trivalent inorganic cation transport
+Q22324975	aluminum ion transmembrane transporter activity	Q22292919	aluminum ion transmembrane transport
+Q22324982	cyanate transmembrane transporter activity	Q22290744	cyanate transport
+Q22324987	glucose 6-phosphate:phosphate antiporter activity	Q14887301	glucose transmembrane transporter activity
+Q22323935	dihydrofolate synthase activity	Q22274893	dihydrofolate biosynthetic process
+Q22323943	amino acid ligation activity by nonribosomal peptide synthase	Q22276387	nonribosomal peptide biosynthetic process
+Q22320648	glycine betaine-transporting ATPase activity	Q21763183	glycine betaine transport
+Q22320649	methionine transmembrane transporter activity	Q21125089	methionine transport
+Q22320652	D-methionine transmembrane transporter activity	Q22290670	D-methionine transport
+Q22320657	carbohydrate derivative transporter activity	Q21121277	carbohydrate derivative transport
+Q22320663	bacteriocin transmembrane transporter activity	Q22290203	bacteriocin transport
+Q22320667	oligopeptide transmembrane transporter activity	Q21111797	oligopeptide transmembrane transport
+Q22320668	phytochelatin transmembrane transporter activity	Q22290295	phytochelatin transmembrane transport
+Q22320669	phytochelatin transmembrane transporter ATPase activity	Q22290295	phytochelatin transmembrane transport
+Q22320670	beta-glucan transmembrane transporter activity	Q22292343	beta-glucan transport
+Q22320673	lipopolysaccharide-transporting ATPase activity	Q14907572	lipopolysaccharide transport
+Q22320674	capsular polysaccharide transmembrane transporter activity	Q22292340	capsular polysaccharide transport
+Q22320676	teichoic acid transmembrane transporter activity	Q22292492	teichoic acid transport
+Q22320677	teichoic-acid-transporting ATPase activity	Q22292492	teichoic acid transport
+Q22320678	vitamin transmembrane transporter activity	Q21106649	vitamin transmembrane transport
+Q22320681	polyamine transmembrane transporter activity	Q22290730	polyamine transmembrane transport
+Q22320682	iron chelate transmembrane transporter activity	Q14864012	iron assimilation by chelation and transport
+Q22320683	2-aminoethylphosphonate transmembrane transporter activity	Q22292176	2-aminoethylphosphonate transport
+Q22320685	amide transmembrane transporter activity	Q21095687	amide transport
+Q22320688	organic acid transmembrane transporter activity	Q21109069	organic acid transmembrane transport
+Q22320692	hydroxyectoine transmembrane transporter activity	Q22290461	hydroxyectoine transport
+Q22320693	hydroxyectoine-transporting ATPase activity	Q22290461	hydroxyectoine transport
+Q22320694	ectoine transmembrane transporter activity	Q22290663	ectoine transport
+Q22320695	ectoine-transporting ATPase activity	Q22290663	ectoine transport
+Q22320696	guanine transmembrane transporter activity	Q22290427	guanine transmembrane transport
+Q22320699	carbohydrate transmembrane transporter activity	Q21121265	carbohydrate transmembrane transport
+Q22320701	oligosaccharide transmembrane transporter activity	Q22292230	oligosaccharide transport
+Q22320703	maltose-transporting ATPase activity	Q24467459	maltose transmembrane transport
+Q22320705	oligogalacturonide transmembrane transporter activity	Q22292324	oligogalacturonide transport
+Q22320707	monosaccharide transmembrane transporter activity	Q22290634	monosaccharide transport
+Q22320710	D-ribose transmembrane transporter activity	Q22292352	D-ribose transport
+Q22320714	allose transmembrane transporter activity	Q22292370	allose transport
+Q22320716	D-xylose transmembrane transporter activity	Q21978327	D-xylose transport
+Q22320718	rhamnose transmembrane transporter activity	Q22292367	rhamnose transport
+Q22320723	daunorubicin-transporting ATPase activity	Q22290410	daunorubicin transport
+Q22320724	glycerol-2-phosphate-transporting ATPase activity	Q22290358	glycerol-2-phosphate transport
+Q22320732	sphingolipid-translocating ATPase activity	Q26250722	sphingolipid translocation
+Q22324995	silicate transmembrane transporter activity	Q22293020	silicate transport
+Q22324998	antimonite transmembrane transporter activity	Q22293015	antimonite transport
+Q22324999	chlorate transmembrane transporter activity	Q22293032	chlorate transport
+Q22325002	fluoride transmembrane transporter activity	Q22292794	fluoride transmembrane transport
+Q22325003	sulfite transmembrane transporter activity	Q22292967	sulfite transport
+Q22325006	borate efflux transmembrane transporter activity	Q21135412	borate transmembrane transport
+Q22325007	triose-phosphate transmembrane transporter activity	Q22290346	triose phosphate transmembrane transport
+Q22325011	arsenate ion transmembrane transporter activity	Q21109084	arsenate ion transmembrane transport
+Q22325020	voltage-gated ion channel activity involved in regulation of presynaptic membrane potential	Q22243624	regulation of presynaptic membrane potential
+Q22325021	xanthine transmembrane transporter activity	Q22290422	xanthine transport
+Q22325022	lactone transmembrane transporter activity	Q22290319	lactone transport
+Q22325023	3-hydroxyphenyl propanoate transmembrane transporter activity	Q22290446	3-hydroxyphenyl propanoate transport
+Q22325025	propanediol transmembrane transporter activity	Q22290441	propanediol transport
+Q22325027	nucleic acid transmembrane transporter activity	Q22292056	nucleic acid transport
+Q22325028	tRNA transmembrane transporter activity	Q22292071	tRNA transport
+Q22325029	auxin influx transmembrane transporter activity	Q22292683	auxin influx
+Q22325030	auxin efflux transmembrane transporter activity	Q22292997	auxin efflux
+Q22325032	synaptic vesicle amine transmembrane transporter activity	Q14916236	aminergic neurotransmitter loading into synaptic vesicle
+Q22325033	chromaffin granule amine transmembrane transporter activity	Q22290736	chromaffin granule amine transport
+Q22325035	alkylphosphonate transmembrane transporter activity	Q21761481	alkylphosphonate transport
+Q22325055	gap junction channel activity involved in bundle of His cell-Purkinje myocyte electrical coupling	Q21113145	bundle of His cell to Purkinje myocyte communication by electrical coupling
+Q22325056	gap junction channel activity involved in Purkinje myocyte-ventricular cardiac muscle cell electrical coupling	Q22298086	Purkinje myocyte to ventricular cardiac muscle cell communication by electrical coupling
+Q22325057	gap junction channel activity involved in atrial cardiac muscle cell-AV node cell electrical coupling	Q22298087	atrial cardiac muscle cell to AV node cell communication by electrical coupling
+Q22325058	gap junction channel activity involved in SA node cell-atrial cardiac muscle cell electrical coupling	Q22298088	SA node cell to atrial cardiac muscle cell communication by electrical coupling
+Q22325059	mobile ion carrier activity	Q14865154	ion transmembrane transport
+Q22325074	transcription factor activity, core RNA polymerase III binding	Q14878261	transcription from RNA polymerase III promoter
+Q22325083	transcription factor activity, RNA polymerase III promoter sequence-specific binding, TFIIIB recruiting	Q22295269	RNA polymerase III transcriptional preinitiation complex assembly
+Q22325104	transcriptional repressor activity, RNA polymerase II activating transcription factor binding	Q14633878	negative regulation of transcription from RNA polymerase II promoter
+Q22325106	transcription factor activity, RNA polymerase I transcription factor recruiting	Q22295267	RNA polymerase I transcriptional preinitiation complex assembly
+Q22325109	anti-sigma factor antagonist activity	Q14818066	positive regulation of transcription, DNA-templated
+Q22325110	transcription factor activity, core RNA polymerase binding	Q21096354	regulation of nucleic acid-templated transcription
+Q22325111	transcription factor activity, core RNA polymerase I binding	Q14908087	transcription from RNA polymerase I promoter
+Q22325112	transcription factor activity, core RNA polymerase II recruiting	Q21111543	RNA polymerase II transcriptional preinitiation complex assembly
+Q22325116	mitochondrial sequence-specific DNA-binding transcription factor activity	Q21120064	transcription from mitochondrial promoter
+Q22325136	transcription antitermination factor activity, DNA binding	Q21198918	transcription antitermination
+Q22325162	transcription antitermination factor activity, RNA binding	Q21198918	transcription antitermination
+Q22324020	first spliceosomal transesterification activity	Q21105016	RNA splicing, via transesterification reactions
+Q24457452	voltage-gated calcium channel activity involved in positive regulation of presynaptic cytosolic calcium levels	Q24457453	induction of synaptic vesicle exocytosis by positive regulation of presynaptic cytosolic calcium ion concentration
+Q24457646	structural constituent of synapse	Q14862256	synapse organization
+Q24457649	structural constituent of postsynaptic specialization	Q24457651	maintenance of postsynaptic specialization structure
+Q24457653	structural constituent of postsynaptic density	Q22295010	maintenance of postsynaptic density structure
+Q24457657	structural constituent of presynaptic active zone	Q21108056	maintenance of presynaptic active zone structure
+Q24476895	calcium-transporting ATPase activity involved in regulation of presynaptic cytosolic calcium ion concentration	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q24476897	calcium:cation antiporter activity involved in regulation of presynaptic cytosolic calcium ion concentration	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q24476898	calcium-induced calcium release activity involved in regulation of presynaptic cytosolic calcium ion concentration	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q24476902	voltage-gated calcium channel activity involved in regulation of presynaptic cytosolic calcium levels	Q22243226	regulation of presynaptic cytosolic calcium ion concentration
+Q24476942	calcium:cation antiporter activity involved in regulation of postsynaptic cytosolic calcium ion concentration	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q24476946	calcium-transporting ATPase activity involved in regulation of postsynaptic cytosolic calcium ion concentration	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q24476948	calcium-induced calcium release activity involved in regulation of postsynaptic cytosolic calcium ion concentration	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q24476949	voltage-gated calcium channel activity involved in regulation of postsynaptic cytosolic calcium levels	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q24491384	neurotransmitter receptor regulator activity	Q24491385	regulation of neurotransmitter receptor activity
+Q24493251	ligand-gated calcium channel activity	Q14865170	calcium-mediated signaling
+Q24493361	coreceptor activity involved in canonical Wnt signaling pathway	Q14762275	canonical Wnt signaling pathway
+Q24493377	coreceptor activity involved in Wnt signaling pathway, planar cell polarity pathway	Q14897651	Wnt signaling pathway, planar cell polarity pathway
+Q24496236	ubiquitin ligase inhibitor activity	Q22245593	negative regulation of ubiquitin protein ligase activity
+Q24498454	voltage-gated ion channel activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q22320801	DNA translocase activity involved in viral DNA genome packaging	Q22279855	viral DNA genome packaging
+Q22320806	RNA translocase activity involved in viral RNA genome packaging	Q21114966	viral RNA genome packaging
+Q22320811	clathrin-uncoating ATPase activity	Q21115370	clathrin coat disassembly
+Q22324170	1-aminocyclopropane-1-carboxylate synthase activity	Q22276497	1-aminocyclopropane-1-carboxylate biosynthetic process
+Q22324192	hercynylcysteine sulfoxide lyase activity (ergothioneine-forming)	Q22274965	ergothioneine biosynthetic process
+Q24576254	postsynaptic neurotransmitter receptor activity	Q22243207	chemical synaptic transmission, postsynaptic
+Q24576268	structural constituent of postsynaptic actin cytoskeleton	Q24576267	postsynaptic actin cytoskeleton organization
+Q26250723	ceramide-translocating ATPase activity	Q26250724	ceramide translocation
+Q26472231	protein deglycase activity	Q26453705	protein deglycation
+Q22320922	histone deacetylase activity (H3-K4 specific)	Q22283685	histone H3-K4 deacetylation
+Q22321236	cytidine kinase activity	Q22275448	CMP biosynthetic process
+Q22321238	deoxynucleoside kinase activity	Q14911885	deoxyribonucleoside monophosphate biosynthetic process
+Q22321240	deoxyadenosine kinase activity	Q22275828	dAMP biosynthetic process
+Q22321265	2-phosphoglycerate kinase activity	Q22283092	cyclic 2,3-bisphospho-D-glycerate biosynthetic process
+Q22321276	histone kinase activity (H2A-S121 specific)	Q22284164	histone H2A-S121 phosphorylation
+Q22321277	histone kinase activity (H2A-S139 specific)	Q15322288	histone H2A-S139 phosphorylation
+Q22321278	histone kinase activity (H2B-S14 specific)	Q22284165	histone H2B-S14 phosphorylation
+Q22321279	histone kinase activity (H2A-S1 specific)	Q21119243	histone H2A-S1 phosphorylation
+Q22321280	histone kinase activity (H4-S1 specific)	Q22284166	histone H4-S1 phosphorylation
+Q22321281	histone kinase activity (H3-S28 specific)	Q21119242	histone H3-S28 phosphorylation
+Q22321282	histone threonine kinase activity	Q22284009	histone-threonine phosphorylation
+Q22321283	histone tyrosine kinase activity	Q22284053	histone-tyrosine phosphorylation
+Q22321293	JUN kinase kinase kinase kinase activity	Q22245244	activation of JNKKK activity
+Q22321301	MAP kinase activity involved in innate immune response	Q22284228	MAPK cascade involved in innate immune response
+Q22321310	protein kinase activity involved in regulation of protein localization to cell division site involved in cytokinesis	Q22302936	regulation of protein localization to cell division site involved in cytokinesis
+Q22321355	trehalose transmembrane transporter activity	Q22292303	trehalose transport
+Q22324532	retroviral strand transfer activity	Q22315685	retroviral integrase activity
+Q22324536	cyclic 2,3-diphosphoglycerate synthetase activity	Q22283092	cyclic 2,3-bisphospho-D-glycerate biosynthetic process
+Q22324539	phytoene synthase activity	Q22282879	carotene biosynthetic process
+Q22324556	light transducer activity	Q14859559	detection of light stimulus
+Q22324588	D-alanyl carrier activity	Q22283166	teichoic acid D-alanylation
+Q22324590	chemoattractant activity involved in axon guidance	Q21134292	chemoattraction of axon
+Q22324592	acetate ester transmembrane transporter activity	Q22291935	acetate ester transport
+Q22324598	ferric triacetylfusarinine C:proton symporter activity	Q22291964	ferric triacetylfusarinine C transport
+Q22324601	ferrichrome transporter activity	Q22290093	ferrichrome transport
+Q22324602	chrysobactin transporter activity	Q22290225	chrysobactin transport
+Q22324603	cofactor transporter activity	Q21134384	cofactor transport
+Q22324604	achromobactin transporter activity	Q22290629	achromobactin transport
+Q22324605	drug transporter activity	Q14865105	drug transport
+Q22324607	benomyl transmembrane transporter activity	Q22290303	benomyl transmembrane transport
+Q22324608	drug:proton antiporter activity	Q14905073	drug export
+Q22324610	alkanesulfonate transporter activity	Q22290322	alkanesulfonate transport
+Q22324611	3-hydroxyphenylpropionic acid transporter activity	Q22290320	3-hydroxyphenylpropionic acid transport
+Q22324612	acridine transporter activity	Q22290321	acridine transport
+Q22324614	acriflavine transporter activity	Q22290324	acriflavine transport
+Q22324615	nalidixic acid transporter activity	Q22290325	nalidixic acid transport
+Q22324616	alkane transporter activity	Q22290412	alkane transport
+Q22324617	fatty-acyl-CoA transporter activity	Q22292202	fatty-acyl-CoA transport
+Q22324619	amiloride transporter activity	Q21422712	amiloride transport
+Q22324621	cycloheximide transporter activity	Q22290301	cycloheximide transport
+Q22324626	azole transmembrane transporter activity	Q22290298	azole transport
+Q22324630	fluconazole transporter activity	Q22290460	fluconazole transport
+Q22324632	microcin uptake transporter activity	Q22290186	microcin transport
+Q22324638	sulfathiazole transmembrane transporter activity	Q22290300	sulfathiazole transmembrane transport
+Q22324643	chloramphenicol transporter activity	Q14907431	chloramphenicol transport
+Q22324644	polymyxin transporter activity	Q22290196	polymyxin transport
+Q22324645	fosmidomycin transporter activity	Q22290081	fosmidomycin transport
+Q22324646	bicyclomycin transporter activity	Q22290405	bicyclomycin transport
+Q22324647	carbonyl cyanide m-chlorophenylhydrazone transporter activity	Q22290408	carbonyl cyanide m-chlorophenylhydrazone transport
+Q22324648	organomercurial transporter activity	Q22290407	organomercurial transport
+Q22324649	5-amino-1-ribofuranosylimidazole-4-carboxamide transporter activity	Q22290307	5-amino-1-ribofuranosylimidazole-4-carboxamide transmembrane transport
+Q22324650	modified amino acid transmembrane transporter activity	Q21135947	modified amino acid transport
+Q22324653	nucleotide transmembrane transporter activity	Q21121278	nucleotide transmembrane transport
+Q22324655	biopterin transporter activity	Q22292018	biopterin transport
+Q22324657	nicotinamide mononucleotide transmembrane transporter activity	Q22290378	nicotinamide mononucleotide transmembrane transport
+Q22324658	5-formyltetrahydrofolate transporter activity	Q22290132	5-formyltetrahydrofolate transport
+Q22324659	coenzyme transporter activity	Q22290141	coenzyme transport
+Q22324660	pantothenate transmembrane transporter activity	Q21127147	pantothenate transmembrane transport
+Q22324661	pantothenate:sodium symporter activity	Q21123414	sodium ion import across plasma membrane
+Q22324662	adenosine 3',5'-bisphosphate transmembrane transporter activity	Q22290385	adenosine 3',5'-bisphosphate transmembrane transport
+Q22324667	vitamin B6 transporter activity	Q22290477	vitamin B6 transport
+Q22324668	pyridoxal transmembrane transporter activity	Q22290484	pyridoxal transmembrane transport
+Q22324669	pyridoxine transmembrane transporter activity	Q22290482	pyridoxine transmembrane transport
+Q22324670	pyridoxamine transmembrane transporter activity	Q22290479	pyridoxamine transmembrane transport
+Q29574086	D-aspartate transmembrane transporter activity	Q22290669	D-aspartate transport
+Q41508162	tRNA U34 thiol-transferase activity	Q21109964	tRNA wobble uridine modification
+Q47009324	structural constituent of postsynaptic intermediate filament cytoskeleton	Q47009325	postsynaptic intermediate filament cytoskeleton organization
+Q47009335	structural constituent of postsynapse	Q47009192	postsynapse organization
+Q47009336	structural constituent of presynapse	Q47009193	presynapse organization
+Q47009748	nucleocytoplasmic carrier activity	Q15316725	nucleocytoplasmic transport
+Q52408101	G-protein coupled neurotransmitter receptor activity involved in regulation of presynaptic membrane potential	Q22243624	regulation of presynaptic membrane potential
+Q54809672	RNA polymerase II general transcription initiation factor activity	Q14864650	transcription from RNA polymerase II promoter
+Q22321357	N-acetylgalactosamine transmembrane transporter activity	Q22292494	N-acetylgalactosamine transport
+Q22321359	beta-glucoside transmembrane transporter activity	Q21422098	beta-glucoside transport
+Q22321361	mannitol transmembrane transporter activity	Q21121352	mannitol transport
+Q22321363	cellobiose transmembrane transporter activity	Q22292321	cellobiose transport
+Q22321366	galactitol transmembrane transporter activity	Q22290436	galactitol transport
+Q22321374	sucrose transmembrane transporter activity	Q22292295	sucrose transport
+Q22321377	lactose transmembrane transporter activity	Q22292313	lactose transport
+Q22321380	sorbitol transmembrane transporter activity	Q22290437	sorbitol transport
+Q22321427	protein guanylyltransferase activity	Q22284113	protein guanylylation
+Q22321455	RNA polymerase I activity	Q14908087	transcription from RNA polymerase I promoter
+Q22321457	RNA polymerase III activity	Q14878261	transcription from RNA polymerase III promoter
+Q22321459	RNA polymerase V activity	Q22281064	transcription from RNA polymerase V promoter
+Q22321460	RNA polymerase IV activity	Q22281062	transcription from RNA polymerase IV promoter
+Q22321461	bacterial-type RNA polymerase activity	Q22242440	transcription from bacterial-type RNA polymerase promoter
+Q22321462	plastid PEP-B RNA polymerase activity	Q22280985	transcription from plastid promoter
+Q22321463	plastid PEP-A RNA polymerase activity	Q22280985	transcription from plastid promoter
+Q22321466	mitochondrial single subunit type RNA polymerase activity	Q21120064	transcription from mitochondrial promoter
+Q22321467	plastid single subunit type RNA polymerase activity	Q22280985	transcription from plastid promoter
+Q22324672	adenine nucleotide transmembrane transporter activity	Q21111581	adenine nucleotide transport
+Q22324673	5'-adenylyl sulfate transmembrane transporter activity	Q22290398	5'-adenylyl sulfate transmembrane transport
+Q22324674	guanine nucleotide transmembrane transporter activity	Q22290397	guanine nucleotide transmembrane transport
+Q22324676	UDP-N-acetylgalactosamine transmembrane transporter activity	Q22290366	UDP-N-acetylgalactosamine transport
+Q22324677	UDP-glucose transmembrane transporter activity	Q21121297	UDP-glucose transport
+Q22324678	purine nucleotide-sugar transmembrane transporter activity	Q22290371	purine nucleotide-sugar transmembrane transport
+Q22324679	GDP-mannose transmembrane transporter activity	Q21136288	GDP-mannose transmembrane transport
+Q22324680	GDP-fucose transmembrane transporter activity	Q22290370	GDP-fucose transport
+Q22324681	xanthosine transmembrane transporter activity	Q22292038	xanthosine transport
+Q22324684	pyrimidine nucleoside transmembrane transporter activity	Q21106444	pyrimidine-containing compound transmembrane transport
+Q22324685	uridine transmembrane transporter activity	Q21126272	uridine transport
+Q22324688	cytidine transmembrane transporter activity	Q22292035	cytidine transport
+Q22324695	aldonate transmembrane transporter activity	Q22290352	aldonate transport
+Q22324696	phosphoglycerate transmembrane transporter activity	Q22290353	phosphoglycerate transport
+Q22324697	hexose phosphate transmembrane transporter activity	Q22290347	hexose phosphate transport
+Q22324701	glucuronoside transmembrane transporter activity	Q22290630	glucuronoside transport
+Q22324705	alpha-glucoside transmembrane transporter activity	Q22292513	alpha-glucoside transport
+Q22324708	disaccharide transmembrane transporter activity	Q22292286	disaccharide transport
+Q22324710	salicin transmembrane transporter activity	Q22290431	salicin transport
+Q22324711	arbutin transmembrane transporter activity	Q22292507	arbutin transport
+Q22324712	(+)-abscisic acid D-glucopyranosyl ester transmembrane transporter activity	Q22292511	(+)-abscisic acid D-glucopyranosyl ester transmembrane transport
+Q22324713	methylgalactoside transmembrane transporter activity	Q22292516	methylgalactoside transport
+Q22324715	peptidoglycan transporter activity	Q21762721	peptidoglycan transport
+Q22324716	peptidoglycan peptide transporter activity	Q22290199	peptidoglycan-associated peptide transport
+Q22324717	glycerophosphodiester transmembrane transporter activity	Q21756235	glycerophosphodiester transmembrane transport
+Q22324721	mannosylglycerate transmembrane transporter activity	Q22290723	mannosylglycerate transport
+Q22324722	lysophospholipid transporter activity	Q21173822	lysophospholipid transport
+Q22324723	glycolipid-translocating activity	Q21123829	glycolipid translocation
+Q22324724	arabitol transmembrane transporter activity	Q22290435	arabinitol transport
+Q22324728	melibiose transmembrane transporter activity	Q22292316	melibiose transport
+Q22324734	raffinose transmembrane transporter activity	Q22292262	raffinose transport
+Q22324736	dextrin transmembrane transporter activity	Q22292335	dextrin transport
+Q22324737	maltodextrin transmembrane transporter activity	Q22292338	maltodextrin transport
+Q22324738	arabinose transmembrane transporter activity	Q22292331	arabinose transport
+Q22324740	aldarate transmembrane transporter activity	Q22290712	aldarate transport
+Q22324741	D-glucarate transmembrane transporter activity	Q22290713	D-glucarate transport
+Q22324742	galactarate transmembrane transporter activity	Q22290715	galactarate transport
+Q22324743	2-keto-3-deoxygluconate:proton symporter activity	Q22290635	2-keto-3-deoxygluconate transport
+Q22324744	D-galactonate transmembrane transporter activity	Q22290632	D-galactonate transport
+Q22324745	L-idonate transmembrane transporter activity	Q22290633	L-idonate transport
+Q22324746	glycerate transmembrane transporter activity	Q22290599	glycerate transmembrane transport
+Q22324748	hexuronate transmembrane transporter activity	Q22290638	hexuronate transport
+Q22324748	hexuronate transmembrane transporter activity	Q22292346	hexuronide transport
+Q22324760	fucose transmembrane transporter activity	Q22292373	fucose transport
+Q22324765	pentose transmembrane transporter activity	Q22292349	pentose transport
+Q22324772	uronic acid transmembrane transporter activity	Q22290637	uronic acid transport
+Q54810641	general transcription factor activity	Q14763010	transcription, DNA-templated
+Q55458518	intracellular cAMP-activated cation channel activity involved in regulation of presynaptic membrane potential	Q863533	postsynaptic potential
+Q55458519	intracellular cAMP-activated cation channel activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q63165881	RNA binding involved in posttranscriptional gene silencing	Q22260826	posttranscriptional gene silencing
+Q63771572	cargo adaptor activity	Q14860403	vesicle-mediated transport
+Q66986412	lipopolysaccharide transfer activity	Q14907572	lipopolysaccharide transport
+Q22324773	glucuronate transmembrane transporter activity	Q22290639	glucuronate transport
+Q22324774	D-glucuronate transmembrane transporter activity	Q22290640	D-glucuronate transport
+Q22324775	galacturonate transmembrane transporter activity	Q22290641	galacturonate transport
+Q22324776	glucosylglycerol transmembrane transporter activity	Q22290442	glucosylglycerol transport
+Q22324778	aminophospholipid flippase activity	Q66986411	aminophospholipid translocation
+Q22324783	arachidonate transporter activity	Q22290657	arachidonate transport
+Q22324785	propionate transmembrane transporter activity	Q22290656	propanoate transport
+Q22324788	icosanoid transmembrane transporter activity	Q22290645	icosanoid transport
+Q22324790	abscisic acid transporter activity	Q22290472	abscisic acid transport
+Q22324792	tripeptide transporter activity	Q22290244	tripeptide transport
+Q22324793	glutathione transmembrane transporter activity	Q22290249	glutathione transmembrane transport
+Q22324794	dipeptide transmembrane transporter activity	Q22290234	dipeptide transmembrane transport
+Q22324798	tetrapeptide transmembrane transporter activity	Q22290256	tetrapeptide transmembrane transport
+Q22324799	proton-dependent peptide secondary active transmembrane transporter activity	Q21761006	hydrogen ion transmembrane transport
+Q22324802	phytochelatin transporter activity	Q22290294	phytochelatin transport
+Q22324804	membrane insertase activity	Q14907285	establishment of protein localization to membrane
+Q22324809	holin activity	Q22271632	cytolysis by virus via pore formation in host cell membrane
+Q22324811	DNA transmembrane transporter activity	Q22288464	DNA transport
+Q22324812	protein-DNA complex transmembrane transporter activity	Q22291311	protein-DNA complex transport
+Q22324813	lactoferrin transmembrane transporter activity	Q22291300	lactoferrin transport
+Q22324817	nuclear import signal receptor activity	Q22288342	nuclear import
+Q22324818	N-methylnicotinate transporter activity	Q22290326	N-methylnicotinate transport
+Q22324823	neutral, basic amino acid:sodium:chloride symporter activity	Q14864717	chloride transport
+Q22324825	alanine transmembrane transporter activity	Q21124455	alanine transport
+Q22324830	acidic amino acid transmembrane transporter activity	Q22290582	acidic amino acid transport
+Q22324832	alpha-ketoglutarate transmembrane transporter activity	Q21104647	alpha-ketoglutarate transport
+Q22324834	bilirubin transmembrane transporter activity	Q22290720	bilirubin transport
+Q22324836	C4-dicarboxylate transmembrane transporter activity	Q21762962	C4-dicarboxylate transport
+Q22324838	fumarate transmembrane transporter activity	Q22290716	fumarate transport
+Q22324847	oxaloacetate transmembrane transporter activity	Q22290612	oxaloacetate(2-) transmembrane transport
+Q22324851	malonate(1-) transmembrane transporter activity	Q22290602	malonic acid transmembrane transport
+Q22324853	isopropylmalate transmembrane transporter activity	Q22290506	isopropylmalate transport
+Q22324854	tricarboxylic acid transmembrane transporter activity	Q21124418	tricarboxylic acid transmembrane transport
+Q22324864	cadaverine transmembrane transporter activity	Q22291938	cadaverine transport
+Q22324872	homoserine transmembrane transporter activity	Q22290673	homoserine transport
+Q22324873	beta-alanine transmembrane transporter activity	Q22290686	beta-alanine transport
+Q22324875	D-amino acid transmembrane transporter activity	Q22290667	D-amino acid transport
+Q22324876	D-alanine transmembrane transporter activity	Q21116219	D-alanine transport
+Q22324879	L-diaminopimelate transmembrane transporter activity	Q22290706	diaminopimelate transport
+Q22324883	S-methylmethionine transmembrane transporter activity	Q22292148	S-methylmethionine transport
+Q22324885	acetate transmembrane transporter activity	Q22290591	acetate transmembrane transport
+Q21109314	peroxidase inhibitor activity	Q21109312	negative regulation of peroxidase activity
+Q21109446	phosphate ion transmembrane transporter activity	Q21105401	phosphate ion transmembrane transport
+Q21109447	inorganic diphosphate transmembrane transporter activity	Q21109448	inorganic diphosphate transport
+Q21109629	histone demethylase activity (H3-R2 specific)	Q21109631	histone H3-R2 demethylation
+Q21109630	histone demethylase activity (H4-R3 specific)	Q21109632	histone H4-R3 demethylation
+Q21109765	oxalate transmembrane transporter activity	Q21109769	oxalate transport
+Q21109878	exoribonuclease activity	Q21095166	RNA phosphodiester bond hydrolysis, exonucleolytic
+Q21109887	protein tyrosine kinase collagen receptor activity	Q21109888	collagen-activated tyrosine kinase receptor signaling pathway
+Q21109902	leukotriene-B4 20-monooxygenase activity	Q21109916	leukotriene B4 catabolic process
+Q21109924	L-ornithine transmembrane transporter activity	Q22290526	L-ornithine transmembrane transport
+Q21109926	arginine transmembrane transporter activity	Q21759811	arginine transmembrane transport
+Q21109927	L-lysine transmembrane transporter activity	Q21109925	L-lysine transmembrane transport
+Q21110078	histone acetyltransferase regulator activity	Q14908012	regulation of histone acetylation
+Q21110080	lipid kinase activity	Q14913838	lipid phosphorylation
+Q21110135	peptidyl-proline dioxygenase activity	Q22276613	peptidyl-proline hydroxylation
+Q21110333	histone acetyltransferase activity (H4-K12 specific)	Q21097189	histone H4-K12 acetylation
+Q21110412	N6-threonylcarbomyladenosine methylthiotransferase activity	Q21110413	tRNA methylthiolation
+Q21110778	corticotrophin-releasing factor receptor activity	Q21108165	cellular response to corticotropin-releasing hormone stimulus
+Q21110779	corticotropin-releasing hormone receptor activity	Q14859573	hormone-mediated signaling pathway
+Q21110826	cargo receptor activity	Q189814	endocytosis
+Q21110886	protein phosphatase regulator activity	Q14908111	regulation of phosphoprotein phosphatase activity
+Q21110899	cholecystokinin receptor activity	Q21110900	cholecystokinin signaling pathway
+Q21110940	cannabinoid receptor activity	Q21110941	cannabinoid signaling pathway
+Q21111094	annealing helicase activity	Q14818000	DNA strand renaturation
+Q21111142	purine nucleotide transmembrane transporter activity	Q21111143	purine nucleotide transport
+Q21111161	acetylcholine receptor activity	Q14890354	synaptic transmission, cholinergic
+Q21111222	adenine transmembrane transporter activity	Q21111223	adenine transport
+Q21111335	NF-kappaB-inducing kinase activity	Q21100852	NIK/NF-kappaB signaling
+Q21111386	voltage-gated sodium channel activity involved in AV node cell action potential	Q21111383	membrane depolarization during AV node cell action potential
+Q21111387	voltage-gated sodium channel activity involved in bundle of His cell action potential	Q21111385	membrane depolarization during bundle of His cell action potential
+Q21111388	voltage-gated sodium channel activity involved in Purkinje myocyte action potential	Q21111384	membrane depolarization during Purkinje myocyte cell action potential
+Q21111511	sialyltransferase activity	Q21111513	sialylation
+Q21111527	lipoprotein transporter activity	Q14864559	lipoprotein transport
+Q21111714	protein transmembrane transporter activity	Q22290846	protein transmembrane transport
+Q21111783	aminoacyl-tRNA editing activity	Q47008962	aminoacyl-tRNA metabolism involved in translational fidelity
+Q21112137	translation activator activity	Q14864218	positive regulation of translation
+Q21112161	histone kinase activity (H2A-T120 specific)	Q21112162	histone H2A-T120 phosphorylation
+Q21112205	NADP-retinol dehydrogenase activity	Q14864352	retinol metabolic process
+Q21112372	electron-transferring-flavoprotein dehydrogenase activity	Q14819359	respiratory electron transport chain
+Q21112422	fucosyltransferase activity	Q17053974	fucosylation
+Q21112465	glycoprotein 6-alpha-L-fucosyltransferase activity	Q21112464	N-glycan fucosylation
+Q21112581	transferrin transmembrane transporter activity	Q14860549	transferrin transport
+Q21112630	anti-Mullerian hormone receptor activity	Q21428154	anti-Mullerian hormone signaling pathway
+Q22316463	flavonol synthase activity	Q22283200	flavonol biosynthetic process
+Q22316485	flavone synthase activity	Q22283192	flavone biosynthetic process
+Q22316530	histone demethylase activity	Q21107558	histone demethylation
+Q22316910	chlorophyllide a oxygenase activity	Q22316908	chlorophyllide a oxygenase [overall] activity
+Q22316915	7-hydroxy-chlorophyllide a oxygenase activity	Q22316908	chlorophyllide a oxygenase [overall] activity
+Q22317264	hercynylcysteine sulfoxide synthase	Q22274965	ergothioneine biosynthetic process
+Q22319119	prostaglandin H2 endoperoxidase reductase activity	Q14881697	prostaglandin metabolic process
+Q21125472	deoxynucleotide transmembrane transporter activity	Q21125483	deoxynucleotide transport
+Q21125700	vitamin transporter activity	Q21110615	vitamin transport
+Q21126251	nucleoside transmembrane transporter activity	Q22290396	nucleoside transmembrane transport
+Q21126256	purine nucleoside transmembrane transporter activity	Q22290391	purine nucleoside transmembrane transport
+Q21126832	sour taste receptor activity	Q21126825	detection of chemical stimulus involved in sensory perception of sour taste
+Q21126855	tRNA guanylyltransferase activity	Q27982673	tRNA 5'-end processing
+Q21126877	L-tyrosine transmembrane transporter activity	Q21126878	tyrosine transport
+Q21127034	kinase inhibitor activity	Q15325691	negative regulation of kinase activity
+Q21130007	receptor inhibitor activity	Q14914159	negative regulation of receptor activity
+Q21130810	nucleoside phosphate kinase activity	Q21173770	nucleoside monophosphate phosphorylation
+Q21130992	protein-arginine omega-N symmetric methyltransferase activity	Q21130990	peptidyl-arginine methylation, to symmetrical-dimethyl arginine
+Q21131672	protein-arginine omega-N monomethyltransferase activity	Q21131693	peptidyl-arginine omega-N-methylation
+Q21131673	histone methyltransferase activity (H4-R3 specific)	Q21111424	histone H4-R3 methylation
+Q21131674	histone methyltransferase activity (H3-R2 specific)	Q21112939	histone H3-R2 methylation
+Q21132000	endothelin receptor activity	Q21132001	endothelin receptor signaling pathway
+Q21132055	cysteine-type endopeptidase regulator activity involved in apoptotic process	Q14873926	regulation of cysteine-type endopeptidase activity involved in apoptotic process
+Q21132076	protein C-terminal carboxyl O-methyltransferase activity	Q21132077	C-terminal protein methylation
+Q21132093	coreceptor activity involved in Wnt signaling pathway	Q155769	Wnt signaling pathway
+Q21132747	retinol O-fatty-acyltransferase activity	Q14864352	retinol metabolic process
+Q21132767	endoribonuclease inhibitor activity	Q21132768	negative regulation of endoribonuclease activity
+Q21133142	JUN kinase kinase kinase activity	Q21106757	activation of JNKK activity
+Q21133640	protein histidine kinase activity	Q21757752	peptidyl-histidine phosphorylation
+Q21134199	13-prostaglandin reductase activity	Q14881697	prostaglandin metabolic process
+Q21134879	thiocyanate peroxidase activity	Q21134878	thiocyanate metabolic process
+Q21135415	borate transmembrane transporter activity	Q21135412	borate transmembrane transport
+Q22319825	dihydromethanopterin reductase activity	Q22274856	tetrahydromethanopterin biosynthetic process
+Q22320028	aspartic-type endopeptidase activity involved in amyloid precursor protein catabolic process	Q14599512	amyloid precursor protein catabolic process
+Q22320039	metalloendopeptidase activity involved in amyloid precursor protein catabolic process	Q14599512	amyloid precursor protein catabolic process
+Q22320043	cysteine-type endopeptidase activity involved in plant-type hypersensitive response	Q22271831	plant-type hypersensitive response
+Q22319942	nitrate reductase activity involved in anaerobic electron transport chain	Q22284468	anaerobic electron transport chain
+Q22320077	glucan endo-1,3-beta-D-glucosidase activity involved in ascospore release from ascus	Q22281679	extracellular polysaccharide catabolic process involved in ascospore release from ascus
+Q22320077	glucan endo-1,3-beta-D-glucosidase activity involved in ascospore release from ascus	Q22281694	(1->3)-beta-D-glucan catabolic process
+Q22320268	7,8-dihydro-D-neopterin 2',3'-cyclic phosphate phosphodiesterase activity	Q22274854	methanopterin-containing compound biosynthetic process
+Q22320269	protein adenylylhydrolase activity	Q21108580	protein adenylylation
+Q22320269	protein adenylylhydrolase activity	Q22284195	protein deadenylylation
+Q22321669	lipopolysaccharide glucosyltransferase II activity	Q21136059	lipopolysaccharide biosynthetic process
+Q22321684	lipopolysaccharide glucosyltransferase I activity	Q21136059	lipopolysaccharide biosynthetic process
+Q22321742	lipopolysaccharide 3-alpha-galactosyltransferase activity	Q21136059	lipopolysaccharide biosynthetic process
+Q22321777	lipopolysaccharide N-acetylglucosaminyltransferase activity	Q21136059	lipopolysaccharide biosynthetic process
+Q22321469	DNA polymerase activity	Q21101125	DNA biosynthetic process
+Q22321478	O-acetylhomoserine aminocarboxypropyltransferase activity	Q21759438	'de novo' L-methionine biosynthetic process
+Q22321518	Sep-tRNA:Cys-tRNA synthase activity	Q22280723	conversion of O-phosphoseryl-tRNA to cysteinyl-tRNA
+Q22321584	kynurenine aminotransferase activity	Q21116229	L-kynurenine metabolic process
+Q22320306	polynucleotide phosphatase activity	Q22278423	polynucleotide dephosphorylation
+Q22320329	protein arginine phosphatase activity	Q22284247	peptidyl-N-phospho-arginine dephosphorylation
+Q22320332	MAP kinase tyrosine phosphatase activity	Q21109572	peptidyl-tyrosine dephosphorylation involved in inactivation of protein kinase activity
+Q22320336	MAP kinase phosphatase activity involved in regulation of innate immune response	Q14913302	regulation of innate immune response
+Q22320336	MAP kinase phosphatase activity involved in regulation of innate immune response	Q22245713	inactivation of MAPK activity involved in innate immune response
+Q22320401	all-trans-retinyl-palmitate hydrolase, all-trans-retinol forming activity	Q14864352	retinol metabolic process
+Q22320405	11-cis-retinyl-palmitate hydrolase activity	Q14864352	retinol metabolic process
+Q22322692	mRNA methyltransferase activity	Q21117257	mRNA methylation
+Q22321068	aspartic acid methylthiotransferase activity	Q21759336	peptidyl-L-beta-methylthioaspartic acid biosynthetic process from peptidyl-aspartic acid
+Q22321070	N6-isopentenyladenosine methylthiotransferase activity	Q21110413	tRNA methylthiolation
+Q22324353	cytidylate cyclase activity	Q14888939	cyclic nucleotide biosynthetic process
+Q27917169	ion channel regulator activity involved in G-protein coupled receptor signaling pathway	Q14758909	G-protein coupled receptor signaling pathway
+Q27917170	potassium channel activator activity involved in G-protein coupled receptor signaling pathway	Q27917174	potassium channel activating, G-protein coupled receptor signaling pathway
+Q27917297	G-protein gated potassium channel activity involved in regulation of postsynaptic membrane potential	Q863533	postsynaptic potential
+Q28054296	toxin activity	Q372016	pathogenesis
+Q31393605	structural constituent of presynaptic actin cytoskeleton	Q31393106	presynaptic actin cytoskeleton organization
+Q22321138	thiazole synthase activity	Q21198654	thiamine biosynthetic process
+Q22321144	phosphatidylinositol kinase activity	Q14887688	phosphatidylinositol phosphorylation
+Q22321154	phosphatidylinositol bisphosphate kinase activity	Q14887688	phosphatidylinositol phosphorylation
+Q22321227	histone arginine kinase activity	Q22284000	peptidyl-arginine phosphorylation
+Q29573143	ryanodine-sensitive calcium-release channel activity involved in regulation of postsynaptic cytosolic calcium levels	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q29573144	inositol 1,4,5-trisphosphate receptor activity involved in regulation of postsynaptic cytosolic calcium levels	Q22243228	regulation of postsynaptic cytosolic calcium ion concentration
+Q29573209	microtubule plus end polymerase	Q14330650	microtubule cytoskeleton organization
+Q29573215	DNA clamp unloader activity	Q22295913	DNA clamp unloading
