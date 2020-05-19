@@ -15,9 +15,9 @@ class Graph:
         """
         if g and pickle_path:
             raise ValueError("only provide either g or pickle_path, not both.")
-        if pickle_path:
+        if pickle_path is not None:
             self.load_graph_from_pickle(pickle_path)
-        elif g:
+        elif g is not None:
             self.G = g
         else:
             print("Building graph from local files, please wait for success message...")
@@ -54,6 +54,18 @@ class Graph:
                     if instance2_id not in self.G:
                         self.G.add_node(instance2_id, instance_label=instance2_label.strip(), concept_id=concept2_id.strip())
                     self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
+
+    def get_all_nodes(self):
+        """
+        :return: set of all node ids in graph
+        """
+        return set(self.G.nodes())
+
+    def get_all_edges(self):
+        """
+        :return: set of all edges in graph. Each edge is tuple of (src_node_id, dest_node_id, relation_id)
+        """
+        return set(self.G.edges(data="relation_id"))
 
     def save_graph_to_pickle(self, pickle_path):
         """
@@ -144,7 +156,7 @@ class Graph:
             view = self.G[instance1_id][instance2_id]
             return [view[key]['relation_id'] for key in view]
 
-    def get_edges(self, instance1_id, instance2_id):
+    def get_edges_between(self, instance1_id, instance2_id):
         """
         Gets a list of relation_ids between instance1 and instance2 regardless of direction.
         :param instance1_id: id of instance1
