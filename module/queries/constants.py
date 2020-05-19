@@ -7,6 +7,7 @@ from .templates import *
 ### PATHS
 QUERIES_DIR = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(QUERIES_DIR, "download")
+GRAPH_PICKLE_PATH = os.path.join(QUERIES_DIR, "BGV_Graph.pkl")
 
 ### CORE CONCEPTS
 DRUG = "Drug"
