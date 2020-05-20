@@ -1,0 +1,98 @@
+Q2836	aphasia	Q3872	neuropsychology
+Q2836	aphasia	Q83042	neurology
+Q40878	diarrhea	Q120569	gastroenterology
+Q40878	diarrhea	Q788926	infectious disease
+Q116275	myoclonus	Q83042	neurology
+Q120395	dyspareunia	Q1221899	gynecology
+Q160184	flatulence	Q120569	gastroenterology
+Q180762	angina pectoris	Q10379	cardiology
+Q186889	nausea	Q120569	gastroenterology
+Q186889	nausea	Q4531629	Q4531629
+Q188008	dyspnea	Q203337	pulmonology
+Q188611	hypomania	Q7867	psychiatry
+Q188611	hypomania	Q9418	psychology
+Q189331	heart arrhythmia	Q10379	cardiology
+Q193889	ascites	Q120569	gastroenterology
+Q209583	tachycardia	Q10379	cardiology
+Q213373	ataxia	Q83042	neurology
+Q220322	agnosia	Q3872	neuropsychology
+Q220322	agnosia	Q83042	neurology
+Q223907	tremor	Q7867	psychiatry
+Q223907	tremor	Q83042	neurology
+Q420915	acroparesthesia	Q10379	cardiology
+Q486851	sleep paralysis	Q744029	sleep medicine
+Q498916	apraxia	Q3872	neuropsychology
+Q557945	mental confusion	Q7867	psychiatry
+Q570197	proteinuria	Q105650	urology
+Q570197	proteinuria	Q177635	nephrology
+Q622527	self-injury	Q7867	psychiatry
+Q622527	self-injury	Q199906	clinical psychology
+Q653197	rash	Q171171	dermatology
+Q718263	logorrhea	Q9418	psychology
+Q748444	asterixis	Q12328568	neurology
+Q776790	necrolytic migratory erythema	Q171171	dermatology
+Q944142	suicidal ideation	Q199906	clinical psychology
+Q1097957	intermittent claudication	Q10379	cardiology
+Q1097957	intermittent claudication	Q1498222	vascular surgery
+Q1163908	melena	Q120569	gastroenterology
+Q1163908	melena	Q932510	general surgery
+Q1166142	erythema	Q171171	dermatology
+Q1198115	stereotypy	Q7867	psychiatry
+Q1277793	myotonia	Q83042	neurology
+Q1277793	myotonia	Q1071953	medical genetics
+Q1277793	myotonia	Q7002432	neuromuscular medicine
+Q1324592	laryngospasm	Q203337	pulmonology
+Q1338684	tension headache	Q83042	neurology
+Q1362864	hepatomegaly	Q668064	hepatology
+Q1363741	erythroderma	Q171171	dermatology
+Q1495657	gastrointestinal bleeding	Q4039279	Gastroenterology
+Q1570161	hematemesis	Q120569	gastroenterology
+Q1641068	hyperpigmentation	Q171171	dermatology
+Q1642049	hematochezia	Q120569	gastroenterology
+Q1642049	hematochezia	Q932510	general surgery
+Q1644260	hearing disorder	Q83042	neurology
+Q1755849	palmar erythema	Q171171	dermatology
+Q1858291	hot flash	Q1221899	gynecology
+Q1883970	upper gastrointestinal bleeding	Q120569	gastroenterology
+Q1975146	obtundation	Q2861470	emergency medicine
+Q2117286	Braxton Hicks contraction	Q5284418	obstetrics
+Q24084959	Primary affect	Q788926	infectious disease
+Q58952	Sammakkotauti	Q189553	otolaryngology
+Q81938	pain	Q83042	neurology
+Q154430	anxiety	Q7867	psychiatry
+Q186889	nausea	Q120569	gastroenterology
+Q186889	nausea	Q4531629	Q4531629
+Q199602	itch	Q171171	dermatology
+Q220989	nystagmus	Q83042	neurology
+Q254327	anorexia	Q7867	psychiatry
+Q254327	anorexia	Q9418	psychology
+Q673083	gingivitis	Q3673891	oral medicine
+Q683498	arthralgia	Q327657	Infections
+Q926584	bromhidrosis	Q171171	dermatology
+Q988594	eczema	Q171171	dermatology
+Q1115038	runny nose	Q203337	pulmonology
+Q1633866	Hyperalgesia	Q83042	neurology
+Q1963588	hematopoietic system diseases	Q103824	hematology
+Q2565950	urological symptom	Q105650	urology
+Q2986815	photodermatosis	Q171171	dermatology
+Q3245680	mouth ulcer	Q120569	gastroenterology
+Q4331896	eye burn	Q83042	neurology
+Q21116733	respiratory hypersensitivity	Q101929	immunology
+Q21116733	respiratory hypersensitivity	Q203337	pulmonology
+Q2141836	chemical burn	Q2861470	emergency medicine
+Q2365426	Acneiform eruption	Q171171	dermatology
+Q2455868	odynophagia	Q120569	gastroenterology
+Q2460147	tunnel vision	Q161437	ophthalmology
+Q2466723	gummatous syphilis	Q788926	infectious disease
+Q2610154	red eye	Q161437	ophthalmology
+Q2915863	lower gastrointestinal bleeding	Q120569	gastroenterology
+Q3245488	nasal congestion	Q189553	otolaryngology
+Q3539327	Webbed neck	Q1071953	medical genetics
+Q5456583	flaccid paralysis	Q83042	neurology
+Q9162872	schizophrenic autism	Q7867	psychiatry
+Q10916362	dizziness	Q189553	otolaryngology
+Q11697109	erythema gyratum repens	Q171171	dermatology
+Q18054140	collapse	Q10379	cardiology
+Q21110016	corneal damage	Q83042	neurology
+Q21110016	corneal damage	Q161437	ophthalmology
+Q21110038	corneal opacity	Q161437	ophthalmology
