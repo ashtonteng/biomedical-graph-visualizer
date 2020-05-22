@@ -30,6 +30,6 @@ def download_all_data():
 
 if __name__ == '__main__':
     download_all_data()
-    g = build_and_pickle_graph()
+    g = get_graph()
     save_all_node_names_ids_json(g)
     save_all_concept_names_ids_json()
