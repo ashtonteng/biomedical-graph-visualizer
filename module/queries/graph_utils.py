@@ -64,7 +64,7 @@ def graph_to_dict(g):
     link_dicts = []
     for src_node_id, dst_node_id, relation_id in g.get_all_edges():
         link_dict = {'target': dst_node_id, 'source': src_node_id,
-                     'weight': 0.01, 'label': RELATION_ID_LABEL_DICT[relation_id]}
+                     'weight': 0.1, 'label': RELATION_ID_LABEL_DICT[relation_id]}
         link_dicts.append(link_dict)
 
     graph_dict = {'nodes': node_dicts, 'links': link_dicts}

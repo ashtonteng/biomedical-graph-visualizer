@@ -21,6 +21,10 @@
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
+    <script src="/static/js/table-sortable.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/table-sortable.css"/>
+
+
 </head>
 <body onload="init();">
 <header>
@@ -74,38 +78,8 @@
     <div id="network_viz"></div>
     <div class="results-panel">
         <h1>Results:</h1>
-        <div class="table-responsive">
-            <table class="table table-striped" id="results_table">
-                <thead>
-                <tr>
-                    <th>Starting Node</th>
-                    <th>Ending Node</th>
-                    <th>Ending Node Type</th>
-                    <th>Path Length</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                    <td>1</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <input type="text" placeholder="Search in table..." id="searchField">
+        <div id="table-sortable"></div>
     </div>
 </main>
 <footer class="navbar navbar-inverse footer-container">
@@ -137,13 +111,48 @@
         xmlHttp.send(null);
     }
 
+    let instance_node_dict;
+    let concept_node_dict;
+    let table;
+
     function init() {
 
-        httpRequest("/tool1/search", function(data) {
-            drawGraph(data["graph"]);
+        // graph you see when you visit the page
+        initialGraph("Q3025883", "Q8386", 2);
+
+        // initialize table
+        let columns = {
+            "startingNode": "Starting Node",
+            "endingNode": "Ending Node",
+            "nodeType": "Node Type",
+            "pathLength": "Path Length"
+        };
+
+        let sample_data = [
+            {
+              startingNode: "Your",
+              endingNode: "Results",
+              nodeType: "Are",
+              pathLength: "Here"
+            },
+            {
+                startingNode: "This",
+                endingNode: "Is",
+                nodeType: "A",
+                pathLength: "Test"
+            }
+        ];
+
+        table = $('#table-sortable').tableSortable({
+            data: sample_data,
+            columns: columns,
+            rowsPerPage: 5,
+            pagination: true,
+            searchField: $("#searchField")
         });
 
         httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
+            instance_node_dict = data;
             let autocomplete_names = Object.keys(data);
             let bhound = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -165,6 +174,7 @@
         });
 
         httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
+            concept_node_dict = data;
             let autocomplete_names = Object.keys(data);
             let bhound = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -202,6 +212,31 @@
                     updateTable(results);
                 }
             }
+            let params = "starting_node=" + instance_node_dict[start];
+            if (end) {
+                params += "&ending_node=" + concept_node_dict[end];
+            }
+            if (hops) {
+                params += "&hops=" + hops;
+            }
+            xhr.send(params);
+        }
+    }
+
+    function initialGraph(start, end, hops) {
+        if (start) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", '/tool1/search', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    let response = JSON.parse(xhr.response);
+                    let results = response["results"];
+                    drawGraph(response["graph"]);
+                    //updateTable(results);
+                }
+            }
             let params = "starting_node=" + start;
             if (end) {
                 params += "&ending_node=" + end;
@@ -232,6 +267,8 @@
                 case "Drug": return "green";
                 case "Protein": return "pink";
                 case "Gene": return "blue";
+                case "Disease": return "red";
+                case "Symptom": return "yellow";
                 default: "gray";
             }
         }
@@ -318,6 +355,22 @@
 
     function updateTable(results) {
         let start = document.getElementById("starting_node").value;
+
+        let data = [];
+
+        for (let i = 0; i < results.length; i++) {
+            data.push({
+                startingNode: start,
+                endingNode: results[i]["name"],
+                nodeType: results[i]["domain"],
+                pathLength: results[i]["path_length"]
+            });
+        }
+
+        table.setData(data, null);
+
+        /*
+        let start = document.getElementById("starting_node").value;
         let el = document.getElementById("results_table").querySelector("tbody");
 
         while (el.childElementCount > 0) {
@@ -332,7 +385,9 @@
                             <td>${results[i]["path_length"]}</td>`
             row.innerHTML = template;
             el.append(row);
-        }
+        }*/
+
+
     }
 
 

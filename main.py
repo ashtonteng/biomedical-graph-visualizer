@@ -1,5 +1,8 @@
 import os
 from flask import Flask, render_template, request, Response, jsonify
+from module.queries.graph_utils import subgraph_tool
+from module.queries.constants import *
+import json
 
 app = Flask(__name__)
 
@@ -23,7 +26,7 @@ def graph_search():
     ending_node = request.form.get('ending_node', default = None, type = str)
     hops = request.form.get('hops', default = 3, type = int)
 
-    example = {
+    '''example = {
         "results": [
             {"name": "Metformin", "domain": "Drug", "path_length": 1},
             {"name": "BRCA1", "domain": "Gene", "path_length": 3},
@@ -40,9 +43,13 @@ def graph_search():
                { "target": "Q17487737", "source": "Q19484" , "weight": 0.01, "label": "Made up Edge 2" }
              ]
            }
-    }
+    }'''
 
-    return jsonify(example)
+    print(starting_node, ending_node, hops)
+
+    results = subgraph_tool(starting_node, ending_node, hops, max_results=100)
+
+    return jsonify(results)
 
 @app.route('/tool2/search', methods=['GET', 'POST'])
 def similarity_search():
