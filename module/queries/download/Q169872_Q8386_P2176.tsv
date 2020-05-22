@@ -154,7 +154,7 @@ Q101991	inflammation	Q7334443	Rimexolone
 Q101991	inflammation	Q11426176	prednisolone
 Q101991	inflammation	Q27106662	fluocinolone
 Q101991	inflammation	Q27107089	ketorolac tromethamine
-Q127076	vomiting	Q190067	Tetrahydrocannabinol
+Q127076	vomiting	Q190067	tetrahydrocannabinol
 Q127076	vomiting	Q251347	haloperidol
 Q127076	vomiting	Q372725	thiethylperazine
 Q127076	vomiting	Q407972	chlorpromazine
@@ -266,7 +266,7 @@ Q154430	anxiety	Q898407	venlafaxine
 Q154430	anxiety	Q2419445	desvenlafaxine
 Q154430	anxiety	Q2924764	brexpiprazole
 Q154430	anxiety	Q3563148	vortioxetine
-Q254327	anorexia	Q190067	Tetrahydrocannabinol
+Q254327	anorexia	Q190067	tetrahydrocannabinol
 Q254327	anorexia	Q410513	megestrol
 Q633403	asthenia	Q905058	Mesocarb
 Q673083	gingivitis	Q169569	metronidazole

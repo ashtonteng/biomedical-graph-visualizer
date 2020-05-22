@@ -350,6 +350,18 @@
                 node.fy = null;
             });
 
+        function zoomed() {
+            nodeElements.attr("transform", d3.event.transform);
+            textElements.attr("transform", d3.event.transform);
+            linkLabels.attr("transform", d3.event.transform);
+            linkElements.attr("transform", d3.event.transform);
+        }
+
+        svg.call(d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([0.1, 8])
+            .on("zoom", zoomed));
+
         nodeElements.call(dragDrop);
     }
 

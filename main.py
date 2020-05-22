@@ -47,7 +47,7 @@ def graph_search():
 
     print(starting_node, ending_node, hops)
 
-    results = subgraph_tool(starting_node, ending_node, hops, max_results=100)
+    results = subgraph_tool(starting_node, ending_node, hops, max_results=1000)
 
     return jsonify(results)
 

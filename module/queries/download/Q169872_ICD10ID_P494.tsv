@@ -14,8 +14,8 @@ Q180762	angina pectoris	I20	I20
 Q183425	abdominal pain	R10	R10
 Q188008	dyspnea	R06.0	R06.0
 Q188611	hypomania	F30.0	F30.0
-Q189331	heart arrhythmia	I47	I47
 Q189331	heart arrhythmia	I49	I49
+Q189331	heart arrhythmia	I47	I47
 Q193889	ascites	R18	R18
 Q209789	burping	R14	R14
 Q213373	ataxia	R27.0	R27.0
@@ -34,8 +34,8 @@ Q944142	suicidal ideation	R45.8	R45.8
 Q1162276	xerostomia	K11.7	K11.7
 Q1162276	xerostomia	R68.2	R68.2
 Q1163908	melena	K92.1	K92.1
-Q1166142	erythema	L51	L51
 Q1166142	erythema	L54	L54
+Q1166142	erythema	L51	L51
 Q1193870	multiple organ dysfunction syndrome	R65.3	R65.3
 Q1277793	myotonia	G71.1	G71.1
 Q1324592	laryngospasm	J38.5	J38.5
@@ -53,9 +53,9 @@ Q1739905	ketonuria	R82.4	R82.4
 Q1755849	palmar erythema	L53.8	L53.8
 Q1883970	upper gastrointestinal bleeding	K92.2	K92.2
 Q2117286	Braxton Hicks contraction	O47	O47
+Q30085742	Mental and behavioural disorders	F00-F99	F00-F99
 Q21117237	ulceration of nasal septum	J34.0	J34.0
 Q21117302	twitching	R25.3	R25.3
-Q30085742	Mental and behavioural disorders	F00-F99	F00-F99
 Q16408	halitosis	R19.6	R19.6
 Q32069	meningism	R29.1	R29.1
 Q58952	Sammakkotauti	R06.6	R06.6
