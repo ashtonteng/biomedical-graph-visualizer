@@ -59,4 +59,7 @@ table {
 
 }
 
+#network_viz {
+    border: 1px solid black;
+}
 

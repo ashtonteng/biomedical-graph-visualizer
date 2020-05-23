@@ -21,6 +21,7 @@
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
+    <!-- Table scripts -->
     <script src="/static/js/table-sortable.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/table-sortable.css"/>
 
@@ -128,23 +129,7 @@
             "pathLength": "Path Length"
         };
 
-        let sample_data = [
-            {
-              startingNode: "Your",
-              endingNode: "Results",
-              nodeType: "Are",
-              pathLength: "Here"
-            },
-            {
-                startingNode: "This",
-                endingNode: "Is",
-                nodeType: "A",
-                pathLength: "Test"
-            }
-        ];
-
         table = $('#table-sortable').tableSortable({
-            data: sample_data,
             columns: columns,
             rowsPerPage: 5,
             pagination: true,

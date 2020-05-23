@@ -7,3 +7,4 @@ queries/download/
 *.json
 *.pkl
 **/*.tsv
+*.emb
