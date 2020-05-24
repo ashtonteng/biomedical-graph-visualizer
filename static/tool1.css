@@ -62,4 +62,8 @@ table {
 #network_viz {
     border: 1px solid black;
 }
+#filters label{
+    display: inline;
+    margin-left: 20px;
+}
 

@@ -64,19 +64,56 @@
             <div class="col-md-5">
                 <label>Starting Node:<br><input type="text" id="starting_node" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false"></label>
             </div>
-            <div class="col-md-5">
-                <label>Ending Node:<br><input type="text" id="ending_node" placeholder="Protein..." class="typeahead tt-query" spellcheck="false"></label>
+            <div class="col-md-4">
+                <label>Ending Node:<br>
+                    <select id="ending_node">
+                        <option value="Drug">Drug</option>
+                        <option value="Chemical Compound">Chemical Compound</option>
+                        <option value="Gene">Gene</option>
+                        <option value="Protein">Protein</option>
+                        <option value="Diseases">Disease</option>
+                        <option value="Symptom">Symptom</option>
+                        <option value="Molecular Function">Molecular Function</option>
+                        <option value="Biological Process">Biological Process</option>
+                        <option value="Medical Specialty">Medical Specialty</option>
+                        <option value="ICD10">ICD10</option>
+                        <option value="Protein Family">Protein Family</option>
+                        <option value="Protein Superfamily">Protein Superfamily</option>
+                        <option value="Protein Domain">Protein Domain</option>
+                        <option value="Gene Ontology ID">Gene Ontology ID</option>
+                        <option value="Chromosome">Chromosome</option>
+                        <option value="Drug Function">Drug Function</option>
+                        <option value="Pharmaceutical Product">Pharmaceutical Product</option>
+                        <option value="Symptom Cause">Symptom Cause</option>
+                        <option value="health specialty">health specialty</option>
+                    </select>
+                </label>
             </div>
             <div class="col-md-1">
-                <label>Hops:<br><input type="text" id="hops"></label>
+                <label>Hops:<br>
+                    <select id="hops">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </label>
             </div>
             <div class="col-md-1">
                 <br>
                 <input type="button" id="submit" value="Search!" onclick="onSearch()">
             </div>
+            <div class="col-md-1">
+                <br>
+                <input type="button" id="demo" value="Choose for me!" onclick="onDemoClick()">
+            </div>
         </div>
     </div>
     <div id="network_viz"></div>
+    <div id ="filters">
+        <label><input type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked> Show Node Labels</label>
+        <label><input type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked> Show Edge Labels</label>
+    </div>
     <div class="results-panel">
         <h1>Results:</h1>
         <input type="text" placeholder="Search in table..." id="searchField">
@@ -126,7 +163,8 @@
             "startingNode": "Starting Node",
             "endingNode": "Ending Node",
             "nodeType": "Node Type",
-            "pathLength": "Path Length"
+            "pathLength": "Path Length",
+            "id": "QID"
         };
 
         table = $('#table-sortable').tableSortable({
@@ -160,7 +198,7 @@
 
         httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
             concept_node_dict = data;
-            let autocomplete_names = Object.keys(data);
+            /*let autocomplete_names = Object.keys(data);
             let bhound = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.whitespace,
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -176,8 +214,62 @@
                     name: 'concepts',
                     source: bhound
                 }
-            );
+            );*/
         });
+    }
+
+    let node_label_opacity = 1;
+    let edge_label_opacity = 1;
+
+    function showNodeLabels() {
+        if (document.getElementById("toggle_node_labels").checked) {
+            node_label_opacity = 1;
+        } else {
+            node_label_opacity = 0;
+        }
+
+        if (textElements) {
+            textElements.attr("opacity", node_label_opacity);
+        }
+    }
+
+    function showEdgeLabels() {
+        if(document.getElementById("toggle_edge_labels").checked) {
+            edge_label_opacity = 1;
+        } else {
+            edge_label_opacity = 0;
+        }
+
+        if (linkLabels) {
+            linkLabels.attr("opacity", edge_label_opacity);
+        }
+    }
+
+    function onDemoClick() {
+        let test_examples = [
+            ["Insulin", "Diseases", "3"],
+            ["breast cancer", "Drug", "1"],
+            ["metformin", "Protein", "3"],
+            ["pancreatic cancer", "Gene", "1"],
+            ["aspirin", "Chromosome", "4"]
+        ];
+        let index = Math.random() * 100;
+        if (index < 20) {
+            index = 0;
+        } else if (index < 40) {
+            index = 1;
+        } else if (index < 60) {
+            index = 2;
+        } else if (index < 80) {
+            index = 3;
+        } else {
+            index = 4;
+        }
+
+        document.getElementById("starting_node").value = test_examples[index][0];
+        end = document.getElementById("ending_node").value = test_examples[index][1];
+        hops = document.getElementById("hops").value = test_examples[index][2];
+        onSearch();
     }
 
     function onSearch() {
@@ -233,9 +325,11 @@
         }
     }
 
+    let textElements, linkLabels;
+
     function drawGraph(data) {
         const width = window.innerWidth;
-        const height = 500;
+        const height = 700;
 
         let el = document.getElementById("network_viz");
         while (el.childElementCount > 0) {
@@ -249,40 +343,76 @@
 
         function getNodeColor(node) {
             switch (node.domain) {
-                case "Drug": return "green";
-                case "Protein": return "pink";
-                case "Gene": return "blue";
-                case "Disease": return "red";
-                case "Symptom": return "yellow";
-                default: "gray";
+                case "Drug": return "#33D895";
+                case "Chemical Compound": return "#33D842";
+                case "Pharmaceutical Product": return "#25F51C";
+                case "Drug Function": return "#11C621";
+
+                case "Molecular Function": return "#D54517";
+                case "Biological Process": return "#D86827";
+                case "Gene Ontology ID": return "#D84527";
+
+                case "Protein": return "#BE27D8";
+                case "Protein Family": return "#D8279A";
+                case "Protein Superfamily": return "#D827C6";
+                case "Protein Domain": return "#D8276E";
+
+                case "Gene": return "#2781D8";
+                case "Chromosome": return "#2729D8";
+
+                case "Diseases": return "#D6D827";
+                case "Symptom": return "#A3A458";
+                case "Symptom Cause": return "#7DA458";
+                case "ICD10": return "#A49258";
+
+                case "health specialty": return "#1CF5E1";
+                case "Medical Specialty": return "#1CD7F5";
+                default: "#9092B0";
             }
         }
+
+        /*
+        var mouseover = function (d) {
+            d3.select(this).attr("r", 30);
+        };
+
+        var mouseleave = function (d) {
+            d3.select(this)
+                .transition()
+                .duration(200)
+                .attr("r", 20);
+        };*/
 
         const nodeElements = svg.append('g')
             .selectAll('circle')
             .data(data.nodes)
             .enter().append('circle')
             .attr('r', 20)
-            .attr('fill', getNodeColor);
+            .attr('fill', getNodeColor)
+            .attr('opacity', 0.8);
+            /*.on("mouseover", mouseover)
+            .on("mouseleave", mouseleave);*/
 
-        const textElements = svg.append('g')
+        textElements = svg.append('g')
             .selectAll('text')
             .data(data.nodes)
             .enter().append('text')
             .text(node => node.label)
             .attr('font-size', 15)
-            .attr('dx', 15)
+            .attr('dx', 20)
             .attr('dy', 4)
-            .attr('fill', "#AFAFAF");
+            .attr('fill', getNodeColor)
+            .attr('opacity', node_label_opacity);
 
         const linkElements = svg.append('g')
             .selectAll('line')
             .data(data.links)
             .enter().append('line')
             .attr('stroke-width', 1)
-            .attr('stroke', '#E5E5E5');
+            .attr('stroke', '#AEB1DD')
+            .attr('opacity', 0.5);
 
-        const linkLabels = svg.append('g')
+        linkLabels = svg.append('g')
             .selectAll('text')
             .data(data.links)
             .enter().append('text')
@@ -290,7 +420,8 @@
             .attr('font-size', 10)
             .attr('dx', 0)
             .attr('dy', 0)
-            .attr('fill', "#AFAFAF");
+            .attr('fill', "#71738F")
+            .attr('opacity', edge_label_opacity);
 
         const simulation = d3.forceSimulation(data.nodes)
             .force('charge', d3.forceManyBody().strength(-400))
@@ -356,11 +487,13 @@
         let data = [];
 
         for (let i = 0; i < results.length; i++) {
+            let qid = instance_node_dict[results[i]["name"]];
             data.push({
                 startingNode: start,
                 endingNode: results[i]["name"],
                 nodeType: results[i]["domain"],
-                pathLength: results[i]["path_length"]
+                pathLength: results[i]["path_length"],
+                id: `<a href="https://www.wikidata.org/wiki/${qid}" target="_blank">${qid}</a>`
             });
         }
 
