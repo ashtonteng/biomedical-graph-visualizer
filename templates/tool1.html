@@ -114,6 +114,8 @@
         <label><input type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked> Show Node Labels</label>
         <label><input type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked> Show Edge Labels</label>
     </div>
+    <h3>Legend</h3>
+    <div id="legend"></div>
     <div class="results-panel">
         <h1>Results:</h1>
         <input type="text" placeholder="Search in table..." id="searchField">
@@ -219,7 +221,46 @@
 
             });
 
+            loadLegend();
+
         });
+
+    }
+
+    function loadLegend() {
+        const width = window.innerWidth;
+        const height = 100;
+
+        let svg = d3.select("#legend")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        let nodes = Object.keys(concept_node_dict);
+        let chunk_size = width / nodes.length * 2;
+
+        for (let i = 0; i < nodes.length; i++) {
+            let x = i * chunk_size;
+            let y = 10;
+            if (i >= nodes.length / 2) {
+                y = 30;
+                x = (i - nodes.length / 2) * chunk_size;
+            }
+            svg.append("circle")
+                .attr("r", 10)
+                .attr("fill", getNodeColor(nodes[i]))
+                .attr("opacity", 0.8)
+                .attr("cx", x + 10)
+                .attr("cy", y);
+            svg.append("text")
+                .text(nodes[i])
+                .attr('font-size', 10)
+                .attr('dx', x + 20)
+                .attr('dy', y + 5)
+                .attr('fill', getNodeColor(nodes[i]))
+                .attr('opacity', 1);
+        }
+
     }
 
     let node_label_opacity = 1;
