@@ -37,7 +37,7 @@ if __name__=="__main__":
     args = parser.parse_args()
     
     # Load graph for fitting embeddings
-    G = nx.read_edgelist(args.graph)
+    G = nx.read_gpickle(args.graph)
     gen_embeddings(
         G,
         args.ndim, args.window, args.min_count, args.batch_words, args.outfile, args.walk_length, args.num_walks, args.num_workers)

@@ -7,9 +7,9 @@ import numpy as np
 import sklearn.neighbors as sk_neighbors
 sys.path.append(os.getcwd())
 
-from queries.constants     import NN_ALGORITHMS, AGGREGATION_METHODS
-from queries.graph         import Graph
-from queries.graph_utils   import get_graph
+from .constants     import NN_ALGORITHMS, AGGREGATION_METHODS
+from .graph         import Graph
+from .graph_utils   import get_graph
 from typing                import Union
 from collections           import defaultdict, Counter
 from gensim.models         import keyedvectors
@@ -156,9 +156,11 @@ class NearestNeighbors:
             return_list = sorted(return_list, 
                                  key=lambda x: (x["sim_score"], x["input_index"]))
             json.dump(return_list, open(output_path, "w"), indent=4)
+            return return_list
 
         else:
             json.dump(self.neighbors, open(output_path, "w"), indent=4)
+            return return_list
 
 
     def _gen_return_dict(self, 

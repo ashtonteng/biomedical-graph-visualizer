@@ -4,7 +4,7 @@ import json
 from downloader import query
 from queries.constants import *
 from queries.graph_utils import *
-
+import argparse
 
 def download_all_data():
     print("Downloading from Wikidata....")
@@ -29,7 +29,20 @@ def download_all_data():
 
 
 if __name__ == '__main__':
-    download_all_data()
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--download', action="store_true", help='whether or not to download the graph')
+    parser.add_argument('--autocomplete', action="store_true", help='whether or not to generate autocomplete json')
+    args = parser.parse_args()
+
+    download = args.download
+    autocomplete = args.autocomplete
+
+    if download:
+        download_all_data()
+
     g = get_graph()
-    save_all_node_names_ids_json(g)
-    save_all_concept_names_ids_json()
+
+    if autocomplete:
+        save_all_node_names_ids_json(g)
+        save_all_concept_names_ids_json()

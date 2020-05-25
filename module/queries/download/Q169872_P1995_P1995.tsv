@@ -56,7 +56,6 @@ Q1858291	hot flash	Q1221899	gynecology
 Q1883970	upper gastrointestinal bleeding	Q120569	gastroenterology
 Q1975146	obtundation	Q2861470	emergency medicine
 Q2117286	Braxton Hicks contraction	Q5284418	obstetrics
-Q24084959	Primary affect	Q788926	infectious disease
 Q58952	Sammakkotauti	Q189553	otolaryngology
 Q81938	pain	Q83042	neurology
 Q154430	anxiety	Q7867	psychiatry
@@ -77,8 +76,7 @@ Q2565950	urological symptom	Q105650	urology
 Q2986815	photodermatosis	Q171171	dermatology
 Q3245680	mouth ulcer	Q120569	gastroenterology
 Q4331896	eye burn	Q83042	neurology
-Q21116733	respiratory hypersensitivity	Q101929	immunology
-Q21116733	respiratory hypersensitivity	Q203337	pulmonology
+Q24084959	Primary affect	Q788926	infectious disease
 Q2141836	chemical burn	Q2861470	emergency medicine
 Q2365426	Acneiform eruption	Q171171	dermatology
 Q2455868	odynophagia	Q120569	gastroenterology
@@ -96,3 +94,5 @@ Q18054140	collapse	Q10379	cardiology
 Q21110016	corneal damage	Q83042	neurology
 Q21110016	corneal damage	Q161437	ophthalmology
 Q21110038	corneal opacity	Q161437	ophthalmology
+Q21116733	respiratory hypersensitivity	Q101929	immunology
+Q21116733	respiratory hypersensitivity	Q203337	pulmonology
