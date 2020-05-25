@@ -25,12 +25,12 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH):
 
 def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
     """
-    Writes a dictionary of all nodes to json file, {instance_label:instance_id}
+    Writes a dictionary of all nodes to json file, {instance_label:(instance_id, concept_id)}
     :param out_path: (string) path to write json file
     :param g: (Graph) BGV backend graph.
     :return: None
     """
-    json_string = json.dumps({g.get_instance_label(node): node for node in g})
+    json_string = json.dumps({g.get_instance_label(node): (node, g.get_concept_id(node)) for node in g})
     with open(out_path, "w") as f:
         f.write(json_string)
     print("Saved all node names and ids to {}".format(out_path))
