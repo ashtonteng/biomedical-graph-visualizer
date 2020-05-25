@@ -25,12 +25,12 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH):
 
 def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
     """
-    Writes a dictionary of all nodes to json file, {instance_label:instance_id}
+    Writes a dictionary of all nodes to json file, {instance_label:(instance_id, concept_id)}
     :param out_path: (string) path to write json file
     :param g: (Graph) BGV backend graph.
     :return: None
     """
-    json_string = json.dumps({g.get_instance_label(node): node for node in g})
+    json_string = json.dumps({g.get_instance_label(node): (node, g.get_concept_id(node)) for node in g})
     with open(out_path, "w") as f:
         f.write(json_string)
     print("Saved all node names and ids to {}".format(out_path))
@@ -71,7 +71,7 @@ def graph_to_dict(g):
     return graph_dict
 
 
-def get_subgraph_k_hops_around_node(g, instance_id, k):
+def get_subgraph_k_hops_around_node(g, instance_id, k, max_results, get_stats=False):
     """
     Performs BFS starting at node corresponding to instance_id, and returns subgraph with all neighbors
     of node within k hops. Direct neighbors corresponds to k=1. Also returns information on the types
@@ -79,28 +79,42 @@ def get_subgraph_k_hops_around_node(g, instance_id, k):
     :param g: (Graph) BGV backend Graph
     :param instance_id: (string) id of node around which to build subgraph
     :param k: (string) number of hops around instance_id of node to include in subgraph
+    :param max_results: (int) maximum number of nodes to present in subgraph
+    :param get_stats: (bool) return a dictionary detailing concept distributions at every hop
     :return: (Graph) subgraph with all neighbors of node within k hops
+    :return: (list[tuples]) target_results holds a list of tuples containing all visited nodes
+                            as well as the path_length from instance_id
     :return: (dict) {hop_num: {concept1: concept1_count, concept2: concept2_count ...}...}
     """
+
     k_count_dict = dict()
     q = [(instance_id, 0)]
-    visited = set()
+    visited = set()  # only stores node ids
+    target_results = list()  # stores tuples of node ids and path length from instance_id
+
     while len(q) > 0:
         curr_id, curr_k = q.pop(0)
         if curr_id not in visited:
 
-            if curr_k not in k_count_dict:
-                k_count_dict[curr_k] = dict()
-            curr_concept_id = g.get_concept_id(curr_id)
-            if curr_concept_id not in k_count_dict[curr_k]:
-                k_count_dict[curr_k][curr_concept_id] = 0
-            k_count_dict[curr_k][curr_concept_id] += 1
+            if len(target_results) < max_results:
+                visited.add(curr_id)
+                target_results.append((curr_id, curr_k))
+            else:  # if reached max_results, return
+                return g.get_subgraph(visited), target_results, k_count_dict
 
-            visited.add(curr_id)
-            if curr_k < k:
+            if get_stats:  # store concept distribution at each hop
+                if curr_k not in k_count_dict:
+                    k_count_dict[curr_k] = dict()
+                curr_concept_id = g.get_concept_id(curr_id)
+                if curr_concept_id not in k_count_dict[curr_k]:
+                    k_count_dict[curr_k][curr_concept_id] = 0
+                k_count_dict[curr_k][curr_concept_id] += 1
+
+            if curr_k < k:  # continue and process neighbors
                 for child_id in g.get_node_neighbors(curr_id):
                     q.append((child_id, curr_k+1))
-    return g.get_subgraph(visited), k_count_dict
+
+    return g.get_subgraph(visited), target_results, k_count_dict
 
 
 def get_subgraph_k_hops_around_node_concept_type(g, instance_id, concept_id, k, max_results):
@@ -144,7 +158,7 @@ def get_subgraph_k_hops_around_node_concept_type(g, instance_id, concept_id, k, 
     return g.get_subgraph(subgraph_nodes), target_concept_results
 
 
-def subgraph_tool(instance_id, concept_id, k, max_results=100):
+def subgraph_tool(instance_id, concept_id=None, k=2, max_results=100):
     """
     Given a starting node, an ending node type, and number of hops, return subgraph in json dictionary form.
     :param instance_id: (string) starting node id
@@ -153,13 +167,21 @@ def subgraph_tool(instance_id, concept_id, k, max_results=100):
     :param max_results: (int) maximum number of leaf nodes of type concept_id to present
     :return: (dict) contains results list and subgraph
     """
-    concept_label = CONCEPT_ID_LABEL_DICT[concept_id]
     g = get_graph()
-    subg, target_concept_results = get_subgraph_k_hops_around_node_concept_type(g, instance_id, concept_id, k, max_results)
+
+    if concept_id:
+        concept_label = CONCEPT_ID_LABEL_DICT[concept_id]
+        subg, target_results = get_subgraph_k_hops_around_node_concept_type(g, instance_id, concept_id, k, max_results)
+    else:
+        subg, target_results, _ = get_subgraph_k_hops_around_node(g, instance_id, k, max_results)
+
     graph_dict = graph_to_dict(subg)
     results_list = list()
-    for node_id, path_length in target_concept_results:
-        result_dict = {'name': g.get_instance_label(node_id), 'domain': concept_label, 'path_length': path_length}
+    for node_id, path_length in target_results:
+        result_dict = {'name': g.get_instance_label(node_id), 'domain': g.get_concept_id(node_id), 'path_length': path_length}
         results_list.append(result_dict)
     json_dict = {'results': results_list, 'graph': graph_dict}
     return json_dict
+
+
+print(subgraph_tool("Q7240673"))
