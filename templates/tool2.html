@@ -163,6 +163,8 @@
 
     let autocomplete_data = [];
     let instance_node_dict;
+    let concept_node_dict;
+    let concept_node_dict_inverse;
     let table;
 
     function init() {
@@ -189,26 +191,39 @@
 
         drawScatterPlot(sample_data);
 
-        httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
-            instance_node_dict = data;
-            autocomplete_data = Object.keys(data);
-            let autocomplete_names = Object.keys(data);
-            let bhound = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.whitespace,
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                local: autocomplete_data
-            });
+        httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
+            concept_node_dict = data;
+            concept_node_dict_inverse = {};
+            for (let key in data) {
+                concept_node_dict_inverse[data[key]] = key;
+            }
 
-            $('#node_0').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                },
-                {
-                    name: 'nodes',
-                    source: bhound
+            httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
+                instance_node_dict = {};
+                autocomplete_data = [];
+                for (let key in data) {
+                    instance_node_dict[key] = data[key][0];
+                    //autocomplete_names.push(key + " (" + concept_node_dict_inverse[data[key][1]] + ")");
+                    autocomplete_data.push(key);
                 }
-            );
+                let bhound = new Bloodhound({
+                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    queryTokenizer: Bloodhound.tokenizers.whitespace,
+                    local: autocomplete_data
+                });
+
+                $('#node_0').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'nodes',
+                        source: bhound
+                    }
+                );
+
+            });
 
         });
     }
