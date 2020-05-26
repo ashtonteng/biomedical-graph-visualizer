@@ -110,7 +110,8 @@
         <br>
         <input type="button" value="Search!" onclick="onSearch()">
     </div>
-    <div id="my_dataviz"></div>
+    <div id="my_dataviz" style="text-align: left"></div>
+    <button onclick="toggleZoom()">Toggle Zoom</button>
     <div class="results-panel">
         <h1>Results:</h1>
         <input type="text" placeholder="Search in table..." id="searchField">
@@ -193,12 +194,6 @@
             "id": "QID",
         };
 
-        let sample_data = [
-            {"label": "Metformin", "id": "Q19484", "sim_score": 1.5 , "pc1": 0, "pc2": 0, "input_node": true, "input_index": 0},
-            {"label": "BRCA1", "id": "Q227339", "sim_score": 3 , "pc1": 1, "pc2": 4, "input_node": false, "input_index": 1},
-            {"label": "BRCA1 DNA repair associated", "id": "Q17487737", "sim_score": 10 , "pc1": -4, "pc2": 0, "input_node": true, "": 1},
-        ];
-
         table = $('#table-sortable').tableSortable({
             columns: columns,
             rowsPerPage: 10,
@@ -206,7 +201,7 @@
             searchField: $("#searchField")
         });
 
-        drawScatterPlot(sample_data);
+        drawScatterPlot([]);
 
         httpRequest("static/autocomplete/all_concept_names_ids.json", function (data) {
             concept_node_dict = data;
@@ -311,6 +306,7 @@
                         response[i].pc2 = response[i].pc2.toFixed(2);
                         response[i].sim_score = response[i].sim_score.toFixed(4);
                     }
+                    currentData = response;
                     drawScatterPlot(response);
                     updateTable(response);
                 }
@@ -324,9 +320,21 @@
         }
     }
 
+    let axisRange = 5;
+    let currentData = [];
+
+    function toggleZoom() {
+        if (axisRange == 5) {
+            axisRange = 1;
+        } else {
+            axisRange = 5;
+        }
+        drawScatterPlot(currentData);
+    }
+
     function drawScatterPlot(data) {
 
-        let margin = {top: 10, right: 30, bottom: 30, left: 60}
+        let margin = {top: 10, right: 60, bottom: 30, left: 20};
         const width = window.innerWidth - margin.left - margin.right;
         const height = 500 - margin.top - margin.bottom;
 
@@ -346,18 +354,29 @@
 
         // Add X axis
         var x = d3.scaleLinear()
-            .domain([-5, 5])
+            .domain([-axisRange, axisRange])
             .range([0, width]);
         svg.append("g")
             .attr("transform", "translate(0," + (height - margin.bottom) + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x).ticks(1));
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", 180)
+            .attr("y", height - 15)
+            .text("Principal Component 1");
 
         // Add Y axis
         var y = d3.scaleLinear()
-            .domain([-10, 5])
+            .domain([-axisRange, axisRange])
             .range([height, 0]);
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(y).ticks(1));
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", -height + 205)
+            .attr("y", -3)
+            .attr("transform", "rotate(-90)")
+            .text("Principal Component 2");
 
         // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
         // Its opacity is set to 0: we don't see it by default.
@@ -382,17 +401,14 @@
         var mousemove = function (d) {
             tooltip
                 .html(d.id + ": " + d.label + " (" + d.pc1 + ", " + d.pc2 + ")")
-                .style("left", (d3.mouse(this)[0] + 90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (d3.mouse(this)[1] + 150) + "px")
+                .style("left", (d3.mouse(this)[0] + 30) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+                .style("top", (d3.mouse(this)[1] + 160) + "px")
         };
 
         // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
         var mouseleave = function (d) {
-            tooltip
-                .transition()
-                .duration(200)
-                .style("opacity", 0);
 
+            tooltip.style("opacity", 0);
 
             d3.select(this)
                 .transition()
