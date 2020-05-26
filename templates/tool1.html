@@ -59,6 +59,10 @@
 </header>
 
 <main>
+    <div id = "alert-invalid" class="alert alert-warning alert-dismissible hide">
+        <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
+        <button type="button" class="close" onclick="$('#alert-invalid').addClass('hide');">&times;</button>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
@@ -319,6 +323,11 @@
 
     function onSearch() {
         let start = document.getElementById("starting_node").value;
+
+        if (!(start in instance_node_dict)) {
+            $('#alert-invalid').removeClass('hide');
+            return;
+        }
 
         if (start.indexOf("(") != -1) {
             start = start.substring(0, start.indexOf("(")).trim();
