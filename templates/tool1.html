@@ -59,6 +59,10 @@
 </header>
 
 <main>
+    <div id = "alert-invalid" class="alert alert-warning alert-dismissible hide">
+        <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
+        <button type="button" class="close" onclick="$('#alert-invalid').addClass('hide');">&times;</button>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
@@ -114,6 +118,8 @@
         <label><input type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked> Show Node Labels</label>
         <label><input type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked> Show Edge Labels</label>
     </div>
+    <h3>Legend</h3>
+    <div id="legend"></div>
     <div class="results-panel">
         <h1>Results:</h1>
         <input type="text" placeholder="Search in table..." id="searchField">
@@ -170,7 +176,7 @@
 
         table = $('#table-sortable').tableSortable({
             columns: columns,
-            rowsPerPage: 5,
+            rowsPerPage: 10,
             pagination: true,
             searchField: $("#searchField")
         });
@@ -187,11 +193,15 @@
                 let autocomplete_names = [];
                 for (let key in data) {
                     instance_node_dict[key] = data[key][0];
-                    //autocomplete_names.push(key + " (" + concept_node_dict_inverse[data[key][1]] + ")");
-                    autocomplete_names.push(key);
+                    let domain = concept_node_dict_inverse[data[key][1]];
+                    let obj = {
+                        name: key,
+                        domain: domain
+                    };
+                    autocomplete_names.push(obj);
                 }
                 let bhound = new Bloodhound({
-                    datumTokenizer: Bloodhound.tokenizers.whitespace,
+                    datumTokenizer: function (d) { return Bloodhound.tokenizers.whitespace(d.name); },
                     queryTokenizer: Bloodhound.tokenizers.whitespace,
                     local: autocomplete_names
                 });
@@ -203,13 +213,58 @@
                     },
                     {
                         name: 'nodes',
-                        source: bhound
+                        source: bhound,
+                        display: function(item) {return item.name},
+                        templates: {
+                            suggestion: function(item) {
+                                return `<div>${item.name} <span style="color: ${getNodeColor(item.domain)}">(${item.domain})</span></div>`;
+                            }
+                        }
                     }
                 );
 
             });
 
+            loadLegend();
+
         });
+
+    }
+
+    function loadLegend() {
+        const width = window.innerWidth;
+        const height = 100;
+
+        let svg = d3.select("#legend")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        let nodes = Object.keys(concept_node_dict);
+        let chunk_size = width / nodes.length * 2;
+
+        for (let i = 0; i < nodes.length; i++) {
+            let x = i * chunk_size;
+            let y = 10;
+            if (i >= nodes.length / 2) {
+                y = 30;
+                x = (i - nodes.length / 2) * chunk_size;
+            }
+            svg.append("circle")
+                .attr("r", 10)
+                .attr("fill", getNodeColor(nodes[i]))
+                .attr("opacity", 0.8)
+                .attr("cx", x + 10)
+                .attr("cy", y);
+            svg.append("text")
+                .text(nodes[i])
+                .attr('font-size', 10)
+                .attr('dx', x + 20)
+                .attr('dy', y + 5)
+                .attr('fill', getNodeColor(nodes[i]))
+                .attr('opacity', 1);
+        }
+
     }
 
     let node_label_opacity = 1;
@@ -268,6 +323,16 @@
 
     function onSearch() {
         let start = document.getElementById("starting_node").value;
+
+        if (!(start in instance_node_dict)) {
+            $('#alert-invalid').removeClass('hide');
+            return;
+        }
+
+        if (start.indexOf("(") != -1) {
+            start = start.substring(0, start.indexOf("(")).trim();
+        }
+
         let end = document.getElementById("ending_node").value;
         let hops = document.getElementById("hops").value;
         if (start) {
@@ -321,6 +386,36 @@
 
     let textElements, linkLabels;
 
+    function getNodeColor(domain) {
+        switch (domain) {
+            case "Drug": return "#33D895";
+            case "Chemical Compound": return "#33D842";
+            case "Pharmaceutical Product": return "#25F51C";
+            case "Drug Function": return "#11C621";
+
+            case "Molecular Function": return "#D54517";
+            case "Biological Process": return "#D86827";
+            case "Gene Ontology ID": return "#D84527";
+
+            case "Protein": return "#BE27D8";
+            case "Protein Family": return "#D8279A";
+            case "Protein Superfamily": return "#D827C6";
+            case "Protein Domain": return "#D8276E";
+
+            case "Gene": return "#2781D8";
+            case "Chromosome": return "#2729D8";
+
+            case "Diseases": return "#D6D827";
+            case "Symptom": return "#A3A458";
+            case "Symptom Cause": return "#7DA458";
+            case "ICD10": return "#A49258";
+
+            case "health specialty": return "#1CF5E1";
+            case "Medical Specialty": return "#1CD7F5";
+            default: return "#9092B0";
+        }
+    }
+
     function drawGraph(data) {
         const width = window.innerWidth;
         const height = 700;
@@ -335,34 +430,8 @@
             .attr('width', width)
             .attr('height', height);
 
-        function getNodeColor(node) {
-            switch (node.domain) {
-                case "Drug": return "#33D895";
-                case "Chemical Compound": return "#33D842";
-                case "Pharmaceutical Product": return "#25F51C";
-                case "Drug Function": return "#11C621";
-
-                case "Molecular Function": return "#D54517";
-                case "Biological Process": return "#D86827";
-                case "Gene Ontology ID": return "#D84527";
-
-                case "Protein": return "#BE27D8";
-                case "Protein Family": return "#D8279A";
-                case "Protein Superfamily": return "#D827C6";
-                case "Protein Domain": return "#D8276E";
-
-                case "Gene": return "#2781D8";
-                case "Chromosome": return "#2729D8";
-
-                case "Diseases": return "#D6D827";
-                case "Symptom": return "#A3A458";
-                case "Symptom Cause": return "#7DA458";
-                case "ICD10": return "#A49258";
-
-                case "health specialty": return "#1CF5E1";
-                case "Medical Specialty": return "#1CD7F5";
-                default: "#9092B0";
-            }
+        function getColor(node) {
+            return getNodeColor(node.domain);
         }
 
         /*
@@ -382,7 +451,7 @@
             .data(data.nodes)
             .enter().append('circle')
             .attr('r', 20)
-            .attr('fill', getNodeColor)
+            .attr('fill', getColor)
             .attr('opacity', 0.8);
             /*.on("mouseover", mouseover)
             .on("mouseleave", mouseleave);*/
@@ -477,6 +546,9 @@
 
     function updateTable(results) {
         let start = document.getElementById("starting_node").value;
+        if (start.indexOf("(") != -1) {
+            start = start.substring(0, start.indexOf("(")).trim();
+        }
 
         let data = [];
 
@@ -485,7 +557,7 @@
             data.push({
                 startingNode: start,
                 endingNode: results[i]["name"],
-                nodeType: results[i]["domain"],
+                nodeType: concept_node_dict_inverse[results[i]["domain"]],
                 pathLength: results[i]["path_length"],
                 id: `<a href="https://www.wikidata.org/wiki/${qid}" target="_blank">${qid}</a>`
             });

@@ -39,8 +39,9 @@ def similarity_search():
         return Response("{'message': 'No targets found'}", status=403, mimetype='application/json')
 
     targets = data["targets"]
-    print(targets)
-    knn = NearestNeighbors(targets, emb_file_path="module/embeddings.emb", n_neighbors=20)
+    mode = data["mode"]
+    k = int(data["k"])
+    knn = NearestNeighbors(targets, emb_file_path="module/embeddings.emb", n_neighbors=k)
     results = knn.save_neighbors()
 
     return jsonify(results)
