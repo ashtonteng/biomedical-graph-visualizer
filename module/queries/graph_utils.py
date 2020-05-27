@@ -208,6 +208,3 @@ def subgraph_tool(instance_id, concept_id=None, k=2, max_results=100):
         results_list.append(result_dict)
     json_dict = {'results': results_list, 'graph': graph_dict}
     return json_dict
-
-
-print(subgraph_tool("Q7240673"))
