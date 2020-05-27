@@ -4,8 +4,9 @@ from module.queries.graph_utils import subgraph_tool
 from module.queries.constants import *
 from module.queries.nearest_neighbors import NearestNeighbors
 import json
+from flask import send_from_directory
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # define routing
 @app.route('/')
