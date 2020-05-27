@@ -8,6 +8,7 @@ from .templates import *
 QUERIES_DIR = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_DIR = os.path.join(QUERIES_DIR, "download")
 GRAPH_PICKLE_PATH = os.path.join(QUERIES_DIR, "BGV_Graph.pkl")
+PAGERANK_DICT_PICKLE_PATH = os.path.join(QUERIES_DIR, "pagerank.pkl")
 
 ### CORE CONCEPTS
 DRUG = "Drug"

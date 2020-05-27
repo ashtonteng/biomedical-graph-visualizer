@@ -2,8 +2,11 @@
 Various functions that operate on internal Graph and Node classes.
 """
 import json
+import pickle
 
 from .graph import *
+
+PAGERANK_DICT = dict()
 
 
 def get_graph(pickle_path=GRAPH_PICKLE_PATH):
@@ -21,6 +24,24 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH):
         g.save_graph_to_pickle(pickle_path=pickle_path)
         print("Saved Graph to disk as {}".format(pickle_path))
     return g
+
+
+def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH):
+    """
+    if pickle_path given exists, loads pickle and returns graph.
+    Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
+    :return: (Graph) g
+    """
+    if os.path.exists(pickle_path):
+        pagerank_dict = pickle.load(open(pickle_path, "rb"))
+        print("Loaded PageRank dict from {}".format(pickle_path))
+    else:
+        g = get_graph()
+        pickle_path = PAGERANK_DICT_PICKLE_PATH
+        pagerank_dict = g.rank_nodes()
+        pickle.dump(pagerank_dict, open(pickle_path, "wb"))
+        print("Saved PageRank dict to disk as {}".format(pickle_path))
+    return pagerank_dict
 
 
 def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
@@ -54,11 +75,12 @@ def graph_to_dict(g):
     :param g: (Graph) BGV backend Graph
     :return: (dict) graph_dict contains web-friendly information about nodes and edges
     """
+    pagerank_dict = get_pagerank_dict()
     node_dicts = []
     for node in g:
         node_info = g.get_node(node)
         node_dict = {'qid': node, 'label': node_info['instance_label'],
-                     'domain': CONCEPT_ID_LABEL_DICT[node_info['concept_id']]}
+                     'domain': CONCEPT_ID_LABEL_DICT[node_info['concept_id']], 'rank': pagerank_dict[node]}
         node_dicts.append(node_dict)
 
     link_dicts = []
