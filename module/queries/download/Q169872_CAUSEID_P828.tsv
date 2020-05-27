@@ -1,6 +1,3 @@
-Q21112701	respiratory sensitization	Q23037744	respiratory allergy
-Q21120010	poor sleep	Q177190	sleep disorder
-Q21402569	rice water diarrhea	Q12090	cholera
 Q22314624	clammy skin	Q3537764	sweating
 Q25104465	Black stomach	Q18556163	necrotizing gastritis
 Q29589522	salmon-colored rash	Q1187697	adult-onset Still's disease
@@ -13,6 +10,9 @@ Q1938763	fecal vomiting	Q16244733	bowel obstruction
 Q11516357	adverse event	Q27166192	medical trial
 Q42183538	signs and symptoms, respiratory	Q3286546	respiratory disease
 Q54926352	digestive sign	Q2300099	gastrointestinal system disease
+Q21112701	respiratory sensitization	Q23037744	respiratory allergy
+Q21120010	poor sleep	Q177190	sleep disorder
+Q21402569	rice water diarrhea	Q12090	cholera
 Q2181165	specific interests	Q1436063	Autism spectrum
 Q2293277	tophus	Q133087	gout
 Q4159548	fruit deformation	Q141187	Taphrina
