@@ -1,67 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biomedical Graph Visualizer</title>
+{% extends 'base.html' %}
 
-    <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/tool2.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% block content %}
 
-    <!-- scripts for bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Autocomplete-->
-    <script type="text/javascript"
-            src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-    <!-- Table scripts -->
-    <script src="/static/js/table-sortable.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/table-sortable.css"/>
-
-</head>
 <body onload="init();">
-<header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!-- container of elements in the navbar -->
-        <div class="container-fluid">
-            <!-- bold text on the left side -->
-            <div class="navbar-header">
-                <!-- toggle button that appears on small screens -->
-                <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse"
-                        data-target="#myNavbar">
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                </button>
-                <a class="navbar-brand" href="#">Biomedical Graph Visualizer</a>
-            </div>
-
-            <!-- Collapse if screen is too small -->
-            <div class="collapse navbar-collapse" id="myNavbar">
-
-                <!-- elements on the right side of the bar -->
-                <ul class="nav navbar-nav" id="navElements">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/tool1">Subgraph Tool</a></li>
-                    <li class="active"><a href="/tool2">Similarity Tool</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
 
 <main>
     <div>
         <h2>Select Starting Nodes</h2>
-        <input type="button" id="add_target" value="Add Target Node" onclick="add_target_node()">
+        <input type="button" class="btn btn-primary" id="add_target" value="Add Target Node" onclick="add_target_node()">
         <br> <br>
         <div class="container-fluid" id="input-list">
             <div class="row">
@@ -71,13 +17,13 @@
                            id="node_0">
                 </div>
                 <div class="col-sm-2">
-                    <input type="button" id="del_target" value="Delete Target Node">
+                    <input type="button" class="btn btn-primary" id="del_target" value="Delete Target Node">
                 </div>
                 <div class="col-sm-3"></div>
             </div>
         </div>
         <br>
-        <input type="button" value="Search!" onclick="onSearch()">
+        <input type="button" class="btn btn-primary" value="Search!" onclick="onSearch()">
     </div>
     <div id="my_dataviz"></div>
     <div class="results-panel">
@@ -86,20 +32,12 @@
         <div id="table-sortable"></div>
     </div>
 </main>
-<footer class="navbar navbar-inverse footer-container">
-    <div style="flex-grow: 1">
-        <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>
-    </div>
-    <div style="flex-grow: 20; color: white">
-        <p>License: XXXX</p>
-    </div>
-    <div style="flex-grow: 1">
-        <a href="/"><span class="fa fa-facebook"></span></a>
-        <a href="/"><span class="fa fa-github"></span></a>
-        <a href="/"><span class="fa fa-twitter"></span></a>
-        <a href="/"><span class="fa fa-instagram"></span></a>
-    </div>
-</footer>
+
+</body>
+
+{% endblock %}
+
+{% block script %}
 
 <script>
 
@@ -115,7 +53,7 @@
                     <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="node_${target_node_index}">
                 </div>
                 <div class="col-sm-2">
-                    <input type="button" id="del_target" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
+                    <input type="button" id="del_target" class="btn btn-primary" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
                 </div>
                 <div class="col-sm-3"></div>`;
 
@@ -401,8 +339,5 @@
         }*/
     }
 
-
 </script>
-
-</body>
-</html>
+{% endblock %}
