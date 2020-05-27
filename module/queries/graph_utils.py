@@ -200,7 +200,11 @@ def subgraph_tool(instance_id, concept_id=None, k=2, max_results=100):
     graph_dict = graph_to_dict(subg)
     results_list = list()
     for node_id, path_length in target_results:
-        result_dict = {'name': g.get_instance_label(node_id), 'domain': g.get_concept_id(node_id), 'path_length': path_length}
+
+        if concept_id is None:
+            concept_label = CONCEPT_ID_LABEL_DICT[g.get_concept_id(node_id)]
+
+        result_dict = {'name': g.get_instance_label(node_id), 'domain': concept_label, 'path_length': path_length}
         results_list.append(result_dict)
     json_dict = {'results': results_list, 'graph': graph_dict}
     return json_dict
