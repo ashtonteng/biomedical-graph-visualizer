@@ -446,11 +446,15 @@
                 .attr("r", 20);
         };*/
 
+        function getSize(node) {
+            return Math.min(node.rank * 1000000, 100);
+        }
+
         const nodeElements = svg.append('g')
             .selectAll('circle')
             .data(data.nodes)
             .enter().append('circle')
-            .attr('r', 20)
+            .attr('r', getSize)
             .attr('fill', getColor)
             .attr('opacity', 0.8);
             /*.on("mouseover", mouseover)
