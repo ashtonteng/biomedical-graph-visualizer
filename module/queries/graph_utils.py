@@ -9,13 +9,15 @@ from .graph import *
 PAGERANK_DICT = dict()
 
 
-def get_graph(pickle_path=GRAPH_PICKLE_PATH):
+def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
     """
     if pickle_path given exists, loads pickle and returns graph.
     Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
+    :param pickle_path: (string) path to save graph pickle
+    :param replace_pickle: (bool) if True, even if pickle_path exists, replace it with new version
     :return: (Graph) g
     """
-    if os.path.exists(pickle_path):
+    if os.path.exists(pickle_path) and replace_pickle is False:
         g = Graph(pickle_path=pickle_path)
         print("Loaded Graph from {}".format(pickle_path))
     else:
@@ -30,6 +32,7 @@ def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH):
     """
     if pickle_path given exists, loads pickle and returns graph.
     Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
+    :param pickle_path: (string) path to load graph pickle
     :return: (Graph) g
     """
     if os.path.exists(pickle_path):

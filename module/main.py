@@ -41,7 +41,7 @@ if __name__ == '__main__':
     if download:
         download_all_data()
 
-    g = get_graph()
+    g = get_graph(replace_pickle=True)  # builds a new graph from local files and saves pickle
 
     if autocomplete:
         save_all_node_names_ids_json(g)
