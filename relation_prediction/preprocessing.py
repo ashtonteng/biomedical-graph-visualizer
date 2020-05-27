@@ -4,8 +4,9 @@ import numpy as np
 import pickle
 
 
-def _gen_relation2id(edges, outpath='./relation2id.txt'):
+def _gen_relation2id(G, outpath='./relation2id.txt'):
     relations = set()
+    edges = G.edges()
     print('{} edges in G'.format(len(edges)))
     for e in edges:
         for k, v in G.get_edge_data(*e).items():
@@ -49,12 +50,12 @@ def _write_to_file(path, data):
 
 
 def _gen_datasplits(
-    edges, trainprop=.8,
+    G, trainprop=.8,
     trainpath='/data4/blanca/data/wikidata-bmi/train.txt',
     validpath='/data4/blanca/data/wikidata-bmi/valid.txt',
     testpath='/data4/blanca/data/wikidata-bmi/test.txt'):
     examples = list()
-    for e in edges:
+    for e in G.edges():
         for k, v in G.get_edge_data(*e).items():
             ex = '{}\t{}\t{}\n'.format(e[0], v['relation_id'], e[1])
             examples.append(ex)
@@ -85,10 +86,9 @@ def preprocess_graph_for_relation_prediction(
     """
     if G is None:
         G = nx.read_gpickle(path)
-    edges = G.edges()
     nodes = G.nodes()
-    _gen_relation2id(edges)
+    _gen_relation2id(G)
     _gen_entity2id(nodes)
-    _gen_datasplits(edges)
+    _gen_datasplits(G)
 
 
