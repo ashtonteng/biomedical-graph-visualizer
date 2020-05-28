@@ -2,17 +2,21 @@
 Various functions that operate on internal Graph and Node classes.
 """
 import json
+import pickle
+import numpy as np
 
 from .graph import *
 
 
-def get_graph(pickle_path=GRAPH_PICKLE_PATH):
+def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
     """
     if pickle_path given exists, loads pickle and returns graph.
     Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
+    :param pickle_path: (string) path to save graph pickle
+    :param replace_pickle: (bool) if True, even if pickle_path exists, replace it with new version
     :return: (Graph) g
     """
-    if os.path.exists(pickle_path):
+    if os.path.exists(pickle_path) and replace_pickle is False:
         g = Graph(pickle_path=pickle_path)
         print("Loaded Graph from {}".format(pickle_path))
     else:
@@ -21,6 +25,27 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH):
         g.save_graph_to_pickle(pickle_path=pickle_path)
         print("Saved Graph to disk as {}".format(pickle_path))
     return g
+
+
+def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH, replace_pickle=False):
+    """
+    if pickle_path given exists, loads pickle and returns graph.
+    Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
+    :param pickle_path: (string) path to load graph pickle
+    :param replace_pickle: (bool) if True, even if pickle_path exists, replace it with new version
+    :return: (Graph) g
+    """
+    if os.path.exists(pickle_path) and replace_pickle is False:
+        pagerank_dict = pickle.load(open(pickle_path, "rb"))
+        print("Loaded PageRank dict from {}".format(pickle_path))
+    else:
+        g = get_graph()
+        pickle_path = PAGERANK_DICT_PICKLE_PATH
+        pagerank_dict = g.rank_nodes()
+        pickle.dump(pagerank_dict, open(pickle_path, "wb"))
+        print("Saved PageRank dict to disk as {}".format(pickle_path))
+
+    return pagerank_dict
 
 
 def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
@@ -54,11 +79,12 @@ def graph_to_dict(g):
     :param g: (Graph) BGV backend Graph
     :return: (dict) graph_dict contains web-friendly information about nodes and edges
     """
+    pagerank_dict = get_pagerank_dict()
     node_dicts = []
     for node in g:
         node_info = g.get_node(node)
         node_dict = {'qid': node, 'label': node_info['instance_label'],
-                     'domain': CONCEPT_ID_LABEL_DICT[node_info['concept_id']]}
+                     'domain': CONCEPT_ID_LABEL_DICT[node_info['concept_id']], 'rank': pagerank_dict[node]}
         node_dicts.append(node_dict)
 
     link_dicts = []
@@ -178,10 +204,11 @@ def subgraph_tool(instance_id, concept_id=None, k=2, max_results=100):
     graph_dict = graph_to_dict(subg)
     results_list = list()
     for node_id, path_length in target_results:
-        result_dict = {'name': g.get_instance_label(node_id), 'domain': g.get_concept_id(node_id), 'path_length': path_length}
+
+        if concept_id is None:
+            concept_label = CONCEPT_ID_LABEL_DICT[g.get_concept_id(node_id)]
+
+        result_dict = {'name': g.get_instance_label(node_id), 'domain': concept_label, 'path_length': path_length}
         results_list.append(result_dict)
     json_dict = {'results': results_list, 'graph': graph_dict}
     return json_dict
-
-
-print(subgraph_tool("Q7240673"))

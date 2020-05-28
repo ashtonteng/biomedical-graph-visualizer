@@ -446,11 +446,48 @@
                 .attr("r", 20);
         };*/
 
+        function getSize(node) {
+
+            let weight = 1;
+            switch (node.domain) {
+                case "Drug": weight = 1; break;
+                case "Chemical Compound": weight = 1; break;
+                case "Pharmaceutical Product": weight = 1; break;
+                case "Drug Function": weight = 1; break;
+
+                case "Molecular Function": weight = 1; break;
+                case "Biological Process": weight = 1; break;
+                case "Gene Ontology ID": weight = 1; break;
+
+                case "Protein": weight = 1; break;
+                case "Protein Family": weight = 0.1; break;
+                case "Protein Superfamily": weight = 0.1; break;
+                case "Protein Domain": weight = 0.1; break;
+
+                case "Gene": weight = 1; break;
+                case "Chromosome": weight = 0.01; break;
+
+                case "Diseases": weight = 0.5; break;
+                case "Symptom": weight = 1; break;
+                case "Symptom Cause": weight = 1; break;
+                case "ICD10": weight = 1; break;
+
+                case "health specialty": weight = 1; break;
+                case "Medical Specialty": weight = 1; break;
+            }
+            if (node.domain == "Chromosome") {
+                console.log(node.rank);
+                console.log(node.rank * weight * 1000000);
+            }
+            return Math.min(Math.max(node.rank * weight * 1000000, 6) , 100);
+            //return (node.rank + 2) * 3;
+        }
+
         const nodeElements = svg.append('g')
             .selectAll('circle')
             .data(data.nodes)
             .enter().append('circle')
-            .attr('r', 20)
+            .attr('r', getSize)
             .attr('fill', getColor)
             .attr('opacity', 0.8);
             /*.on("mouseover", mouseover)

@@ -5,12 +5,12 @@ from .constants import *
 
 class Graph:
     """
-    Backend Graph for Biomedical Graph Visualizer. Wrapper around NetworkX.MultiDiGraph.
+    Backend Graph for Biomedical Graph Visualizer. Wrapper around NetworkX.DiGraph.
     """
 
     def __init__(self, g=None, pickle_path=None):
         """
-        :param g: (networkx.classes.multidigraph.MultiDiGraph) networkx graph to initialize Graph
+        :param g: (networkx.classes.multidigraph.DiGraph) networkx graph to initialize Graph
         :param pickle_path: path of saved graph in pickle form
         """
         if g and pickle_path:
@@ -37,7 +37,7 @@ class Graph:
         return self.G.__contains__(item)
 
     def build_graph(self):
-        self.G = nx.MultiDiGraph()  # allows self_loops and multiedges
+        self.G = nx.DiGraph()  # allows directed edges and self_loops
         for (concept1, concept2) in EDGES_DICT:
             relation, query_template = EDGES_DICT[(concept1, concept2)]
             concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
@@ -143,7 +143,7 @@ class Graph:
         Gets a list of relation_ids *from* instance1 *to* instance2
         :param instance1_id: id of instance1
         :param instance2_id: id of instance2
-        :return: list of relation_ids
+        :return: relation_id between instance1 and instance2, if exists else None
         """
         if instance1_id not in self.G:
             raise ValueError("Node {} not found".format(instance1_id))
@@ -151,23 +151,29 @@ class Graph:
             raise ValueError("Node {} not found".format(instance2_id))
 
         if instance2_id not in self.G[instance1_id]:
-            return []  # no edges between them
+            return None  # no edges between them
         else:
-            view = self.G[instance1_id][instance2_id]
-            return [view[key]['relation_id'] for key in view]
+            return self.G[instance1_id][instance2_id]['relation_id']
 
     def get_edges_between(self, instance1_id, instance2_id):
         """
         Gets a list of relation_ids between instance1 and instance2 regardless of direction.
         :param instance1_id: id of instance1
         :param instance2_id: id of instance2
-        :return: list of relation_ids
+        :return: list of relation_ids between instance1 and instance2
         """
         if instance1_id not in self.G:
             raise ValueError("Node {} not found".format(instance1_id))
         if instance2_id not in self.G:
             raise ValueError("Node {} not found".format(instance2_id))
-        return self.get_directional_edges(instance1_id, instance2_id) + self.get_directional_edges(instance2_id, instance1_id)
+        edges = []
+        dir1_edge = self.get_directional_edges(instance1_id, instance2_id)
+        dir2_edge = self.get_directional_edges(instance2_id, instance1_id)
+        if dir1_edge:
+            edges.append(dir1_edge)
+        if dir2_edge:
+            edges.append(dir2_edge)
+        return edges
 
     def remove_node(self, instance_id):
         """
@@ -203,7 +209,7 @@ class Graph:
             raise ValueError("Node {} not found".format(instance1_id))
         if instance2_id not in self.G:
             raise ValueError("Node {} not found".format(instance2_id))
-        edges = self.get_edges(instance1_id, instance2_id)
+        edges = self.get_edges_between(instance1_id, instance2_id)
         if len(edges) == 0:
             print("There are no edges between {} and {}".format(instance1_id, instance2_id))
         else:
@@ -221,3 +227,12 @@ class Graph:
             return Graph(g=self.G.subgraph(instance_ids).copy())
         else:
             return Graph(g=self.G.subgraph(instance_ids))
+
+    def rank_nodes(self):
+        """
+        Return the PageRank of the nodes in the graph. PageRank computes a ranking of the nodes in the graph G
+        based on the structure of the incoming links.
+        :return: dictionary of {node_id: node_pagerank}
+        """
+        pr = nx.pagerank(self.G)
+        return pr
