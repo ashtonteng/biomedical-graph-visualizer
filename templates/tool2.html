@@ -254,11 +254,11 @@
     }
 
     function onSearch() {
-        let elements = document.querySelectorAll("#input-list p[id]");
+        let elements = document.querySelectorAll("#input-list input[type='text'][id]");
         let targets = [];
         let conceptType = null;
         for (let i = 0; i < elements.length; i++) {
-            let val = elements[i].innerHTML;
+            let val = elements[i].value;
             if (val) {
                 if (val.indexOf("(") != -1) {
                     val = val.substring(0, val.indexOf("(")).trim();

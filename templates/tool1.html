@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 <body onload="init();">
 
 <main>
@@ -81,7 +80,7 @@
         <div id="legend" class="my-3"></div>
         <h1>Results</h1>
         <input class="form-control col-3" type="text" placeholder="Search in table..." id="searchField">
-        <table class="table" id="table-sortable"></table>
+        <div class="table" id="table-sortable"></div>
     </div>
 </main>
 </body>
@@ -180,7 +179,8 @@
     }
 
     function loadLegend() {
-        const width = window.innerWidth;
+        let el = document.getElementById('legend');
+        const width = el.offsetWidth;
         const height = 100;
 
         let svg = d3.select("#legend")
@@ -512,6 +512,8 @@
         }
 
         table.setData(data, null);
+
+        console.log(table.getData());
 
         /*
         let start = document.getElementById("starting_node").value;
