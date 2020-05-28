@@ -44,5 +44,7 @@ if __name__ == '__main__':
     g = get_graph(replace_pickle=True)  # builds a new graph from local files and saves pickle
 
     if autocomplete:
-        save_all_node_names_ids_json(g)
-        save_all_concept_names_ids_json()
+        if not os.path.exists("../static/autocomplete/"):
+            os.mkdir("../static/autocomplete/")
+        save_all_node_names_ids_json(g, out_path="../static/autocomplete/all_node_names_ids.json")
+        save_all_concept_names_ids_json(out_path="../static/autocomplete/all_concept_names_ids.json")

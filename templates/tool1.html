@@ -447,7 +447,7 @@
         };*/
 
         function getSize(node) {
-            return Math.min(node.rank * 1000000, 100);
+            return (node.rank+2)*3;
         }
 
         const nodeElements = svg.append('g')

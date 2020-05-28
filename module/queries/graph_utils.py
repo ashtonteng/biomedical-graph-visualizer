@@ -3,10 +3,9 @@ Various functions that operate on internal Graph and Node classes.
 """
 import json
 import pickle
+import numpy as np
 
 from .graph import *
-
-PAGERANK_DICT = dict()
 
 
 def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
@@ -28,23 +27,48 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
     return g
 
 
-def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH):
+def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH, replace_pickle=False):
     """
     if pickle_path given exists, loads pickle and returns graph.
     Otherwise, builds BGV graph, saves it to disk as pickle, and returns graph
     :param pickle_path: (string) path to load graph pickle
+    :param replace_pickle: (bool) if True, even if pickle_path exists, replace it with new version
     :return: (Graph) g
     """
-    if os.path.exists(pickle_path):
-        pagerank_dict = pickle.load(open(pickle_path, "rb"))
+    if os.path.exists(pickle_path) and replace_pickle is False:
+        normalized_pagerank_dict = pickle.load(open(pickle_path, "rb"))
         print("Loaded PageRank dict from {}".format(pickle_path))
     else:
         g = get_graph()
         pickle_path = PAGERANK_DICT_PICKLE_PATH
         pagerank_dict = g.rank_nodes()
-        pickle.dump(pagerank_dict, open(pickle_path, "wb"))
+
+        concept_pagerank_dict = dict()
+        for node_id in pagerank_dict:
+            concept = g.get_concept_id(node_id)
+            pagerank = pagerank_dict[node_id]
+            if concept not in concept_pagerank_dict:
+                concept_pagerank_dict[concept] = []
+            concept_pagerank_dict[concept].append(pagerank)
+
+        concept_minmax_dict = dict()
+        for concept in concept_pagerank_dict:
+            values = concept_pagerank_dict[concept]
+            concept_minmax_dict[concept] = (min(values), max(values))
+
+        normalized_pagerank_dict = dict()
+        const1 = 1e-6  # prevent division by 0
+        const2 = np.abs(np.round(np.log(const1))) # scale to positive range
+        for node_id in pagerank_dict:
+            concept = g.get_concept_id(node_id)
+            pagerank = pagerank_dict[node_id]
+            concept_min, concept_max = concept_minmax_dict[concept]
+            new_pr = np.log((pagerank - concept_min) / (concept_max - concept_min) + const1) + const2
+            normalized_pagerank_dict[node_id] = new_pr
+
+        pickle.dump(normalized_pagerank_dict, open(pickle_path, "wb"))
         print("Saved PageRank dict to disk as {}".format(pickle_path))
-    return pagerank_dict
+    return normalized_pagerank_dict
 
 
 def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
