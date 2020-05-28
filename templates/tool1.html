@@ -447,6 +447,7 @@
         };*/
 
         function getSize(node) {
+
             let weight = 1;
             switch (node.domain) {
                 case "Drug": weight = 1; break;
@@ -479,6 +480,7 @@
                 console.log(node.rank * weight * 1000000);
             }
             return Math.min(Math.max(node.rank * weight * 1000000, 6) , 100);
+            //return (node.rank + 2) * 3;
         }
 
         const nodeElements = svg.append('g')
