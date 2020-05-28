@@ -1,76 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biomedical Graph Visualizer</title>
+{% extends 'base.html' %}
 
-    <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/tool1.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% block content %}
 
-    <!-- scripts for bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Autocomplete-->
-    <script  type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-    <!-- Table scripts -->
-    <script src="/static/js/table-sortable.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/table-sortable.css"/>
-
-
-</head>
 <body onload="init();">
-<header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!-- container of elements in the navbar -->
-        <div class="container-fluid">
-            <!-- bold text on the left side -->
-            <div class="navbar-header">
-                <!-- toggle button that appears on small screens -->
-                <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse"
-                        data-target="#myNavbar">
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                </button>
-                <a class="navbar-brand" href="#">Biomedical Graph Visualizer</a>
-            </div>
-
-            <!-- Collapse if screen is too small -->
-            <div class="collapse navbar-collapse" id="myNavbar">
-
-                <!-- elements on the right side of the bar -->
-                <ul class="nav navbar-nav" id="navElements">
-                    <li><a href="/">Home</a></li>
-                    <li class="active"><a href="/tool1">Subgraph Tool</a></li>
-                    <li><a href="/tool2">Similarity Tool</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
 
 <main>
-    <div id = "alert-invalid" class="alert alert-warning alert-dismissible hide">
-        <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
-        <button type="button" class="close" onclick="$('#alert-invalid').addClass('hide');">&times;</button>
-    </div>
-    <div class="container-fluid">
+
+    <div class="container my-3">
+
+        <!--Error messages-->
+        <div id = "alert-invalid" class="alert alert-warning alert-dismissible d-none">
+            <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
+            <button type="button" class="close" onclick="$('#alert-invalid').addClass('d-none');">&times;</button>
+        </div>
+
         <div class="row">
-            <div class="col-md-5">
-                <label>Starting Node:<br><input type="text" id="starting_node" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false"></label>
+            <div class="col">
+                <label for="starting_node">Starting Node:</label>
+                <input type="text" id="starting_node" placeholder="Metformin..." class="form-control typeahead tt-query" spellcheck="false">
+                <small class="form-text text-muted">Use autocomplete to select a source node to form subgraph around.</small>
             </div>
-            <div class="col-md-4">
-                <label>Ending Node:<br>
-                    <select id="ending_node">
+            <div class="col">
+                <label for="ending_node">Ending Node:</label>
+                    <select id="ending_node" class="form-control">
                         <option value="Drug">Drug</option>
                         <option value="Chemical Compound">Chemical Compound</option>
                         <option value="Gene">Gene</option>
@@ -91,58 +43,53 @@
                         <option value="Symptom Cause">Symptom Cause</option>
                         <option value="health specialty">health specialty</option>
                     </select>
-                </label>
+                <small class="form-text text-muted">Select type of ending leaf node.</small>
             </div>
-            <div class="col-md-1">
-                <label>Hops:<br>
-                    <select id="hops">
+            <div class="col">
+                <label for="hops">Hops:</label>
+                    <select id="hops" class="form-control">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
-                </label>
+                <small class="form-text text-muted">Select number of nodes to traverse until reaching ending node type.</small>
             </div>
-            <div class="col-md-1">
-                <br>
-                <input type="button" id="submit" value="Search!" onclick="onSearch()">
-            </div>
-            <div class="col-md-1">
-                <br>
-                <input type="button" id="demo" value="Choose for me!" onclick="onDemoClick()">
+            <div class="col">
+                <input type="button" class="btn btn-primary mt-4" id="submit" value="Search" onclick="onSearch()">
+                <input type="button" class="btn btn-primary mt-4" id="demo" value="Choose for me" onclick="onDemoClick()">
             </div>
         </div>
+        <div class="row my-4" id="filters">
+            <div class="col-2 mx-4">
+                <input class="form-check-input" type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked>
+                <label for="toggle_node_labels" class="form-check-label">Show Node Labels</label>
+            </div>
+            <div class="col-2 mx-4">
+                <input class="form-check-input" type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked>
+                <label for="toggle_edge_labels" class="form-check-label">Show Edge Labels</label>
+            </div>
+        </div>
+
     </div>
-    <div id="network_viz"></div>
-    <div id ="filters">
-        <label><input type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked> Show Node Labels</label>
-        <label><input type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked> Show Edge Labels</label>
-    </div>
-    <h3>Legend</h3>
-    <div id="legend"></div>
-    <div class="results-panel">
-        <h1>Results:</h1>
-        <input type="text" placeholder="Search in table..." id="searchField">
-        <div id="table-sortable"></div>
+
+    <div class="border" id="network_viz"></div>
+
+    <div class="container my-3 results-panel">
+        <h3>Legend</h3>
+        <div id="legend" class="my-3"></div>
+        <h1>Results</h1>
+        <input class="form-control col-3" type="text" placeholder="Search in table..." id="searchField">
+        <div class="table" id="table-sortable"></div>
     </div>
 </main>
-<footer class="navbar navbar-inverse footer-container">
-    <div style="flex-grow: 1">
-        <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>
-    </div>
-    <div style="flex-grow: 20; color: white">
-        <p>License: XXXX</p>
-    </div>
-    <div style="flex-grow: 1">
-        <a href="/"><span class="fa fa-facebook"></span></a>
-        <a href="/"><span class="fa fa-github"></span></a>
-        <a href="/"><span class="fa fa-twitter"></span></a>
-        <a href="/"><span class="fa fa-instagram"></span></a>
-    </div>
-</footer>
+</body>
+
+{% endblock %}
+
+{% block script %}
 
 <script>
-
     function httpRequest(url, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
@@ -232,7 +179,8 @@
     }
 
     function loadLegend() {
-        const width = window.innerWidth;
+        let el = document.getElementById('legend');
+        const width = el.offsetWidth;
         const height = 100;
 
         let svg = d3.select("#legend")
@@ -325,7 +273,7 @@
         let start = document.getElementById("starting_node").value;
 
         if (!(start in instance_node_dict)) {
-            $('#alert-invalid').removeClass('hide');
+            $('#alert-invalid').removeClass('d-none');
             return;
         }
 
@@ -602,6 +550,8 @@
 
         table.setData(data, null);
 
+        console.log(table.getData());
+
         /*
         let start = document.getElementById("starting_node").value;
         let el = document.getElementById("results_table").querySelector("tbody");
@@ -622,9 +572,6 @@
 
 
     }
-
-
 </script>
 
-</body>
-</html>
+{% endblock %}

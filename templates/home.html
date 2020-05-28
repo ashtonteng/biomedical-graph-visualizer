@@ -1,66 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biomedical Graph Visualizer</title>
+{% extends 'base.html' %}
 
-    <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/home.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+{% block content %}
 
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">Biomedical Graph Visualizer</h1>
+      <p class="lead font-weight-normal">An interactive interface for exploring a biomedical knowledge graph with concepts such as drugs, proteins, genes, and diseases. Powered by <a href="wikidata.org">Wikidata</a>.</p>
+  </div>
+  <div class="product-device shadow-sm d-none d-md-block"></div>
+  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+</div>
 
-    <!-- scripts for bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!-- container of elements in the navbar -->
-        <div class="container-fluid">
-            <!-- bold text on the left side -->
-            <div class="navbar-header">
-                <!-- toggle button that appears on small screens -->
-                <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse"
-                        data-target="#myNavbar">
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                </button>
-                <a class="navbar-brand" href="#">Biomedical Graph Visualizer</a>
-            </div>
-
-            <!-- Collapse if screen is too small -->
-            <div class="collapse navbar-collapse" id="myNavbar">
-
-                <!-- elements on the right side of the bar -->
-                <ul class="nav navbar-nav" id="navElements">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/tool1">Subgraph Tool</a></li>
-                    <li><a href="/tool2">Similarity Tool</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main>
-    <h1>Biomedical Graph Visualizer</h1>
-    <div>
-        <svg id="landing_page_viz"></svg>
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+    <div class="my-3 py-3">
+      <h2 class="display-5">Biomedical Subgraph Visualizer</h2>
+      <p class="lead">Explore subgraphs surrounding concept nodes.</p>
     </div>
-    <div id="container">
-        <h2>Abstract:</h2>
-        <div class="justified">
-            <span>Millions of Americans suffer from illnesses with non-existent or ineffective drug treatment. Identifying plausible
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Biomedical Similarity Visualizer</h2>
+      <p class="lead">Find similar concepts based on knowledge graph embeddings.</p>
+    </div>
+    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h1 class="display-5">Authors</h1>
+    </div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-1 pt-md-5 px-md-2 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Derek Jow</h2>
+      <p class="lead">Wikidata data mining, website</p>
+    </div>
+    <div class="figure">
+        <img src="static/images/derek.png" class="figure-img img-fluid rounded" width="256" height="256" title="Derek Jow">
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-1 pt-md-5 px-md-2 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Blanca Villanueva</h2>
+      <p class="lead">Similarity Tool</p>
+    </div>
+    <div class="figure">
+        <img src="static/images/blanca.png" class="figure-img img-fluid rounded" width="256" height="256" title="Blanca Villanueva">
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-1 pt-md-5 px-md-2 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Ashton Teng</h2>
+      <p class="lead">Graph library, Subgraph Tool, website</p>
+    </div>
+    <div class="figure">
+        <img src="static/images/ashton.png" class="figure-img img-fluid rounded" width="256" height="256" title="Ashton Teng">
+    </div>
+  </div>
+  <div class="bg-light mr-md-3 pt-3 px-1 pt-md-5 px-md-2 text-center overflow-hidden">
+    <div class="my-3 p-3">
+      <h2 class="display-5">Mars Huang</h2>
+      <p class="lead">Similarity Tool</p>
+    </div>
+    <div class="figure">
+        <img src="static/images/mars.png" class="figure-img img-fluid rounded" width="256" height="256" title="Mars Huang">
+    </div>
+  </div>
+</div>
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 overflow-hidden col-8">
+    <div class="my-3 p-3">
+      <h2 class="display-5 text-center">Abstract</h2>
+      <p class="lead">Millions of Americans suffer from illnesses with non-existent or ineffective drug treatment. Identifying plausible
             drug candidates is a major barrier to drug development due to the large amount of time and resources required;
             approval can take years when people are suffering now. Though computational tools can expedite drug candidate
             discovery, utilizing these tools typically requires programming expertise that many biologists lack. This problem
@@ -70,168 +89,48 @@
             eliminating the need for researchers to acquire computational expertise in integrating multiple databases and
             performing algorithmic analysis. Our team has unique biomedical knowledge and software development expertise through
             our affiliation with the Stanford School of Medicine and Department of Computer Science. Specifically, our aims are
-            to 1) build a computational knowledge graph focused on drug, genes, proteins and diseases (the components relevant
-            to identifying drug targets) with information from existing biomedical databases 2) build a web interface on top of
+            to: </p>
+            <ul class="lead">
+            <li>
+            build a computational knowledge graph focused on drug, genes, proteins and diseases (the components relevant
+            to identifying drug targets) with information from existing biomedical databases
+            </li>
+            <li>
+            build a web interface on top of
             our knowledge graph that lists the connections between a specific drug, gene, or protein to all related drug, genes,
             proteins and diseases in the network (e.g., the tool would list drugs relevant to breast cancer when given the
-            source disease ‘breast cancer’ and target node type ‘drug’) 3) build a web interface on top of our knowledge graph
+            source disease ‘breast cancer’ and target node type ‘drug’)
+            </li>
+            <li>
+            build a web interface on top of our knowledge graph
             that when given a specific drug, gene, or protein, identifies similar drug, genes, proteins and diseases to suggest
-            candidates for drug targets 4) evaluate utility to biomedical researchers by asking them to use the aforementioned
-            two tools to query drug discovery related drug, genes, proteins and diseases, and surveying them on content
-            usefulness and tool ease of use. The completion of this project will allow researchers direct access to
+            candidates for drug targets
+            </li>
+            <li>
+            evaluate utility to biomedical researchers by asking them to use the two tools to query drug discovery related drug, genes, proteins and diseases, and surveying them on content
+            usefulness and tool ease of use.
+            </li>
+            </ul>
+            <p class="lead">The completion of this project will allow researchers direct access to
             comprehensive biomedical data through intuitive software that aids in decision making with regards to identifying
-            drug candidates to provide faster, more efficacious treatment to all Americans.</span>
-        </div>
-        <hr>
-        <h2>Explore:</h2>
-        <div class="flex-container">
-            <div class="explore-panel">
-                <h3>Subgraph Tool</h3>
-                <p>This is subgraph Tool 1!</p>
-            </div>
-            <div class="explore-panel">
-                <h3>Similarity Tool</h3>
-                <p>This is tool 2!</p>
-            </div>
-        </div>
-        <hr>
-        <h2>Authors:</h2>
-        <div class="flex-container">
-            <div class="author-box">
-                <img src="static/images/derek.png" width="256" height="256" title="Derek Jow">
-                <h3>Derek Jow</h3>
-                <p>Wikidata data mining, website developer</p>
-            </div>
-            <div class="author-box">
-                <img src="static/images/blanca.png" width="256" height="256" title="Blanca Villanueva">
-                <h3>Blanca Villanueva</h3>
-                <p>Similarity Tool</p>
-            </div>
-            <div class="author-box">
-                <img src="static/images/ashton.png" width="256" height="256" title="Ashton Teng">
-                <h3>Ashton Teng</h3>
-                <p>Wikidata graph library, Subgraph Tool</p>
-            </div>
-            <div class="author-box">
-                <img src="static/images/mars.png" width="256" height="256" title="Mars Huang">
-                <h3>Mars Huang</h3>
-                <p>Similarity Tool</p>
-            </div>
-        </div>
-        <hr>
-        <h2>Advisors:</h2>
-        <div>
-            <p>Our advisors and collaborators include Sam Piekos, Dan Sosa, Russ Altman, Jaap Suermondt, Ericka
-                Strandberg, and Larry Kalesinskas. We thank them for project inspiration and advice.</p>
-        </div>
-        <hr>
-        <h2>Citation:</h2>
-        <div>
-            <p>If you use Biomedical Graph Visualizer in your work, please cite this paper: </p>
-            <a href="/" target="_blank">Biomedical Graph Visualizer for Identifying Drug Candidates</a>
-            <p><em>Citation here....</em></p>
-        </div>
+                drug candidates to provide faster, more efficacious treatment to all Americans.</p>
+
     </div>
-</main>
-<footer class="navbar navbar-inverse footer-container">
-    <div style="flex-grow: 1">
-        <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page" target="_blank">Wikidata</a>
+  </div>
+  <div class="bg-primary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-white overflow-hidden col-4">
+    <div class="my-3 py-3">
+      <h2 class="display-5 text-center">Advisors</h2>
+        <p>Our advisors and collaborators include Sam Piekos, Dan Sosa, Russ Altman, Jaap Suermondt, Erika
+            Strandberg, and Larry Kalesinskas. We thank them for project inspiration and advice.</p>
     </div>
-    <div style="flex-grow: 20; color: white">
-        <p >License: XXXX</p>
+
+    <div class="my-3 py-3">
+      <h2 class="display-5 text-center">Citation</h2>
+        <p>If you use Biomedical Graph Visualizer in your work, please cite this paper: </p>
+        <a href="/" target="_blank" class="text-white">Biomedical Graph Visualizer for Identifying Drug Candidates</a>
+        <p><em>Citation here....</em></p>
     </div>
-    <div style="flex-grow: 1">
-        <a href="/"><span class="fa fa-facebook"></span></a>
-        <a href="/"><span class="fa fa-github"></span></a>
-        <a href="/"><span class="fa fa-twitter"></span></a>
-        <a href="/"><span class="fa fa-instagram"></span></a>
-    </div>
-</footer>
+  </div>
+</div>
 
-<script>
-
-    d3.json("static/example_network.json", function (data) {
-
-        const width = window.innerWidth;
-        const height = 500;
-        const svg = d3.select('#landing_page_viz')
-            .attr('width', width)
-            .attr('height', height);
-
-        function getNodeColor(node) {
-            return node.level === 1 ? 'red' : 'gray'
-        }
-
-        const nodeElements = svg.append('g')
-            .selectAll('circle')
-            .data(data.nodes)
-            .enter().append('circle')
-            .attr('r', 20)
-            .attr('fill', getNodeColor);
-
-        const textElements = svg.append('g')
-            .selectAll('text')
-            .data(data.nodes)
-            .enter().append('text')
-            .text(node => node.label)
-            .attr('font-size', 15)
-            .attr('dx', 15)
-            .attr('dy', 4)
-            .attr('fill', "#AFAFAF");
-
-        const linkElements = svg.append('g')
-            .selectAll('line')
-            .data(data.links)
-            .enter().append('line')
-            .attr('stroke-width', 1)
-            .attr('stroke', '#E5E5E5');
-
-        const simulation = d3.forceSimulation(data.nodes)
-            .force('charge', d3.forceManyBody().strength(-400))
-            .force('center', d3.forceCenter(width / 2, height / 2))
-            .force('link', d3.forceLink()
-                .id(link => link.id)
-                .strength(link => link.strength)
-                .links(data.links));
-
-        simulation.nodes(data.nodes).on('tick', () => {
-            nodeElements
-                .attr('cx', node => node.x)
-                .attr('cy', node => node.y);
-            textElements
-                .attr('x', node => node.x)
-                .attr('y', node => node.y);
-            linkElements
-                .attr('x1', link => link.source.x)
-                .attr('y1', link => link.source.y)
-                .attr('x2', link => link.target.x)
-                .attr('y2', link => link.target.y)
-        });
-
-        const dragDrop = d3.drag()
-            .on('start', node => {
-                node.fx = node.x;
-                node.fy = node.y;
-            })
-            .on('drag', node => {
-                simulation.alphaTarget(0.7).restart();
-                node.fx = d3.event.x;
-                node.fy = d3.event.y;
-            })
-            .on('end', node => {
-                if (!d3.event.active) {
-                    simulation.alphaTarget(0);
-                }
-                node.fx = null;
-                node.fy = null;
-            });
-
-        nodeElements.call(dragDrop);
-
-    });
-
-
-</script>
-
-</body>
-</html>
+{% endblock %}
