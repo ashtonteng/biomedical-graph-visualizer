@@ -1,125 +1,94 @@
 {% extends 'base.html' %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biomedical Graph Visualizer</title>
-
-    <!-- links to stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/static/theme.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/tool2.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- scripts for bootstrap -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <!-- Autocomplete-->
-    <script type="text/javascript"
-            src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-    <!-- Table scripts -->
-    <script src="/static/js/table-sortable.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/table-sortable.css"/>
-
-</head>
-<body onload="init();">
-<header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <!-- container of elements in the navbar -->
-        <div class="container-fluid">
-            <!-- bold text on the left side -->
-            <div class="navbar-header">
-                <!-- toggle button that appears on small screens -->
-                <button type="button" class="navbar-toggle navbar-inverse" data-toggle="collapse"
-                        data-target="#myNavbar">
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                    <span class="icon-bar navbar-inverse"></span>
-                </button>
-                <a class="navbar-brand" href="#">Biomedical Graph Visualizer</a>
-            </div>
 
 {% block content %}
 
 <body onload="init();">
 
 <main>
-    <div>
-        <h2>Select Starting Nodes</h2>
-        <br> <br>
-        <div id ="alert-empty" class="alert alert-warning alert-dismissible hide">
+    <div class="container my-3">
+
+        <!--Error messages-->
+        <div id ="alert-empty" class="alert alert-warning alert-dismissible d-none">
             <strong>Warning!</strong> You have no selected nodes to search. Please click Add Target Node.
-            <button type="button" class="close" onclick="$('#alert-empty').addClass('hide');">&times;</button>
+            <button type="button" class="close" onclick="$('#alert-empty').addClass('d-none');">&times;</button>
         </div>
-        <div id = "alert-invalid" class="alert alert-warning alert-dismissible hide">
+        <div id = "alert-invalid" class="alert alert-warning alert-dismissible d-none">
             <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
-            <button type="button" class="close" onclick="$('#alert-invalid').addClass('hide');">&times;</button>
+            <button type="button" class="close" onclick="$('#alert-invalid').addClass('d-none');">&times;</button>
         </div>
-        <div id = "alert-concept" class="alert alert-danger alert-dismissible hide">
+        <div id = "alert-concept" class="alert alert-danger alert-dismissible d-none">
             <strong>Error!</strong> Selected nodes have different types.
-            <button type="button" class="close" onclick="$('#alert-concept').addClass('hide');">&times;</button>
+            <button type="button" class="close" onclick="$('#alert-concept').addClass('d-none');">&times;</button>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
-                    <input type="text" placeholder="Metformin..." class="typeahead tt-query" spellcheck="false" id="input_node">
-                </div>
-                <div class="col-sm-2">
-                    <input type="button" class="btn btn-primary" id="del_target" value="Delete Target Node">
-                    <input type="button" id="add_target" value="Add Target Node" onclick="add_target_node()">
-                </div>
-                <div class="col-sm-2">
-                    <label>Mode:
-                        <select id="input_mode">
-                            <option value="0">Mode 1</option>
-                            <option value="1">Mode 2</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="col-sm-3">
-                    <label>Number of Results (K):
-                        <select id="input_k">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                        </select>
-                    </label>
-                </div>
-            </div>
+
+
+        <div class="row">
+
+            <form class="form-inline">
+
+              <div class="form-group mb-2">
+                <label for="input_mode">Select Target Nodes</label>
+                <input type="text" placeholder="Metformin..." class="typeahead tt-query form-control mx-2" spellcheck="false" id="input_node">
+              </div>
+
+                <input type="button" class="btn btn-primary mb-2 mx-2" id="add_target" value="Add Target Node" onclick="add_target_node()">
+
+              <div class="form-group mx-sm-5 mb-2 mx-2">
+                <label for="input_mode">Mode </label>
+                <select class="form-control mx-2" id="input_mode">
+                    <option value="0">Mode 1</option>
+                    <option value="1">Mode 2</option>
+                </select>
+              </div>
+
+              <div class="form-group mx-sm-5 mb-2 mx-2">
+                  <label>Number of Results (K) </label>
+                    <select class="form-control mx-2" id="input_k">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+              </div>
+
+            </form>
         </div>
-        <div class="container-fluid" id="input-list"></div>
-        <br>
-        <input type="button" class="btn btn-primary" value="Search!" onclick="onSearch()">
+
+        <div id="input-list"></div>
+
+        <div class="row">
+            <input type="button" class="btn btn-primary" value="Search" onclick="onSearch()">
+            <button class="btn btn-primary mx-2" onclick="toggleZoom()">Toggle Zoom</button>
+        </div>
     </div>
+
+
     <div id="my_dataviz" style="text-align: left"></div>
-    <button onclick="toggleZoom()">Toggle Zoom</button>
-    <div class="results-panel">
-        <h1>Results:</h1>
-        <input type="text" placeholder="Search in table..." id="searchField">
-        <div id="table-sortable"></div>
+
+    <div class="container my-3">
+
+        <div class="results-panel">
+            <h1>Results</h1>
+            <input class="form-control col-3" type="text" placeholder="Search in table..." id="searchField">
+            <div id="table-sortable"></div>
+        </div>
+
     </div>
 </main>
 
@@ -140,20 +109,19 @@
         input.value = "";
 
         if (! (entry in instance_node_dict)) {
-            $('#alert-invalid').removeClass('hide');
+            $('#alert-invalid').removeClass('d-none');
             return;
         }
 
         let template =
             `
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4">
-                    <p id="node_${target_node_index}">${entry}</p>
-                </div>
-                <div class="col-sm-2">
-                    <input type="button" class="btn btn-primary" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
-                </div>
-                <div class="col-sm-5"></div>`;
+              <form class="form-inline">
+              <input type="button" class="btn btn-primary mr-2" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
+              <div class="form-group mb-2">
+              <input type="text" readonly class="form-control-plaintext" id="node_${target_node_index}" value="${entry}">
+              </div>
+              </form>
+            `;
 
         let el = document.createElement("div");
         el.setAttribute("id", "input_" + target_node_index);
@@ -302,7 +270,7 @@
                     conceptType = currentConcept;
                 } else {
                     if (conceptType != currentConcept) {
-                        $("#alert-concept").removeClass("hide");
+                        $("#alert-concept").removeClass("d-none");
                         return;
                     }
                 }
@@ -335,7 +303,7 @@
             };
             xhr.send(JSON.stringify(data));
         } else {
-            $('#alert-empty').removeClass('hide');
+            $('#alert-empty').removeClass('d-none');
         }
     }
 
