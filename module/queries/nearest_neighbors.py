@@ -178,7 +178,7 @@ class NearestNeighbors:
         return_list = []
         for idx, (target,neighbors) in enumerate(self.neighbors.items()):
 
-            if target is not "aggregated":
+            if target != "aggregated":
                 target_dict = self._gen_return_dict(target, 0, idx, True)
                 return_list.append(target_dict)
 
