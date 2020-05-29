@@ -1,15 +1,15 @@
 import argparse
 import json
-import os
-import sys
 import fire
 import numpy as np
 import sklearn.neighbors as sk_neighbors
+import os
+import sys
+import json
 sys.path.append(os.getcwd())
 
-from .constants     import NN_ALGORITHMS, AGGREGATION_METHODS
-from .graph         import Graph
-from .graph_utils   import get_graph
+from queries.graph         import Graph
+from queries.graph_utils   import get_graph
 from typing                import Union
 from collections           import defaultdict, Counter
 from gensim.models         import keyedvectors
@@ -25,8 +25,7 @@ class NearestNeighbors:
             OR list of target names for retrieving nearest neighbors.
     :param emb_file_path (str): path to the node2vec embedding file.
     :param n_neighbors (int): number of nearest neighbors to retrieve
-    :param algorithm (str): the choice of neighbors search algorithm, which must be
-            one of {NN_ALGORITHMS}
+    :param distance_metric (str): the choice of distance metric
     :param exlcude_targets (bool): exclude any input targets from neighbor lists
     
     Returns:
@@ -34,12 +33,21 @@ class NearestNeighbors:
         and distances to neighbors as values.
     """
 
+    METRICS = {
+        "l1": pairwise.manhattan_distances, 
+        "l2": pairwise.euclidean_distances,
+        "cos": pairwise.cosine_distances, 
+    }
+
+    AGGREGATION_METHODS = ['nearest','mean','majority'] 
+
     def __init__(self, 
                  targets: Union[list, str],
-                 emb_file_path: str = "./embeddings.emb",
+                 emb_file_path: str = "./ent_emb.json",
                  n_neighbors: int = 5, 
-                 algorithm: str = "cosine_similarity", 
-                 exclude_targets: bool = True 
+                 distance_metric: str = "cos", 
+                 exclude_targets: bool = True, 
+                 aggregate_method: str = None
                  ):
         # get graph
         self.G = get_graph()
@@ -47,8 +55,10 @@ class NearestNeighbors:
         # check inputs
         if type(targets) == str:
             targets = [targets]
-        if algorithm not in NN_ALGORITHMS:
-            raise Exception("NN algorithm must be one of {NN_ALGORITHMS}")
+        if distance_metric not in self.METRICS.keys():
+            raise Exception("NN algorithm must be one of {METRICS.keys()}")
+        if aggregate_method not in self.AGGREGATION_METHODS and aggregate_method is not None:
+            raise Exception(f"Aggregation method should be one of {self.AGGREGATION_METHODS}")
 
         # get concept type
         concepts = [self.G.get_concept_id(t) for t in targets]
@@ -63,14 +73,15 @@ class NearestNeighbors:
             raise Exception("More than one type of targest are provided")
         self.concept = concepts[0]
 
+        # store class variables
         self.n_neighbors = n_neighbors
-        self.algorithm = algorithm
         self.exclude_targets = exclude_targets
-        self.model = keyedvectors.KeyedVectors.load_word2vec_format(emb_file_path)
+        self.metric = distance_metric 
+        self.aggregate_method = aggregate_method
+        self.distance = self.METRICS[distance_metric]
 
-        # get relevant concepts vectors
-        vocab = self.model.wv.index2word
-        vectors = self.model.wv.vectors
+        # get embeddings
+        vocab, vectors = self.get_embeddings(emb_file_path)
         self.vocab, self.vectors = self._filter_by_concept(vocab, 
                                                           vectors, 
                                                           self.concept,
@@ -82,8 +93,17 @@ class NearestNeighbors:
         #  get neighbors
         self.neighbors = self._get_neighbors()
 
+        # get PCA mean
+        neighbor_pca = [self.node_2_pca[n] for n in self.neighbors.keys()]
+        self.neighbor_pca_mean = np.mean(neighbor_pca, axis=0)
+
+        # aggregate results
+        if self.aggregate_method is not None:
+            self.neighbors = self.aggregate_neighbors(method=self.aggregate_method)
+
     def __getitem__(self, key):
         """
+        :key: target id to get neigbors for 
         :return: list of (neighbor, distance) pairs
         """
         return self.neighbors[key]
@@ -92,13 +112,13 @@ class NearestNeighbors:
         f"""aggregate nearest neighbors of all targets
 
         :param method (str): method used to aggregate neighbors.
-                aggregating method should be one of {AGGREGATION_METHODS}.
+                aggregating method should be one of {self.AGGREGATION_METHODS}.
                 nearest -> aggregate and pick top k neighbor based on distance
                 mean -> takes the mean distance for each neighbor and pick nearest
                 majority -> pick the neighbors that appears most frequently 
         """
-        if method not in AGGREGATION_METHODS:
-            raise Exception(f"Method has to be one of {AGGREGATION_METHODS}")
+        if method not in self.AGGREGATION_METHODS:
+            raise Exception(f"Method has to be one of {self.AGGREGATION_METHODS}")
 
         # aggregate all neighbors and distances
         neighbors = []
@@ -107,10 +127,14 @@ class NearestNeighbors:
             # pairs of (neighbor, distance)
             neighbors += [p[0] for p in v]
             distances += [p[1] for p in v]
-
+            
         if method == "nearest":
             # sort and get top k
-            neigh_dist_pair = zip(neighbors, distances)
+            nd_dict = defaultdict(lambda: float('inf'))
+            for n,d in zip(neighbors, distances):
+                if d < nd_dict[n]:
+                    nd_dict[n] = d
+            neigh_dist_pair = [[k,v] for k,v in nd_dict.items()]
         elif method == "mean":
             neigh_dist = defaultdict(list)
             for n, d in zip(neighbors, distances):
@@ -128,40 +152,51 @@ class NearestNeighbors:
                                  key=lambda pair: pair[1])
         neigh_dist_pair = neigh_dist_pair[:self.n_neighbors]
 
-        return neigh_dist_pair
+        neighbors = {"aggregated": neigh_dist_pair}
+        for target in self.targets:
+            neighbors[target] = []
 
-    def save_neighbors(self, 
-                       output_path:str = "./nearest_neighbors.json",
-                       web_format:bool = True):
+        return neighbors
+
+    def get_embeddings(self, emb_file_path:str):
+        """get list of embedding and id
+
+        :param emb_file_path (str): path to the embedding file
+        """
+        embedding_dict = json.load(open(emb_file_path, "rb"))
+        vocab = list(embedding_dict.keys())
+        vectors = list(embedding_dict.values())
+        return vocab, vectors
+
+    def get_neighbors(self, output_path:str = None):
         """save the neighbors as json file
 
-        :param output_path (str): output path of the json file
-        :web_format (bool): save neighbors in web input structure
-        """         
-        if output_path.split(".")[-1] != "json":
-            output_path = output_path + ".json"
+        :param output_path (str): output path of the json file, if not specified
+                                  results are not saved 
+        """        
+        # parse return format for website
+        return_list = []
+        for idx, (target,neighbors) in enumerate(self.neighbors.items()):
 
-        if web_format:
-            return_list = []
-            for idx, (target,neighbors) in enumerate(self.neighbors.items()):
-
+            if target != "aggregated":
                 target_dict = self._gen_return_dict(target, 0, idx, True)
                 return_list.append(target_dict)
 
-                for neighbor, dist in neighbors:
+            for neighbor, dist in neighbors:
+                neighbor_dict = self._gen_return_dict(neighbor, dist, idx)
+                return_list.append(neighbor_dict)
 
-                    neighbor_dict = self._gen_return_dict(neighbor, dist, idx)
-                    return_list.append(neighbor_dict)
-
-            return_list = sorted(return_list, 
-                                 key=lambda x: (x["sim_score"], x["input_index"]))
+        # sort by similarity score, then by input index
+        return_list = sorted(return_list, 
+                             key=lambda x: (x["sim_score"], x["input_index"]))
+        
+        # save output 
+        if output_path is not None:
+            if output_path.split(".")[-1] != "json":
+                output_path = output_path + ".json"
             json.dump(return_list, open(output_path, "w"), indent=4)
-            return return_list
 
-        else:
-            json.dump(self.neighbors, open(output_path, "w"), indent=4)
-            return return_list
-
+        return return_list
 
     def _gen_return_dict(self, 
                          node:str, 
@@ -175,7 +210,7 @@ class NearestNeighbors:
         :param idx (int): target order idx
         :input_node (bool): true if node is one of the input targets
         """
-        pc1, pc2 = self.node_2_pca[node]
+        pc1, pc2 = self.node_2_pca[node] - self.neighbor_pca_mean
         return {"label": self.G.get_node(node)['instance_label'], 
                 "id": node, 
                 "sim_score": float(dist),   
@@ -198,7 +233,6 @@ class NearestNeighbors:
         """
         pca = PCA(n_components=n_components)
         components = pca.fit_transform(vectors)
-
         return {n:c for n,c in zip(vocab, components)}
 
     def _filter_by_concept(self, 
@@ -211,7 +245,6 @@ class NearestNeighbors:
         :param vocab (list): list of node names
         :param vectors (list): list of vectorized 
         """
-
         filtered_vocab = []
         filtered_vectors = []
         for voc, vec in zip(vocab, vectors):
@@ -232,7 +265,6 @@ class NearestNeighbors:
             
     def _get_neighbors(self):
         """Get nearest neighbors based on algorithm of choice"""
-
         # need to still keep k neighbors after removing targets
         if self.exclude_targets:
             total_neighbors = self.n_neighbors + len(self.targets)
@@ -242,59 +274,33 @@ class NearestNeighbors:
         # get nearest neighbors 
         nearest_neighbors = defaultdict(list)
         for target in self.targets:
+
+            # get target embedding vector
             target_idx = self.vocab.index(target)
             target_vector = self.vectors[target_idx]
 
-            if self.algorithm == "cosine_similarity":
-                #target_vector = np.array([target_vector,]*len(self.vectors))
-                # get distance
-                distances = pairwise.cosine_similarity([target_vector], self.vectors)
+            # get distance
+            distances = self.distance([target_vector], self.vectors)[0]
 
-                # we only want neighbors that are close 
-                distances = [abs(d) for d in distances][0]
-
-                # sort and get neighbor distance pair
+            # exclude targets and get neighbor target pair
+            if self.exclude_targets:
+                neigh_dist_pair  = [[n,d] for n,d in zip(self.vocab, distances)
+                                    if n not in self.targets]
+            else:
                 neigh_dist_pair  = [[n,d] for n,d in zip(self.vocab, distances)
                                     if n != target]
-                neigh_dist_pair = sorted(neigh_dist_pair, key=lambda pair: pair[1])
 
-            else:
-                # create nearest neighbor models
-                total_neighbors = total_neighbors + 1   # ordered vector includes target vector
-                nn = sk_neighbors.NearestNeighbors(n_neighbors=total_neighbors, 
-                                algorithm=self.algorithm)
-                nbrs = nn.fit(self.vectors)
+            # sort by distance
+            neigh_dist_pair = sorted(neigh_dist_pair, key=lambda pair: pair[1])
 
-                # get neighbors and distance 
-                distances, neighbors_idx = nbrs.kneighbors([target_vector])
-
-                # convert to list and remove target point itself
-                distances = list(distances)[0][1:]
-                neighbors_idx = list(neighbors_idx)[0][1:]
-                neighbors = [self.vocab[idx] for idx in neighbors_idx]
-
-                neigh_dist_pair  = [[n,d] for n,d in zip(neighbors, distances)]
+            # keep top k
+            if len(neigh_dist_pair) < self.n_neighbors:
+                raise Exception("Not enough nearest neighbors") # for debugging
+            neigh_dist_pair = neigh_dist_pair[:self.n_neighbors]
 
             # assign neighbors and distances
             nearest_neighbors[target] = neigh_dist_pair
 
-        # remove targets
-        if self.exclude_targets:
-            for k, v in nearest_neighbors.items():
-                updated_n = [[n,d] for n,d in v if n not in self.targets]
-                nearest_neighbors[k] = updated_n
-
-        # keep only k 
-        for k, v in nearest_neighbors.items():
-            if len(v) < self.n_neighbors:
-                raise Exception("Not enough nearest neighbors") # for debugging
-
-            neigh_dist_pair = v[:self.n_neighbors]
-            neighbors = [p[0] for p in neigh_dist_pair]
-            distances = [p[1] for p in neigh_dist_pair]
-            
-            nearest_neighbors[k] = [[n,d] for n,d in zip(neighbors, distances)]
-        
         return nearest_neighbors
 
 
