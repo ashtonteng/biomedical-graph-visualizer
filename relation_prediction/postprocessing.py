@@ -1,7 +1,8 @@
 import argparse
+import json
+import numpy as np
 import os
 import torch
-import json
 
 
 def dump_emb_to_json(emb, name2id, outdir, fname, name):
@@ -22,18 +23,37 @@ def _load_tsv_to_dict(fpath):
     return res
 
 
-def run(args):
-    model = torch.load(args.emb, map_location=torch.device('cpu'))
+def _load_tsv_to_np(fpath):
+    data = np.genfromtxt(fname=fpath, delimiter="\t", skip_header=1)
+    return data
+
+
+def _load_relation_embs(fpath, data_dir):
+    model = torch.load(fpath, map_location=torch.device('cpu'))
     eemb = model['final_entity_embeddings'].numpy()
     remb = model['final_relation_embeddings'].numpy()
+    return eemb, remb
+
+
+def _load_stranse_embs(data_dir):
+    epath = os.path.join(data_dir, 'entity2vec.txt')
+    rpath = os.path.join(data_dir, 'relation2vec.txt')
+    eemb = _load_tsv_to_np(epath)
+    remb = _load_tsv_to_np(rpath)
+    return eemb, remb
+
+
+def run(args):
+    if args.alg == 'relation':
+        eemb, remb = _load_relation_embs(args.emb, args.data_dir)
+    elif args.alg == 'stranse':
+        eemb, remb = _load_stranse_embs(args.data_dir)
     epath = os.path.join(args.data_dir, 'entity2id.txt')
     rpath = os.path.join(args.data_dir, 'relation2id.txt')
     e2id = _load_tsv_to_dict(epath)
     r2id = _load_tsv_to_dict(rpath)
-    dump_emb_to_json(
-        eemb, e2id, args.data_dir, "ent_emb.json", name='entity')
-    dump_emb_to_json(
-        remb, r2id, args.data_dir, "rel_emb.json", name='relation')
+    dump_emb_to_json(eemb, e2id, args.data_dir, "ent_emb.json", name='entity')
+    dump_emb_to_json(remb, r2id, args.data_dir, "rel_emb.json", name='relation')
 
 
 if __name__ == "__main__":
