@@ -15,7 +15,7 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col" id="top">
                 <label for="starting_node">Starting Node:</label>
                 <input type="text" id="starting_node" placeholder="Metformin..." class="form-control typeahead tt-query" spellcheck="false">
                 <small class="form-text text-muted">Use autocomplete to select a source node to form subgraph around.</small>
@@ -61,24 +61,29 @@
             </div>
         </div>
         <div class="row my-4" id="filters">
-            <div class="col-2 mx-4">
+            <div class="col-2 ml-4">
                 <input class="form-check-input" type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked>
                 <label for="toggle_node_labels" class="form-check-label">Show Node Labels</label>
             </div>
-            <div class="col-2 mx-4">
+            <div class="col-2">
                 <input class="form-check-input" type="checkbox" id="toggle_edge_labels" onclick="showEdgeLabels()" checked>
                 <label for="toggle_edge_labels" class="form-check-label">Show Edge Labels</label>
             </div>
+            <div class="col-3">
+                <a href="#results" class="btn btn-primary">Show Results Table</a>
+            </div>
         </div>
+
+        <h3>Legend</h3>
+        <div id="legend" class="my-3"></div>
 
     </div>
 
     <div class="border" id="network_viz"></div>
 
-    <div class="container my-3 results-panel">
-        <h3>Legend</h3>
-        <div id="legend" class="my-3"></div>
-        <h1>Results</h1>
+    <div class="container my-3 results-panel" id="results">
+        <h1>Results<a href="#top" class="btn btn-primary mx-4">Scroll to Top</a></h1>
+
         <input class="form-control col-3" type="text" placeholder="Search in table..." id="searchField">
         <div class="table" id="table-sortable"></div>
     </div>
