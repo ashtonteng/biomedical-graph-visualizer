@@ -8,8 +8,8 @@ import sys
 import json
 sys.path.append(os.getcwd())
 
-from queries.graph         import Graph
-from queries.graph_utils   import get_graph
+from module.queries.graph         import Graph
+from module.queries.graph_utils   import get_graph
 from typing                import Union
 from collections           import defaultdict, Counter
 from gensim.models         import keyedvectors

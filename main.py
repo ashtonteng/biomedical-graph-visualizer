@@ -42,8 +42,13 @@ def similarity_search():
     targets = data["targets"]
     mode = data["mode"]
     k = int(data["k"])
-    knn = NearestNeighbors(targets, emb_file_path="module/embeddings.emb", n_neighbors=k)
-    results = knn.save_neighbors()
+
+    if data["mode"]== 0:
+        knn = NearestNeighbors(targets, emb_file_path="module/embeddings.json", n_neighbors=k)
+    else:
+        knn = NearestNeighbors(targets, emb_file_path="module/embeddings.json", n_neighbors=k, aggregate_method="nearest")
+
+    results = knn.get_neighbors()
 
     return jsonify(results)
 
