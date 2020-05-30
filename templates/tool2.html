@@ -232,6 +232,8 @@
 
             case "Molecular Function": return "#D54517";
             case "Biological Process": return "#D86827";
+            case "Cell Component": return "#FFCD00";
+            case "Anatomical Location": return "#F6E599";
             case "Gene Ontology ID": return "#D84527";
 
             case "Protein": return "#BE27D8";
@@ -242,13 +244,9 @@
             case "Gene": return "#2781D8";
             case "Chromosome": return "#2729D8";
 
-            case "Diseases": return "#D6D827";
+            case "Disease": return "#D6D827";
             case "Symptom": return "#A3A458";
-            case "Symptom Cause": return "#7DA458";
             case "ICD10": return "#A49258";
-
-            case "health specialty": return "#1CF5E1";
-            case "Medical Specialty": return "#1CD7F5";
             default: return "#9092B0";
         }
     }
@@ -312,7 +310,7 @@
 
     function toggleZoom() {
         if (axisRange == 5) {
-            axisRange = 0.5;
+            axisRange = 0.1;
         } else {
             axisRange = 5;
         }

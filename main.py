@@ -40,10 +40,10 @@ def similarity_search():
         return Response("{'message': 'No targets found'}", status=403, mimetype='application/json')
 
     targets = data["targets"]
-    mode = data["mode"]
+    mode = int(data["mode"])
     k = int(data["k"])
 
-    if data["mode"]== 0:
+    if mode == 0:
         knn = NearestNeighbors(targets, emb_file_path="module/embeddings.json", n_neighbors=k)
     else:
         knn = NearestNeighbors(targets, emb_file_path="module/embeddings.json", n_neighbors=k, aggregate_method="nearest")

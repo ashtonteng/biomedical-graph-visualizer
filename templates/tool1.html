@@ -27,11 +27,11 @@
                         <option value="Chemical Compound">Chemical Compound</option>
                         <option value="Gene">Gene</option>
                         <option value="Protein">Protein</option>
-                        <option value="Diseases">Disease</option>
+                        <option value="Disease">Disease</option>
                         <option value="Symptom">Symptom</option>
                         <option value="Molecular Function">Molecular Function</option>
                         <option value="Biological Process">Biological Process</option>
-                        <option value="Medical Specialty">Medical Specialty</option>
+                        <option value="Cell Component">Cell Component</option>
                         <option value="ICD10">ICD10</option>
                         <option value="Protein Family">Protein Family</option>
                         <option value="Protein Superfamily">Protein Superfamily</option>
@@ -40,8 +40,7 @@
                         <option value="Chromosome">Chromosome</option>
                         <option value="Drug Function">Drug Function</option>
                         <option value="Pharmaceutical Product">Pharmaceutical Product</option>
-                        <option value="Symptom Cause">Symptom Cause</option>
-                        <option value="health specialty">health specialty</option>
+                        <option value="Anatomical Location">Anatomical Location</option>
                     </select>
                 <small class="form-text text-muted">Select type of ending leaf node.</small>
             </div>
@@ -109,9 +108,6 @@
 
     function init() {
 
-        // graph you see when you visit the page
-        initialGraph("Q3025883", "Q8386", 2);
-
         // initialize table
         let columns = {
             "startingNode": "Starting Node",
@@ -169,6 +165,12 @@
                         }
                     }
                 );
+
+                // graph you see when you visit the page
+                document.getElementById("starting_node").value = "COVID-19";
+                document.getElementById("ending_node").value = "Drug";
+                document.getElementById("hops").value = "2";
+                onSearch();
 
             });
 
@@ -244,11 +246,11 @@
 
     function onDemoClick() {
         let test_examples = [
-            ["Insulin", "Diseases", "3"],
-            ["breast cancer", "Drug", "1"],
+            ["Insulin", "Disease", "3"],
+            ["type-2 diabetes", "Drug", "2"],
             ["metformin", "Protein", "3"],
-            ["pancreatic cancer", "Gene", "1"],
-            ["aspirin", "Chromosome", "4"]
+            ["influenza", "Anatomical Location", "3"],
+            ["aspirin", "Chromosome", "4"],
         ];
         let index = Math.random() * 100;
         if (index < 20) {
@@ -307,31 +309,6 @@
         }
     }
 
-    function initialGraph(start, end, hops) {
-        if (start) {
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/tool1/search', true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            xhr.onreadystatechange = function() {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    let response = JSON.parse(xhr.response);
-                    let results = response["results"];
-                    drawGraph(response["graph"]);
-                    //updateTable(results);
-                }
-            }
-            let params = "starting_node=" + start;
-            if (end) {
-                params += "&ending_node=" + end;
-            }
-            if (hops) {
-                params += "&hops=" + hops;
-            }
-            xhr.send(params);
-        }
-    }
-
     let textElements, linkLabels;
 
     function getNodeColor(domain) {
@@ -343,6 +320,8 @@
 
             case "Molecular Function": return "#D54517";
             case "Biological Process": return "#D86827";
+            case "Cell Component": return "#FFCD00";
+            case "Anatomical Location": return "#F6E599";
             case "Gene Ontology ID": return "#D84527";
 
             case "Protein": return "#BE27D8";
@@ -353,13 +332,10 @@
             case "Gene": return "#2781D8";
             case "Chromosome": return "#2729D8";
 
-            case "Diseases": return "#D6D827";
+            case "Disease": return "#D6D827";
             case "Symptom": return "#A3A458";
-            case "Symptom Cause": return "#7DA458";
             case "ICD10": return "#A49258";
 
-            case "health specialty": return "#1CF5E1";
-            case "Medical Specialty": return "#1CD7F5";
             default: return "#9092B0";
         }
     }
@@ -405,6 +381,8 @@
 
                 case "Molecular Function": weight = 1; break;
                 case "Biological Process": weight = 1; break;
+                case "Cell Component": weight = 0.1; break;
+                case "Anatomical Location": weight = 0.5; break;
                 case "Gene Ontology ID": weight = 1; break;
 
                 case "Protein": weight = 1; break;
@@ -415,17 +393,9 @@
                 case "Gene": weight = 1; break;
                 case "Chromosome": weight = 0.01; break;
 
-                case "Diseases": weight = 0.5; break;
+                case "Disease": weight = 0.5; break;
                 case "Symptom": weight = 1; break;
-                case "Symptom Cause": weight = 1; break;
                 case "ICD10": weight = 1; break;
-
-                case "health specialty": weight = 1; break;
-                case "Medical Specialty": weight = 1; break;
-            }
-            if (node.domain == "Chromosome") {
-                console.log(node.rank);
-                console.log(node.rank * weight * 1000000);
             }
             return Math.min(Math.max(node.rank * weight * 1000000, 6) , 100);
             //return (node.rank + 2) * 3;
@@ -542,15 +512,13 @@
             data.push({
                 startingNode: start,
                 endingNode: results[i]["name"],
-                nodeType: concept_node_dict_inverse[results[i]["domain"]],
+                nodeType: results[i]["domain"],
                 pathLength: results[i]["path_length"],
                 id: `<a href="https://www.wikidata.org/wiki/${qid}" target="_blank">${qid}</a>`
             });
         }
 
         table.setData(data, null);
-
-        console.log(table.getData());
 
         /*
         let start = document.getElementById("starting_node").value;

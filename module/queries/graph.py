@@ -39,21 +39,24 @@ class Graph:
     def build_graph(self):
         self.G = nx.DiGraph()  # allows directed edges and self_loops
         for (concept1, concept2) in EDGES_DICT:
-            relation, query_template = EDGES_DICT[(concept1, concept2)]
-            concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
-            relation_id = RELATION_LABEL_ID_DICT[relation]
-            fpath = os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id))
-            if not os.path.exists(fpath):
-                print("Warning: {} does not exist. Skipping...".format(fpath))
-                continue
-            with open(fpath, "r") as f:
-                for line in f:
-                    instance1_id, instance1_label, instance2_id, instance2_label = line.split("\t")
-                    if instance1_id not in self.G:
-                        self.G.add_node(instance1_id, instance_label=instance1_label.strip(), concept_id=concept1_id.strip())
-                    if instance2_id not in self.G:
-                        self.G.add_node(instance2_id, instance_label=instance2_label.strip(), concept_id=concept2_id.strip())
-                    self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
+            mapping = EDGES_DICT[(concept1, concept2)]
+            if type(mapping) is not list:
+                mapping = [mapping]
+            for relation, query_template in mapping:
+                concept1_id, concept2_id = CONCEPT_LABEL_ID_DICT[concept1], CONCEPT_LABEL_ID_DICT[concept2]
+                relation_id = RELATION_LABEL_ID_DICT[relation]
+                fpath = os.path.join(DOWNLOAD_DIR, "{}_{}_{}.tsv".format(concept1_id, concept2_id, relation_id))
+                if not os.path.exists(fpath):
+                    print("Warning: {} does not exist. Skipping...".format(fpath))
+                    continue
+                with open(fpath, "r") as f:
+                    for line in f:
+                        instance1_id, instance1_label, instance2_id, instance2_label = line.split("\t")
+                        if instance1_id not in self.G:
+                            self.G.add_node(instance1_id, instance_label=instance1_label.strip(), concept_id=concept1_id.strip())
+                        if instance2_id not in self.G:
+                            self.G.add_node(instance2_id, instance_label=instance2_label.strip(), concept_id=concept2_id.strip())
+                        self.G.add_edge(instance1_id, instance2_id, relation_id=relation_id)
 
     def get_all_nodes(self):
         """
