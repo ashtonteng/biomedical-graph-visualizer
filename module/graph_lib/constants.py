@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 import os
 
-from .templates import *
+import module.graph_lib.templates as templates
 
 ### PATHS
-QUERIES_DIR = os.path.dirname(os.path.abspath(__file__))
-DOWNLOAD_DIR = os.path.join(QUERIES_DIR, "download")
-GRAPH_PICKLE_PATH = os.path.join(QUERIES_DIR, "BGV_Graph.pkl")
-PAGERANK_DICT_PICKLE_PATH = os.path.join(QUERIES_DIR, "pagerank.pkl")
+GRAPH_LIB_DIR = os.path.dirname(os.path.abspath(__file__))
+DOWNLOAD_DIR = os.path.join(GRAPH_LIB_DIR, "download")
+AUTOCOMPLETE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "static/autocomplete")
+GRAPH_PICKLE_PATH = os.path.join(DOWNLOAD_DIR, "BGV_Graph.pkl")
+PAGERANK_DICT_PICKLE_PATH = os.path.join(DOWNLOAD_DIR, "pagerank.pkl")
+GRAPH_EMBEDDING_PATH = os.path.join(DOWNLOAD_DIR, "ent_emb.json")
 
 ### CORE CONCEPTS
 DRUG = "Drug"
@@ -180,7 +182,7 @@ RELATION_LABEL_ID_DICT = {
 
 RELATION_ID_LABEL_DICT = {v: k for k, v in RELATION_LABEL_ID_DICT.items()}
 
-TAXON, NO_TAXON, WILDCARD, MAX_TWO = (query_template_taxon, query_template_no_taxon, query_template_wildcard, query_template_max_two)
+TAXON, NO_TAXON, WILDCARD, MAX_TWO = (templates.query_template_taxon, templates.query_template_no_taxon, templates.query_template_wildcard, templates.query_template_max_two)
 
 EDGES_DICT = {
 

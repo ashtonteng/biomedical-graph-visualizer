@@ -1,5 +1,4 @@
 import argparse
-import node2vec
 import networkx as nx
 
 from node2vec import Node2Vec
@@ -21,6 +20,7 @@ def gen_embeddings(
     model = node2vec.fit(window=window, min_count=min_count, batch_words=batch_words)
     # Save embeddings for later use
     model.wv.save_word2vec_format(savepath)
+
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()

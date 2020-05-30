@@ -1,5 +1,4 @@
-# This file provides templates for sparql queries
-
+"""This file provides templates for SPARQL queries"""
 
 def query_template_taxon(concept, property):
     query = (

@@ -5,8 +5,8 @@ import os
 import sys
 sys.path.append(os.getcwd())
 from collections import defaultdict
-from test_constants import TEST_CONDITIONS, FDA_TEST_CONDITIONS
-from queries.nearest_neighbors import NearestNeighbors
+from module.similarity_tool.tests.test_constants import TEST_CONDITIONS, FDA_TEST_CONDITIONS
+from module.similarity_tool.nearest_neighbors import NearestNeighbors
 from sklearn.model_selection import train_test_split
 
 

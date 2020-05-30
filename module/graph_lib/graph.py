@@ -1,7 +1,6 @@
 import networkx as nx
 
-from .constants import *
-
+from module.graph_lib.constants import *
 
 class Graph:
     """

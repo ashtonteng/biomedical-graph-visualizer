@@ -3,9 +3,9 @@ Various functions that operate on internal Graph and Node classes.
 """
 import json
 import pickle
-import numpy as np
 
-from .graph import *
+import module.graph_lib.graph as graph
+from module.graph_lib.constants import *
 
 
 def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
@@ -17,11 +17,11 @@ def get_graph(pickle_path=GRAPH_PICKLE_PATH, replace_pickle=False):
     :return: (Graph) g
     """
     if os.path.exists(pickle_path) and replace_pickle is False:
-        g = Graph(pickle_path=pickle_path)
+        g = graph.Graph(pickle_path=pickle_path)
         print("Loaded Graph from {}".format(pickle_path))
     else:
         pickle_path = GRAPH_PICKLE_PATH
-        g = Graph()
+        g = graph.Graph()
         g.save_graph_to_pickle(pickle_path=pickle_path)
         print("Saved Graph to disk as {}".format(pickle_path))
     return g
@@ -48,20 +48,21 @@ def get_pagerank_dict(pickle_path=PAGERANK_DICT_PICKLE_PATH, replace_pickle=Fals
     return pagerank_dict
 
 
-def save_all_node_names_ids_json(g, out_path="all_node_names_ids.json"):
+def save_all_node_names_ids_json(g, out_path):
     """
     Writes a dictionary of all nodes to json file, {instance_label:(instance_id, concept_id)}
     :param out_path: (string) path to write json file
     :param g: (Graph) BGV backend graph.
     :return: None
     """
+    print(out_path)
     json_string = json.dumps({g.get_instance_label(node): (node, g.get_concept_id(node)) for node in g})
     with open(out_path, "w") as f:
         f.write(json_string)
     print("Saved all node names and ids to {}".format(out_path))
 
 
-def save_all_concept_names_ids_json(out_path="all_concept_names_ids.json"):
+def save_all_concept_names_ids_json(out_path):
     """
     Writes a dictionary of all concepts to json file, {concept_label:concept_id}
     :param out_path: (string) path to write json file
