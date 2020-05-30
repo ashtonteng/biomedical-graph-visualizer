@@ -9,4 +9,3 @@ SPARQLWrapper==1.8.5
 flask==1.1.2
 fire==0.3.1
 scikit-learn==0.22.2.post1
-gensim==3.8.3
