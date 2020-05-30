@@ -3,6 +3,7 @@ import json
 import numpy as np
 import os
 import torch
+from gensim.models import keyedvectors
 
 
 def dump_emb_to_json(emb, name2id, outdir, fname, name):
@@ -44,11 +45,28 @@ def _load_stranse_embs(data_dir):
     return eemb, remb
 
 
+def _load_node2vec_embs(data_dir):
+    fpath = os.path.join(data_dir, 'embeddings.emb')
+    model = keyedvectors.KeyedVectors.load_word2vec_format(fpath)
+    vocab = model.wv.index2word
+    emb = model.wv.vectors
+    e2id = dict()
+    for i, w in enumerate(vocab):
+        e2id[w] = i
+    dump_emb_to_json(emb, e2id, args.data_dir, "ent_emb.json", name='entity')
+    exit()
+
+
 def run(args):
     if args.alg == 'relation':
         eemb, remb = _load_relation_embs(args.emb, args.data_dir)
     elif args.alg == 'stranse':
         eemb, remb = _load_stranse_embs(args.data_dir)
+    elif args.alg == 'node2vec':
+        eemb, remb = _load_node2vec_embs(args.data_dir)
+    else:
+        print("Invalid alg chosen. Choices: 'stranse', 'node2vec', 'relation'")
+        return
     epath = os.path.join(args.data_dir, 'entity2id.txt')
     rpath = os.path.join(args.data_dir, 'relation2id.txt')
     e2id = _load_tsv_to_dict(epath)
