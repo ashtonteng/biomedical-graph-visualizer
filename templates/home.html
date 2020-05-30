@@ -2,29 +2,30 @@
 
 {% block content %}
 
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div style="background-image:url('../static/images/banner.png');" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
   <div class="col-md-5 p-lg-5 mx-auto my-5">
     <h1 class="display-4 font-weight-normal">Biomedical Graph Visualizer</h1>
       <p class="lead font-weight-normal">An interactive interface for exploring a biomedical knowledge graph with concepts such as drugs, proteins, genes, and diseases. Powered by <a href="wikidata.org">Wikidata</a>.</p>
   </div>
-  <div class="product-device shadow-sm d-none d-md-block"></div>
-  <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  <!--<div class="product-device shadow-sm d-none d-md-block"></div>-->
+  <!--<div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>-->
 </div>
 
 <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
   <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
     <div class="my-3 py-3">
-      <h2 class="display-5">Biomedical Subgraph Visualizer</h2>
+      <a href="/tool1"><h2 class="display-5">Biomedical Subgraph Visualizer</h2></a>
       <p class="lead">Explore subgraphs surrounding concept nodes.</p>
     </div>
-    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0; background-image:url('../static/images/subgraph.png');">
+    </div>
   </div>
   <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
     <div class="my-3 p-3">
-      <h2 class="display-5">Biomedical Similarity Visualizer</h2>
+      <a href="/tool2"><h2 class="display-5">Biomedical Similarity Visualizer</h2></a>
       <p class="lead">Find similar concepts based on knowledge graph embeddings.</p>
     </div>
-    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+    <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0; background-image:url('../static/images/similarity.png');"></div>
   </div>
 </div>
 
