@@ -9,7 +9,7 @@ import json
 sys.path.append(os.getcwd())
 
 from module.graph_lib.graph         import Graph
-from module.subgraph_tool.graph_utils   import get_graph
+from module.subgraph_tool.subgraph   import get_graph
 from typing                import Union
 from collections           import defaultdict, Counter
 from gensim.models         import keyedvectors

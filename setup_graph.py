@@ -1,6 +1,6 @@
 import module.graph_lib.downloader as downloader
 from module.graph_lib.constants import *
-import module.subgraph_tool.graph_utils as graph_utils
+import module.graph_lib.graph_utils as graph_utils
 import argparse
 
 """

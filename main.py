@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, Response, jsonify
-from module.subgraph_tool.graph_utils import subgraph_tool
+from module.subgraph_tool.subgraph import subgraph_tool
 from module.similarity_tool.nearest_neighbors import NearestNeighbors
 from module.graph_lib.constants import *
 
