@@ -24,26 +24,30 @@
 
         <div class="row">
 
-            <form class="form-inline">
-
-              <div class="form-group mb-2">
-                <label for="input_mode">Select Target Nodes</label>
-                <input type="text" placeholder="Metformin..." class="typeahead tt-query form-control mx-2" spellcheck="false" id="input_node">
+              <div class="col" id="top">
+                <label for="input_mode">Select Target Nodes:</label>
+                <input type="text" placeholder="Metformin..." class="typeahead tt-query form-control" spellcheck="false" id="input_node">
+                <small class="form-text text-muted">Use autocomplete to select target nodes to find similar nodes. You can select up to 20 target nodes.</small>
               </div>
 
-                <input type="button" class="btn btn-primary mb-2 mx-2" id="add_target" value="Add Target Node" onclick="add_target_node()">
+              <div class="col">
+                <input type="button" class="btn btn-primary mt-4" id="add_target" value="Add Target Node" onclick="add_target_node()">
+              </div>
 
-              <div class="form-group mx-sm-5 mb-2 mx-2">
-                <label for="input_mode">Mode </label>
-                <select class="form-control mx-2" id="input_mode">
+
+
+              <div class="col">
+                <label for="input_mode">Mode:</label>
+                <select class="form-control" id="input_mode">
                     <option value="0">Mode 1</option>
                     <option value="1">Mode 2</option>
                 </select>
+                <small class="form-text text-muted">Mode 1 finds similar nodes to each target node separately. Mode 2 finds similar nodes to all target nodes.</small>
               </div>
 
-              <div class="form-group mx-sm-5 mb-2 mx-2">
-                  <label>Number of Results (K) </label>
-                    <select class="form-control mx-2" id="input_k">
+              <div class="col">
+                  <label>Number of Results (K): </label>
+                    <select class="form-control" id="input_k">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -65,16 +69,16 @@
                         <option value="19">19</option>
                         <option value="20">20</option>
                     </select>
+                  <small class="form-text text-muted">Mode 1: K = # similar nodes found for each target.</small>
+                  <small class="form-text text-muted">Mode 2: K = total # similar nodes found.</small>
               </div>
-
-            </form>
         </div>
 
         <div id="input-list"></div>
 
         <div class="row">
-            <input type="button" class="btn btn-primary" value="Search" onclick="onSearch()">
-            <button class="btn btn-primary mx-2" onclick="toggleZoom()">Toggle Zoom</button>
+            <button type="button" class="btn btn-primary ml-3 mt-2" onclick="onSearch()"><i class="fa fa-spinner fa-spin d-none" id="loader"></i> Search</button>
+            <button class="btn btn-primary ml-3 mt-2" onclick="toggleZoom()">Toggle Zoom</button>
         </div>
     </div>
 
@@ -116,7 +120,7 @@
         let template =
             `
               <form class="form-inline">
-              <input type="button" class="btn btn-primary mr-2" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
+              <input type="button" class="btn btn-primary ml-3 mr-2" value="Delete Target Node" onclick="del_target_node(${target_node_index})">
               <div class="form-group mb-2">
               <input type="text" readonly class="form-control-plaintext" id="node_${target_node_index}" value="${entry}">
               </div>
@@ -252,6 +256,9 @@
     }
 
     function onSearch() {
+
+        $('#loader').removeClass('d-none');
+
         let elements = document.querySelectorAll("#input-list input[type='text'][id]");
         let targets = [];
         let conceptType = null;
@@ -291,6 +298,7 @@
                     }
                     currentData = response;
                     drawScatterPlot(response);
+                    $('#loader').addClass('d-none');
                     updateTable(response);
                 }
             };
