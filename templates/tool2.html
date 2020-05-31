@@ -20,6 +20,10 @@
             <strong>Error!</strong> Selected nodes have different types.
             <button type="button" class="close" onclick="$('#alert-concept').addClass('d-none');">&times;</button>
         </div>
+        <div id = "alert-error" class="alert alert-danger alert-dismissible d-none">
+            <strong>Error!</strong> There was an internal server error. Please try again.
+            <button type="button" class="close" onclick="$('#alert-error').addClass('d-none');">&times;</button>
+        </div>
 
 
         <div class="row">
@@ -276,6 +280,7 @@
                 } else {
                     if (conceptType != currentConcept) {
                         $("#alert-concept").removeClass("d-none");
+                        $('#loader').addClass('d-none');
                         return;
                     }
                 }
@@ -300,6 +305,11 @@
                     drawScatterPlot(response);
                     $('#loader').addClass('d-none');
                     updateTable(response);
+                } else if (this.readyState == XMLHttpRequest.DONE) {
+                    console.log(this.status);
+                    //console.log(xhr.response);
+                    $('#alert-error').removeClass('d-none');
+                    $('#loader').addClass('d-none');
                 }
             };
             let data = {
@@ -310,6 +320,7 @@
             xhr.send(JSON.stringify(data));
         } else {
             $('#alert-empty').removeClass('d-none');
+            $('#loader').addClass('d-none');
         }
     }
 

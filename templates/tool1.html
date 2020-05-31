@@ -13,6 +13,10 @@
             <strong>Warning!</strong> Target node is invalid! Please use autocomplete.
             <button type="button" class="close" onclick="$('#alert-invalid').addClass('d-none');">&times;</button>
         </div>
+        <div id = "alert-error" class="alert alert-danger alert-dismissible d-none">
+            <strong>Error!</strong> There was an internal server error. Please try again.
+            <button type="button" class="close" onclick="$('#alert-error').addClass('d-none');">&times;</button>
+        </div>
 
         <div class="row">
             <div class="col" id="top">
@@ -42,6 +46,7 @@
                         <option value="Pharmaceutical Product">Pharmaceutical Product</option>
                         <option value="Symptom Cause">Symptom Cause</option>
                         <option value="health specialty">health specialty</option>
+                        <option value="None">Unspecified</option>
                     </select>
                 <small class="form-text text-muted">Select type of ending leaf node.</small>
             </div>
@@ -62,7 +67,6 @@
         </div>
         <div class="row my-4" id="filters">
             <div class="col-2 ml-4">
-                <i class="fa fa-spinner fa-spin" id="loading"></i>
                 <input class="form-check-input" type="checkbox" id="toggle_node_labels" onclick="showNodeLabels()" checked>
                 <label for="toggle_node_labels" class="form-check-label">Show Node Labels</label>
             </div>
@@ -307,10 +311,15 @@
                     drawGraph(response["graph"]);
                     $('#loader').addClass('d-none');
                     updateTable(results);
+                } else if (this.readyState == XMLHttpRequest.DONE) {
+                    console.log(this.status);
+                    //console.log(xhr.response);
+                    $('#alert-error').removeClass('d-none');
+                    $('#loader').addClass('d-none');
                 }
-            }
+            };
             let params = "starting_node=" + instance_node_dict[start];
-            if (end) {
+            if (end && end in concept_node_dict) {
                 params += "&ending_node=" + concept_node_dict[end];
             }
             if (hops) {
