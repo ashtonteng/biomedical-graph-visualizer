@@ -1,5 +1,5 @@
 import argparse
-import json
+import pickle
 import fire
 import numpy as np
 import sklearn.neighbors as sk_neighbors
@@ -9,12 +9,13 @@ import json
 sys.path.append(os.getcwd())
 
 from module.graph_lib.graph         import Graph
-from module.subgraph_tool.subgraph   import get_graph
-from typing                import Union
+from module.subgraph_tool.subgraph  import get_graph
+from typing                         import Union
 from collections           import defaultdict, Counter
 from gensim.models         import keyedvectors
 from sklearn.decomposition import PCA
 from sklearn.metrics       import pairwise
+from pathlib import Path
 
 
 class NearestNeighbors:
@@ -23,35 +24,34 @@ class NearestNeighbors:
     
     :param targets (list, str): the target name for getting nearest neighbors
             OR list of target names for retrieving nearest neighbors.
-    :param emb_file_path (str): path to the node2vec embedding file.
     :param n_neighbors (int): number of nearest neighbors to retrieve
     :param distance_metric (str): the choice of distance metric
     :param exlcude_targets (bool): exclude any input targets from neighbor lists
+    :param concept (str): concept id for the targets
     
     Returns:
         A dictionary with targets as keys and a another dictionary of neighbors
         and distances to neighbors as values.
     """
-
     METRICS = {
         "l1": pairwise.manhattan_distances, 
         "l2": pairwise.euclidean_distances,
         "cos": pairwise.cosine_distances, 
     }
 
-    AGGREGATION_METHODS = ['nearest','mean','majority'] 
+    AGGREGATION_METHODS = ['nearest','mean','majority']
+    CWD = Path(os.getcwd())
+    EMBEDDING_PREFIX_PATH = CWD / "module" / "graph_lib" / "download"/ "embeddings" 
 
     def __init__(self, 
                  targets: Union[list, str],
-                 emb_file_path: str = "./ent_emb.json",
                  n_neighbors: int = 5, 
                  distance_metric: str = "cos", 
                  exclude_targets: bool = True, 
-                 aggregate_method: str = None
+                 aggregate_method: str = None,
+                 embeddings_type: str = "relation",
+                 concept: str = None
                  ):
-        # get graph
-        self.G = get_graph()
-
         # check inputs
         if type(targets) == str:
             targets = [targets]
@@ -60,32 +60,17 @@ class NearestNeighbors:
         if aggregate_method not in self.AGGREGATION_METHODS and aggregate_method is not None:
             raise Exception(f"Aggregation method should be one of {self.AGGREGATION_METHODS}")
 
-        # get concept type
-        concepts = [self.G.get_concept_id(t) for t in targets]
-        if len(list(set(concepts))) != 1:
-            raise Exception("Targets are not under the same concepts ")
-        self.concept = concepts[0]
-
-        # check if targets are the same type
-        self.targets = [str(t) for t in targets]
-        concepts = [self.G.get_concept_id(t) for t in self.targets]
-        if len(list(set(concepts))) >1:
-            raise Exception("More than one type of targest are provided")
-        self.concept = concepts[0]
-
         # store class variables
         self.n_neighbors = n_neighbors
         self.exclude_targets = exclude_targets
         self.metric = distance_metric 
         self.aggregate_method = aggregate_method
         self.distance = self.METRICS[distance_metric]
+        self.targets = targets
+        self.embeddings_type = embeddings_type
 
         # get embeddings
-        vocab, vectors = self.get_embeddings(emb_file_path)
-        self.vocab, self.vectors = self._filter_by_concept(vocab, 
-                                                          vectors, 
-                                                          self.concept,
-                                                          self.G)
+        self.vocab, self.vectors = self.get_embeddings(concept)
 
         # get PCA components
         self.node_2_pca = self.get_pca_components(self.vocab, self.vectors)
@@ -158,12 +143,15 @@ class NearestNeighbors:
 
         return neighbors
 
-    def get_embeddings(self, emb_file_path:str):
+    def get_embeddings(self, concept):
         """get list of embedding and id
 
-        :param emb_file_path (str): path to the embedding file
+        :param concept (str): id of the concept to load embeddings
         """
-        embedding_dict = json.load(open(emb_file_path, "rb"))
+        emb_path = self.EMBEDDING_PREFIX_PATH / \
+                   self.embeddings_type / \
+                   (concept + "_emb.pkl")
+        embedding_dict = pickle.load(open(emb_path, "rb"))
         vocab = list(embedding_dict.keys())
         vectors = list(embedding_dict.values())
         return vocab, vectors
@@ -211,8 +199,7 @@ class NearestNeighbors:
         :input_node (bool): true if node is one of the input targets
         """
         pc1, pc2 = self.node_2_pca[node] - self.neighbor_pca_mean
-        return {"label": self.G.get_node(node)['instance_label'], 
-                "id": node, 
+        return {"id": node, 
                 "sim_score": float(dist),   
                 "pc1": float(pc1), 
                 "pc2": float(pc2), 

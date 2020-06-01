@@ -42,11 +42,12 @@ def similarity_search():
     targets = data["targets"]
     mode = int(data["mode"])
     k = int(data["k"])
+    concept = data["concept"]
 
     if mode == 0:
-        knn = NearestNeighbors(targets, emb_file_path=GRAPH_EMBEDDING_PATH, n_neighbors=k)
+        knn = NearestNeighbors(targets, concept=concept, n_neighbors=k)
     else:
-        knn = NearestNeighbors(targets, emb_file_path=GRAPH_EMBEDDING_PATH, n_neighbors=k, aggregate_method="nearest")
+        knn = NearestNeighbors(targets, concept=concept, n_neighbors=k, aggregate_method="nearest")
 
     results = knn.get_neighbors()
 

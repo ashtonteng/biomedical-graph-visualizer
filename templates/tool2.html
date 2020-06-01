@@ -28,28 +28,27 @@
 
         <div class="row">
 
-              <div class="col" id="top">
+              <div class="col-3" id="top">
                 <label for="input_mode">Select Target Nodes:</label>
                 <input type="text" placeholder="Metformin..." class="typeahead tt-query form-control" spellcheck="false" id="input_node">
                 <small class="form-text text-muted">Use autocomplete to select target nodes to find similar nodes. You can select up to 20 target nodes.</small>
               </div>
 
-              <div class="col">
+              <div class="col-4">
                 <input type="button" class="btn btn-primary mt-4" id="add_target" value="Add Target Node" onclick="add_target_node()">
+                <input type="button" class="btn btn-primary mt-4" id="demo" value="Choose for me" onclick="onDemoClick()">
               </div>
 
-
-
-              <div class="col">
+              <div class="col-2">
                 <label for="input_mode">Mode:</label>
                 <select class="form-control" id="input_mode">
                     <option value="0">Mode 1</option>
                     <option value="1">Mode 2</option>
                 </select>
-                <small class="form-text text-muted">Mode 1 finds similar nodes to each target node separately. Mode 2 finds similar nodes to all target nodes.</small>
+                <small class="form-text text-muted">Mode 1 finds similar nodes to each target node. Mode 2 finds similar nodes to all target nodes.</small>
               </div>
 
-              <div class="col">
+              <div class="col-3">
                   <label>Number of Results (K): </label>
                     <select class="form-control" id="input_k">
                         <option value="1">1</option>
@@ -87,7 +86,9 @@
     </div>
 
 
-    <div id="my_dataviz" style="text-align: left"></div>
+    <div class="container">
+        <div id="my_dataviz" style="text-align: left"></div>
+    </div>
 
     <div class="container my-3">
 
@@ -159,6 +160,7 @@
 
     let autocomplete_data = [];
     let instance_node_dict;
+    let instance_node_dict_inverse;
     let concept_node_dict;
     let concept_node_dict_inverse;
     let instance_concept_dict;
@@ -192,10 +194,12 @@
             httpRequest("static/autocomplete/all_node_names_ids.json", function (data) {
                 instance_node_dict = {};
                 instance_concept_dict = {};
+                instance_node_dict_inverse = {};
                 autocomplete_data = [];
                 for (let key in data) {
                     instance_node_dict[key] = data[key][0];
                     instance_concept_dict[key] = data[key][1];
+                    instance_node_dict_inverse[data[key][0]] = key;
                     let domain = concept_node_dict_inverse[data[key][1]];
                     let obj = {
                         name: key,
@@ -229,6 +233,18 @@
             });
 
         });
+    }
+
+    function onDemoClick() {
+        let test_examples = ['dextroamphetamine', 'D-methamphetamine', 'DL-amphetamine'];
+        let input = document.getElementById("input_node");
+        for (let i = 0; i < test_examples.length; i++) {
+            input.value = test_examples[i];
+            add_target_node();
+        }
+        document.getElementById("input_mode").value = 1;
+        document.getElementById("input_k").value = 5;
+        onSearch();
     }
 
     function getNodeColor(domain) {
@@ -297,8 +313,8 @@
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     let response = JSON.parse(xhr.response);
                     for (let i = 0; i < response.length; i++) {
-                        response[i].pc1 = response[i].pc1.toFixed(2);
-                        response[i].pc2 = response[i].pc2.toFixed(2);
+                        response[i].pc1 = response[i].pc1.toFixed(6);
+                        response[i].pc2 = response[i].pc2.toFixed(6);
                         response[i].sim_score = response[i].sim_score.toFixed(4);
                     }
                     currentData = response;
@@ -315,7 +331,8 @@
             let data = {
                 "targets": targets,
                 "mode": document.getElementById("input_mode").value,
-                "k": document.getElementById("input_k").value
+                "k": document.getElementById("input_k").value,
+                "concept": conceptType
             };
             xhr.send(JSON.stringify(data));
         } else {
@@ -329,7 +346,7 @@
 
     function toggleZoom() {
         if (axisRange == 5) {
-            axisRange = 0.1;
+            axisRange = 0.03;
         } else {
             axisRange = 5;
         }
@@ -338,9 +355,10 @@
 
     function drawScatterPlot(data) {
 
-        let margin = {top: 10, right: 60, bottom: 30, left: 20};
-        const width = window.innerWidth - margin.left - margin.right;
+        let margin = {top: 10, right: 50, bottom: 30, left: 50};
         const height = 500 - margin.top - margin.bottom;
+        const width = height;
+        // window.windowWidth
 
         let el = document.getElementById("my_dataviz");
         while (el.childElementCount > 0) {
@@ -360,7 +378,7 @@
         var x = d3.scaleLinear()
             .domain([-axisRange, axisRange])
             .range([0, width]);
-        svg.append("g")
+        let x_axis = svg.append("g")
             .attr("transform", "translate(0," + (height - margin.bottom) + ")")
             .call(d3.axisBottom(x).ticks(1));
         svg.append("text")
@@ -373,7 +391,7 @@
         var y = d3.scaleLinear()
             .domain([-axisRange, axisRange])
             .range([height, 0]);
-        svg.append("g")
+        let y_axis = svg.append("g")
             .call(d3.axisLeft(y).ticks(1));
         svg.append("text")
             .attr("text-anchor", "end")
@@ -404,7 +422,7 @@
 
         var mousemove = function (d) {
             tooltip
-                .html(d.id + ": " + d.label + " (" + d.pc1 + ", " + d.pc2 + ")")
+                .html(d.id + ": " + instance_node_dict_inverse[d.id] + " (" + d.pc1 + ", " + d.pc2 + ")")
                 .style("left", (d3.mouse(this)[0] + 30) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
                 .style("top", (d3.mouse(this)[1] + 160) + "px")
         };
@@ -421,7 +439,7 @@
         };
 
         // Add dots
-        svg.append('g')
+        let nodeElements = svg.append('g')
             .selectAll("dot")
             .data(data)
             .enter()
@@ -457,6 +475,17 @@
             .on("mousemove", mousemove)
             .on("mouseleave", mouseleave)
 
+        /*function zoomed() {
+            nodeElements.attr("transform", d3.event.transform);
+            x.domain([-axisRange--, axisRange++]);
+            x_axis.call(d3.axisBottom(x).ticks(1));
+        }
+
+        svg.call(d3.zoom()
+            .extent([[0, 0], [width, height]])
+            .scaleExtent([0.1, 8])
+            .on("zoom", zoomed));*/
+
     }
 
     function updateTable(results) {
@@ -464,7 +493,7 @@
 
         for (let i = 0; i < results.length; i++) {
             data.push({
-                label: results[i]["label"],
+                label: instance_node_dict_inverse[results[i]["id"]],
                 id: `<a href="https://www.wikidata.org/wiki/${results[i]["id"]}" target="_blank">${results[i]["id"]}</a>`,
                 sim_score: results[i]["sim_score"]
             });
