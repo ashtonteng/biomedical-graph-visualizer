@@ -89,10 +89,16 @@ def graph_to_dict(g):
         node_dicts.append(node_dict)
 
     link_dicts = []
+    existing_edges = set()
     for src_node_id, dst_node_id, relation_id in g.get_all_edges():
-        link_dict = {'target': dst_node_id, 'source': src_node_id,
-                     'weight': 0.1, 'label': RELATION_ID_LABEL_DICT[relation_id]}
-        link_dicts.append(link_dict)
+        if (src_node_id, dst_node_id) in existing_edges:  # only keep one copy of an edge between src and dst
+            continue
+        else:
+            existing_edges.add((src_node_id, dst_node_id))
+            existing_edges.add((dst_node_id, src_node_id))
+            link_dict = {'target': dst_node_id, 'source': src_node_id,
+                         'weight': 0.1, 'label': RELATION_ID_LABEL_DICT[relation_id]}
+            link_dicts.append(link_dict)
 
     graph_dict = {'nodes': node_dicts, 'links': link_dicts}
     return graph_dict
