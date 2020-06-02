@@ -7,7 +7,8 @@ Millions of Americans suffer from illnesses with non-existent or ineffective dru
 * build a computational knowledge graph focused on drug, genes, proteins and diseases (the components relevant to identifying drug targets) with information from existing biomedical databases
 * build a web interface on top of our knowledge graph that lists the connections between a specific drug, gene, or protein to all related drug, genes, proteins and diseases in the network (e.g., the tool would list drugs relevant to breast cancer when given the source disease ‘breast cancer’ and target node type ‘drug’)
 * build a web interface on top of our knowledge graph that when given a specific drug, gene, or protein, identifies similar drug, genes, proteins and diseases to suggest candidates for drug targets
-evaluate utility to biomedical researchers by asking them to use the two tools to query drug discovery related drug, genes, proteins and diseases, and surveying them on content usefulness and tool ease of use.
+* evaluate utility to biomedical researchers by asking them to use the two tools to query drug discovery related drug, genes, proteins and diseases, and surveying them on content usefulness and tool ease of use.
+The completion of this project will allow researchers direct access to comprehensive biomedical data through intuitive software that aids in decision making with regards to identifying drug candidates to provide faster, more efficacious treatment to all Americans.
 
 The completion of this project will allow researchers direct access to comprehensive biomedical data through intuitive software that aids in decision making with regards to identifying drug candidates to provide faster, more efficacious treatment to all Americans.
 
