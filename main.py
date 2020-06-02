@@ -27,6 +27,7 @@ def graph_search():
     starting_node = request.form.get('starting_node', default = None, type = str)
     ending_node = request.form.get('ending_node', default = None, type = str)
     hops = request.form.get('hops', default = 3, type = int)
+    mode = request.form.get('mode', default = 0, type = int)
 
     results = subgraph_tool(starting_node, ending_node, hops, max_results=500)
 

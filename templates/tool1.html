@@ -19,12 +19,20 @@
         </div>
 
         <div class="row">
-            <div class="col" id="top">
+            <div class="col-sm-3" id="top">
                 <label for="starting_node">Starting Node:</label>
                 <input type="text" id="starting_node" placeholder="Metformin..." class="form-control typeahead tt-query" spellcheck="false">
                 <small class="form-text text-muted">Use autocomplete to select a source node to form subgraph around.</small>
             </div>
-            <div class="col">
+            <div class="col-sm-2">
+                <label for="mode">Mode:</label>
+                <select id="mode" class="form-control" onchange="onModeChange();">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                </select>
+                <small class="form-text text-muted">Mode 1 creates subgraphs to node type. Mode 2 creates subgraphs to a specific node.</small>
+            </div>
+            <div class="col" id = "ending_node_div">
                 <label for="ending_node">Ending Node:</label>
                     <select id="ending_node" class="form-control">
                         <option value="Drug">Drug</option>
@@ -49,7 +57,12 @@
                     </select>
                 <small class="form-text text-muted">Select type of ending leaf node.</small>
             </div>
-            <div class="col">
+            <div class="col-sm-3 d-none" id="specific_ending_node_div">
+                <label for="specific_ending_node">Ending Node:</label>
+                <input type="text" id="specific_ending_node" placeholder="type-2 diabetes...." class="form-control typeahead tt-query" spellcheck="false">
+                <small class="form-text text-muted">Use autocomplete to select a destination node to create a specific path.</small>
+            </div>
+            <div class="col-sm-2" id ="hops_div">
                 <label for="hops">Hops:</label>
                     <select id="hops" class="form-control">
                         <option value="1">1</option>
@@ -176,11 +189,50 @@
                     }
                 );
 
-                // graph you see when you visit the page
-                document.getElementById("starting_node").value = "COVID-19";
-                document.getElementById("ending_node").value = "Drug";
-                document.getElementById("hops").value = "2";
-                onSearch();
+                $('#specific_ending_node').typeahead({
+                        hint: true,
+                        highlight: true,
+                        minLength: 1
+                    },
+                    {
+                        name: 'nodes',
+                        source: bhound,
+                        display: function(item) {return item.name},
+                        templates: {
+                            suggestion: function(item) {
+                                return `<div>${item.name} <span style="color: ${getNodeColor(item.domain)}">(${item.domain})</span></div>`;
+                            }
+                        }
+                    }
+                );
+
+                // parse url parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                let start = urlParams.get("start");
+                let end = urlParams.get("end");
+                let mode = urlParams.get("mode");
+
+                if (start && end) {
+                    document.getElementById("starting_node").value = start;
+                    document.getElementById("ending_node").value = end;
+                    document.getElementById("hops").value = "2";
+
+                    if (mode) {
+                        if (mode == 0 || mode == 1) {
+                            document.getElementById("mode").value = mode;
+                        } else {
+                            mode = 1;
+                        }
+
+                        onModeChange();
+                    }
+
+                } else {
+                    document.getElementById("starting_node").value = "COVID-19";
+                    document.getElementById("ending_node").value = "Drug";
+                    document.getElementById("hops").value = "2";
+                    document.getElementById("mode").value = 0;
+                }
 
             });
 
@@ -188,6 +240,19 @@
 
         });
 
+    }
+
+    function onModeChange() {
+        let mode = document.getElementById("mode").value;
+        if (mode == 0) {
+            $("#ending_node_div").removeClass("d-none");
+            $("#hops_div").removeClass("d-none");
+            $("#specific_ending_node_div").addClass("d-none");
+        } else {
+            $("#ending_node_div").addClass("d-none");
+            $("#hops_div").addClass("d-none");
+            $("#specific_ending_node_div").removeClass("d-none");
+        }
     }
 
     function loadLegend() {
@@ -254,6 +319,8 @@
         }
     }
 
+    let demoIndex = 0;
+
     function onDemoClick() {
         let test_examples = [
             ["Insulin", "Disease", "3"],
@@ -262,23 +329,16 @@
             ["influenza", "Anatomical Location", "3"],
             ["aspirin", "Chromosome", "4"],
         ];
-        let index = Math.random() * 100;
-        if (index < 20) {
-            index = 0;
-        } else if (index < 40) {
-            index = 1;
-        } else if (index < 60) {
-            index = 2;
-        } else if (index < 80) {
-            index = 3;
-        } else {
-            index = 4;
-        }
 
-        document.getElementById("starting_node").value = test_examples[index][0];
-        end = document.getElementById("ending_node").value = test_examples[index][1];
-        hops = document.getElementById("hops").value = test_examples[index][2];
+        document.getElementById("starting_node").value = test_examples[demoIndex][0];
+        end = document.getElementById("ending_node").value = test_examples[demoIndex][1];
+        hops = document.getElementById("hops").value = test_examples[demoIndex][2];
+        document.getElementById("mode").value = "0";
+        onModeChange();
+
         onSearch();
+
+        demoIndex = (demoIndex + 1) % test_examples.length;
     }
 
     function onSearch() {
@@ -286,10 +346,25 @@
         $('#loader').removeClass('d-none');
 
         let start = document.getElementById("starting_node").value;
+        let specific_end = document.getElementById("specific_ending_node").value;
+        let mode = document.getElementById("mode").value;
 
         if (!(start in instance_node_dict)) {
+            $('#loader').addClass('d-none');
             $('#alert-invalid').removeClass('d-none');
             return;
+        }
+
+        if (mode == 1) {
+            if (!(specific_end in instance_node_dict)) {
+                $('#loader').addClass('d-none');
+                $('#alert-invalid').removeClass('d-none');
+                return;
+            }
+
+            if (specific_end.indexOf("(") != -1) {
+                specific_end = specific_end.substring(0, specific_end.indexOf("(")).trim();
+            }
         }
 
         if (start.indexOf("(") != -1) {
@@ -318,12 +393,19 @@
                 }
             };
             let params = "starting_node=" + instance_node_dict[start];
-            if (end && end in concept_node_dict) {
-                params += "&ending_node=" + concept_node_dict[end];
+
+            if (mode == 0) {
+                if (end && end in concept_node_dict) {
+                    params += "&ending_node=" + concept_node_dict[end];
+                }
+            } else {
+                params += "&ending_node=" + instance_node_dict[specific_end];
             }
+
             if (hops) {
                 params += "&hops=" + hops;
             }
+            params += "&mode=" + mode;
             xhr.send(params);
         }
     }
@@ -525,6 +607,13 @@
         }
 
         let data = [];
+
+        // startingDomain
+        // startingName
+        // endingDomain
+        // endingDomain
+        // pathLength
+
 
         for (let i = 0; i < results.length; i++) {
             let qid = instance_node_dict[results[i]["name"]];
