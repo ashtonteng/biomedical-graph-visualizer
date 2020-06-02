@@ -211,11 +211,10 @@
                 let start = urlParams.get("start");
                 let end = urlParams.get("end");
                 let mode = urlParams.get("mode");
+                let hops = urlParams.get("hops");
 
                 if (start && end) {
                     document.getElementById("starting_node").value = start;
-                    document.getElementById("ending_node").value = end;
-                    document.getElementById("hops").value = "2";
 
                     if (mode) {
                         if (mode == 0 || mode == 1) {
@@ -225,6 +224,15 @@
                         }
 
                         onModeChange();
+                    }
+
+                    if (mode == 0) {
+                        document.getElementById("ending_node").value = end;
+                        if (hops) {
+                            document.getElementById("hops").value = "2";
+                        }
+                    } else {
+                        document.getElementById("specific_ending_node").value = end;
                     }
 
                 } else {

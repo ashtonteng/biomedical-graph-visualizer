@@ -177,7 +177,7 @@
         let columns = {
             "label": "Node Name",
             "sim_score": "Similarity Score",
-            "id": "QID",
+            "explore": "Explore",
         };
 
         table = $('#table-sortable').tableSortable({
@@ -499,11 +499,14 @@
     function updateTable(results) {
         let data = [];
 
+        let start = document.querySelectorAll("#input-list input[type='text'][id]")[0].value;
+
         for (let i = 0; i < results.length; i++) {
+            let ending = instance_node_dict_inverse[results[i]["id"]];
             data.push({
-                label: instance_node_dict_inverse[results[i]["id"]],
-                id: `<a href="https://www.wikidata.org/wiki/${results[i]["id"]}" target="_blank">${results[i]["id"]}</a>`,
-                sim_score: results[i]["sim_score"]
+                label: `<a href="https://www.wikidata.org/wiki/${results[i]["id"]}" target="_blank">${ending}</a>`,
+                sim_score: results[i]["sim_score"],
+                explore: `<a class="btn btn-primary" href="/tool1?start=${start}&end=${ending}&mode=1" target="_blank">See Connecting Path</a>`
             });
         }
 
