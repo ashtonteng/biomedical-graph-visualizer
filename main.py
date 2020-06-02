@@ -29,7 +29,7 @@ def graph_search():
     hops = request.form.get('hops', default = 3, type = int)
     mode = request.form.get('mode', default = 0, type = int)
 
-    results = subgraph_tool(starting_node, ending_node, hops, max_results=500)
+    results = subgraph_tool(starting_node, ending_node, hops, max_results=500, mode=mode)
 
     return jsonify(results)
 

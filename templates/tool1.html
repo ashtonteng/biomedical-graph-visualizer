@@ -133,11 +133,11 @@
 
         // initialize table
         let columns = {
-            "startingNode": "Starting Node",
-            "endingNode": "Ending Node",
-            "nodeType": "Node Type",
-            "pathLength": "Path Length",
-            "id": "QID"
+            'src_name': "Source Node",
+            'src_domain': "Source Domain",
+            'dst_name': "Destination Node",
+            'dst_domain': "Destination Domain",
+            'path_length': "Path Length"
         };
 
         table = $('#table-sortable').tableSortable({
@@ -601,28 +601,16 @@
     }
 
     function updateTable(results) {
-        let start = document.getElementById("starting_node").value;
-        if (start.indexOf("(") != -1) {
-            start = start.substring(0, start.indexOf("(")).trim();
-        }
 
         let data = [];
 
-        // startingDomain
-        // startingName
-        // endingDomain
-        // endingDomain
-        // pathLength
-
-
         for (let i = 0; i < results.length; i++) {
-            let qid = instance_node_dict[results[i]["name"]];
             data.push({
-                startingNode: start,
-                endingNode: results[i]["name"],
-                nodeType: results[i]["domain"],
-                pathLength: results[i]["path_length"],
-                id: `<a href="https://www.wikidata.org/wiki/${qid}" target="_blank">${qid}</a>`
+                'src_name': `<a href="https://www.wikidata.org/wiki/${instance_node_dict[results[i]["src_name"]]}" target="_blank">${results[i]["src_name"]}</a>`,
+                'src_domain': results[i]["src_domain"],
+                'dst_name': `<a href="https://www.wikidata.org/wiki/${instance_node_dict[results[i]["dst_name"]]}" target="_blank">${results[i]["dst_name"]}</a>`,
+                'dst_domain': results[i]["dst_domain"],
+                'path_length': results[i]["path_length"]
             });
         }
 
