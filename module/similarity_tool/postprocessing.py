@@ -9,28 +9,27 @@ from gensim.models import keyedvectors
 from module.subgraph_tool.subgraph import get_graph
 
 
-def split_by_concept(eemb, remb, outpath, gpath, alg='relation'):
+def split_by_concept(emb, e2id, outpath, gpath, alg='relation'):
+    all_ent2emb = {k: emb[int(v)].tolist() for k, v in e2id.items()}
     G = get_graph(pickle_path=gpath)
-    cdict = dict()
-    for e in eemb:
+    concept2nodes = dict()
+    for e in all_ent2emb:
         cid = G.get_concept_id(e)
-        if cid not in cdict:
-            cdict[cid] = list()
-        cdict[cid].append(e)
+        if cid not in concept2nodes:
+            concept2nodes[cid] = list()
+        concept2nodes[cid].append(e)
 
     # Work with concept embeddings
-    for concept, nodelist in cdict.items():
+    for concept, nodelist in concept2nodes.items():
         fpath = os.path.join(outpath, alg, '{}_emb.pkl'.format(concept))
-        edict = {node: eemb[node] for node in nodelist}
-        print('Saving {} entities in {} to {}'.format(
-            len(edict), concept, fpath))
-        # with open(fpath, 'wb') as handle:
-        #     pickle.dump(edict, handle)
+        concept_ent2emb = {node: emb[int(e2id[node])] for node in nodelist}
+        dump_emb_to_pkl(concept_ent2emb, concept, fpath)
 
-    fpath = os.path.join(outpath, alg, 'rel_emb.pkl')
-    print('Saving {} entities in {} to {}'.format(len(remb), 'rel', fpath))
-    # with open(fpath, 'wb') as handle:
-    #     pickle.dump(remb, handle)
+
+def dump_emb_to_pkl(emb_dict, name, fpath):
+    print('Saving {} entities in {} to {}'.format(len(emb_dict), name, fpath))
+    with open(fpath, 'wb') as handle:
+        pickle.dump(emb_dict, handle)
 
 
 def dump_emb_to_json(emb, name2id, outdir, fname, name):
@@ -94,13 +93,15 @@ def run(args):
     else:
         print("Invalid alg chosen. Choices: 'stranse', 'node2vec', 'relation'")
         return
-    # epath = os.path.join(args.data_dir, 'entity2id.txt')
-    # rpath = os.path.join(args.data_dir, 'relation2id.txt')
-    # e2id = _load_tsv_to_dict(epath)
-    # r2id = _load_tsv_to_dict(rpath)
+    epath = os.path.join(args.data_dir, 'entity2id.txt')
+    rpath = os.path.join(args.data_dir, 'relation2id.txt')
+    e2id = _load_tsv_to_dict(epath)
+    r2id = _load_tsv_to_dict(rpath)
     # dump_emb_to_json(eemb, e2id, args.out_dir, "ent_emb.json", name='entity')
     # dump_emb_to_json(remb, r2id, args.out_dir, "rel_emb.json", name='relation')
-    split_by_concept(eemb, remb, args.out_dir, args.graph)
+    split_by_concept(eemb, e2id, args.out_dir, args.graph)
+    r2emb = {k: remb[int(v)].tolist() for k, v in r2id.items()}
+    dump_emb_to_pkl(r2emb, 'rel', os.path.join(args.out_dir, args.alg, 'rel_emb.pkl'))
 
 
 if __name__ == "__main__":
@@ -110,7 +111,7 @@ if __name__ == "__main__":
         help="Algorithm used to create embeddings")
     parser.add_argument(
         "--emb", type=str,
-        default='/data4/blanca/checkpoints/wikidata-bmi/out200/conv/trained_99.pth',
+        default='/data4/blanca/checkpoints/wikidata-bmi/out/conv/trained_99.pth',
         help="Embeddings file as .pth")
     parser.add_argument(
         "--data_dir", type=str,
