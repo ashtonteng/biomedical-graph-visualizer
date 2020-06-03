@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<body onload="init();">
+<body id="top" onload="init();">
 
 <main>
 
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-3" id="top">
+            <div class="col-sm-3">
                 <label for="starting_node">Starting Node:</label>
                 <input type="text" id="starting_node" placeholder="Metformin..." class="form-control typeahead tt-query" spellcheck="false">
                 <small class="form-text text-muted">Use autocomplete to select a source node to form subgraph around.</small>
