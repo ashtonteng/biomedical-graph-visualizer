@@ -7,6 +7,11 @@
 <main>
     <div class="container my-3">
 
+        <h2>Overview</h2>
+        <p>The similarity tool allows the user to view nodes in our biomedical subgraph that are semantically similar to the chosen source node and in the same domain. We construct a numerical representation (embedding) of each entity based on the relationships encoded in the biomedical graph and compute nearest neighbors using the nodes' cosine similarity. The results are projected onto a 2D plane for easier viewing. Opaque nodes are query nodes, transparent nodes are those suggested by our similarity score, and node colors indicate which query node the suggestion is related to. Click "Choose for me" for an example query and similarity result. Scroll to the bottom of the page to see the results in a table.
+        </p>
+        <hr/>
+
         <!--Error messages-->
         <div id ="alert-empty" class="alert alert-warning alert-dismissible d-none">
             <strong>Warning!</strong> You have no selected nodes to search. Please click Add Target Node.
