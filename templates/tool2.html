@@ -90,6 +90,7 @@
 
     <div class="container">
         <div id="my_dataviz" style="text-align: left"></div>
+        <small class="form-text text-muted" id="tooltip" style="margin-left: 50px;">&nbsp;</small>
     </div>
 
     <div class="container my-3">
@@ -416,7 +417,7 @@
 
         // Add a tooltip div. Here I define the general feature of the tooltip: stuff that do not depend on the data point.
         // Its opacity is set to 0: we don't see it by default.
-        var tooltip = d3.select("#my_dataviz")
+        /*var tooltip = d3.select("#my_dataviz")
             .append("div")
             .style("opacity", 0)
             .attr("class", "tooltip")
@@ -424,27 +425,29 @@
             .style("border", "solid")
             .style("border-width", "1px")
             .style("border-radius", "5px")
-            .style("padding", "10px");
+            .style("padding", "10px");*/
 
 
         // A function that change this tooltip when the user hover a point.
         // Its opacity is set to 1: we can now see it. Plus it set the text and position of tooltip depending on the datapoint (d)
         var mouseover = function (d) {
-            tooltip.style("opacity", 1);
+            //tooltip.style("opacity", 1);
             d3.select(this).attr("r", 10);
         };
 
         var mousemove = function (d) {
-            tooltip
+            document.getElementById("tooltip").innerHTML = d.id + ": " + instance_node_dict_inverse[d.id] + " (" + d.pc1 + ", " + d.pc2 + ")";
+            /*tooltip
                 .html(d.id + ": " + instance_node_dict_inverse[d.id] + " (" + d.pc1 + ", " + d.pc2 + ")")
-                .style("left", (d3.mouse(this)[0] + 30) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
-                .style("top", (d3.mouse(this)[1] + 160) + "px")
+                .style("left", (d3.mouse(this)[0] + 450) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+                .style("top", (d3.mouse(this)[1] + 380) + "px")*/
         };
 
         // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
         var mouseleave = function (d) {
 
-            tooltip.style("opacity", 0);
+            document.getElementById("tooltip").innerHTML = "&nbsp;";
+            //tooltip.style("opacity", 0);
 
             d3.select(this)
                 .transition()

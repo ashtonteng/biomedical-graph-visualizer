@@ -71,6 +71,7 @@
             <div class="col">
                 <button type="button" class="btn btn-primary mt-4" id="submit" onclick="onSearch()"><i class="fa fa-spinner fa-spin d-none" id="loader"></i> Search</button>
                 <input type="button" class="btn btn-primary mt-4" id="demo" value="Choose for me" onclick="onDemoClick()">
+                <small class="form-text text-muted d-none" id="mode-2-warning">Note: Using Mode 2 can take up to several minutes to compute.</small>
             </div>
         </div>
         <div class="row my-4" id="filters">
@@ -252,10 +253,12 @@
             $("#ending_node_div").removeClass("d-none");
             $("#hops_div").removeClass("d-none");
             $("#specific_ending_node_div").addClass("d-none");
+            $("#mode-2-warning").addClass("d-none");
         } else {
             $("#ending_node_div").addClass("d-none");
             $("#hops_div").addClass("d-none");
             $("#specific_ending_node_div").removeClass("d-none");
+            $("#mode-2-warning").removeClass("d-none");
         }
     }
 
