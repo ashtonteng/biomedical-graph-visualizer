@@ -101,7 +101,7 @@ def get_subgraph_k_hops_around_node_concept_type(g, instance_id, concept_id, k, 
 
     q = [([instance_id], 0)]
     visited = set()
-    subgraph_nodes = set()
+    subgraph_nodes = {instance_id}
     target_concept_results = list()
 
     while len(q) > 0:
