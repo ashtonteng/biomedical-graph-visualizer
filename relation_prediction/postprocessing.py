@@ -3,11 +3,13 @@ import json
 import numpy as np
 import os
 import torch
+from gensim.models import keyedvectors
 
 
 def dump_emb_to_json(emb, name2id, outdir, fname, name):
     fpath = os.path.join(outdir, fname)
     print("{} embeddings shape: {}".format(name, emb.shape))
+    print("Entities in entity2id: {}".format(len(name2id)))
     emb_dict = {k: emb[int(v)].tolist() for k, v in name2id.items()}
     with open(fpath, 'w') as fp:
         json.dump(emb_dict, fp)
@@ -43,11 +45,28 @@ def _load_stranse_embs(data_dir):
     return eemb, remb
 
 
+def _load_node2vec_embs(data_dir):
+    fpath = os.path.join(data_dir, 'embeddings.emb')
+    model = keyedvectors.KeyedVectors.load_word2vec_format(fpath)
+    vocab = model.wv.index2word
+    emb = model.wv.vectors
+    e2id = dict()
+    for i, w in enumerate(vocab):
+        e2id[w] = i
+    dump_emb_to_json(emb, e2id, args.data_dir, "ent_emb.json", name='entity')
+    exit()
+
+
 def run(args):
     if args.alg == 'relation':
         eemb, remb = _load_relation_embs(args.emb, args.data_dir)
     elif args.alg == 'stranse':
         eemb, remb = _load_stranse_embs(args.data_dir)
+    elif args.alg == 'node2vec':
+        eemb, remb = _load_node2vec_embs(args.data_dir)
+    else:
+        print("Invalid alg chosen. Choices: 'stranse', 'node2vec', 'relation'")
+        return
     epath = os.path.join(args.data_dir, 'entity2id.txt')
     rpath = os.path.join(args.data_dir, 'relation2id.txt')
     e2id = _load_tsv_to_dict(epath)
@@ -59,6 +78,9 @@ def run(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--alg", type=str, default='relation',
+        help="Algorithm used to create embeddings")
+    parser.add_argument(
         "--emb", type=str,
         default='/data4/blanca/checkpoints/wikidata-bmi/out200/conv/trained_99.pth',
         help="Embeddings file as .pth")
@@ -69,3 +91,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     print(args)
     run(args)
+
