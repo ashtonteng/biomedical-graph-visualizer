@@ -9,7 +9,8 @@ from gensim.models import keyedvectors
 from module.subgraph_tool.subgraph import get_graph
 
 
-def split_by_concept(emb, e2id, outpath, gpath, alg='relation'):
+def split_by_concept(emb, e2id, outdir, gpath):
+    print("{} entities in entity2id dict to split by concept".format(len(e2id)))
     all_ent2emb = {k: emb[int(v)].tolist() for k, v in e2id.items()}
     G = get_graph(pickle_path=gpath)
     concept2nodes = dict()
@@ -21,7 +22,7 @@ def split_by_concept(emb, e2id, outpath, gpath, alg='relation'):
 
     # Work with concept embeddings
     for concept, nodelist in concept2nodes.items():
-        fpath = os.path.join(outpath, alg, '{}_emb.pkl'.format(concept))
+        fpath = os.path.join(outdir, '{}_emb.pkl'.format(concept))
         concept_ent2emb = {node: emb[int(e2id[node])] for node in nodelist}
         dump_emb_to_pkl(concept_ent2emb, concept, fpath)
 
@@ -52,7 +53,8 @@ def _load_tsv_to_dict(fpath):
 
 
 def _load_tsv_to_np(fpath):
-    data = np.genfromtxt(fname=fpath, delimiter="\t", skip_header=1)
+    # Ignore trailing \t which would otherwise be read as nan
+    data = np.genfromtxt(fname=fpath, delimiter="\t")[:, :-1]
     return data
 
 
@@ -97,11 +99,13 @@ def run(args):
     rpath = os.path.join(args.data_dir, 'relation2id.txt')
     e2id = _load_tsv_to_dict(epath)
     r2id = _load_tsv_to_dict(rpath)
-    # dump_emb_to_json(eemb, e2id, args.out_dir, "ent_emb.json", name='entity')
-    # dump_emb_to_json(remb, r2id, args.out_dir, "rel_emb.json", name='relation')
-    split_by_concept(eemb, e2id, args.out_dir, args.graph)
+    alg_outdir = os.path.join(args.out_dir, args.alg)
+    if not os.path.exists(alg_outdir):
+        print("{} does not yet exist. Creating now.".format(alg_outdir))
+        os.makedirs(alg_outdir)
+    split_by_concept(eemb, e2id, alg_outdir, args.graph)
     r2emb = {k: remb[int(v)].tolist() for k, v in r2id.items()}
-    dump_emb_to_pkl(r2emb, 'rel', os.path.join(args.out_dir, args.alg, 'rel_emb.pkl'))
+    dump_emb_to_pkl(r2emb, 'rel', os.path.join(alg_outdir, 'rel_emb.pkl'))
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ def _gen_relation2id(G, outdir):
     print('{} edges in G'.format(len(edges)))
     for e in edges:
         for k, v in G.get_edge_data(*e).items():
-            relations.add(v['relation_id'])
+            relations.add(v)
     relation2id = dict()
     rid = 0
     for r in relations:
@@ -20,7 +20,7 @@ def _gen_relation2id(G, outdir):
         rid += 1
     print('{} relations in G'.format(len(relation2id)))
     print('Writing relation2id to {}'.format(outpath))
-    f = open(outpath, 'a')
+    f = open(outpath, 'w')
     for k, v in relation2id.items():
         f.write("{}\t{}\n".format(k, v))
     print('Done writing relation2id to {}'.format(outpath))
@@ -37,7 +37,7 @@ def _gen_entity2id(nodes, outdir):
         eid += 1
     assert len(nodes) == len(entity2id)
     print('Writing entity2id to {}'.format(outpath))
-    f = open(outpath, 'a')
+    f = open(outpath, 'w')
     for k, v in entity2id.items():
         f.write("{}\t{}\n".format(k, v))
     print('Done writing entity2id to {}'.format(outpath))
@@ -45,7 +45,7 @@ def _gen_entity2id(nodes, outdir):
 
 
 def _write_to_file(path, data):
-    f = open(path, 'a')
+    f = open(path, 'w')
     for x in data:
         f.write(x)
     f.close()
@@ -60,7 +60,7 @@ def _gen_datasplits(G, outdir, trainprop=.8):
     examples = list()
     for e in G.edges():
         for k, v in G.get_edge_data(*e).items():
-            ex = '{}\t{}\t{}\n'.format(e[0], v['relation_id'], e[1])
+            ex = '{}\t{}\t{}\n'.format(e[0], v, e[1])
             examples.append(ex)
 
     random.shuffle(examples)
