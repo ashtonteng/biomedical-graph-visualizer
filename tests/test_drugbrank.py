@@ -4,8 +4,6 @@ import argparse
 import itertools
 import tqdm
 import os
-import sys
-sys.path.append(os.getcwd())
 
 from collections import defaultdict
 from module.similarity_tool.nearest_neighbors import NearestNeighbors
