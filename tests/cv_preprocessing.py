@@ -9,6 +9,7 @@
 """
 import copy
 import os
+import re
 
 from sklearn import model_selection
 from test_constants import TEST_CONDITIONS, TREATS
@@ -75,7 +76,7 @@ def gen_cv_graphs(G, medical_condition, data_prefix='./data'):
         # Save each fold as a separate graph
         lowercase_name = medical_condition['Name'].replace(' ', '_').lower()
         txt_path = os.path.join(data_prefix, "cv_graph_{}_{}_test_instance_ids.txt".format(lowercase_name, fold))
-        print("Saving test instance_ids in {}".format(lowercase_name, txt_path))
+        print("Saving test instance_ids in {}".format(txt_path))
         _write_to_file(txt_path, X_test)
         pkl_path = os.path.join(data_prefix, "cv_graph_{}_{}.pkl".format(lowercase_name, fold))
         print("Saving CV fold graph for {} in {}".format(lowercase_name, pkl_path))
@@ -95,7 +96,8 @@ def gen_embeddings_input(pkl, embedding_input_dir_prefix='./data'):
 
     """
     g = Graph(pickle_path=pkl).G
-    embedding_input_dir = os.path.join(embedding_input_dir_prefix, pkl.split('.')[0])
+    embedding_input_dir = os.path.join(embedding_input_dir_prefix, re.split('[/.]', pkl)[-2])
+    print(embedding_input_dir)
     if not os.path.exists(embedding_input_dir):
         os.makedirs(embedding_input_dir)
     preprocess_graph_for_relation_prediction(g, embedding_input_dir)
