@@ -34,8 +34,7 @@ def get_drugs_used_to_treat_condition(G, medical_condition):
     neighbors = G.get_node_neighbors(a_instance_id)
     # Only consider neighbors that are drugs used for treating this condition
     drugs_used_for_treatment = [
-        b_instance_id for b_instance_id in neighbors if TREATS in G.get_edges_between(
-            a_instance_id, b_instance_id)]
+        b_instance_id for b_instance_id in neighbors if TREATS in G.get_edges_between(a_instance_id, b_instance_id)]
     return drugs_used_for_treatment
 
 
@@ -74,17 +73,16 @@ def gen_cv_graphs(G, medical_condition):
     return pkl_paths
 
 
-def gen_embeddings_input(pkl, **kwargs):
+def gen_embeddings_input(pkl, embedding_input_dir_prefix='.'):
     """Takes a graph pkl file as input and saves .txt files for generating embeddings as output.
 
     Args:
         pkl (str): file path for a graph pickle file to read and preprocess for embedding
-        **kwargs: embedding_input_dir_prefix (str) location to save embedding input .txt files
+        embedding_input_dir_prefix (str): location to save embedding input .txt files
 
     Returns: None
 
     """
-    embedding_input_dir_prefix = kwargs.get('embedding_input_dir_prefix', '.')
     g = Graph(pickle_path=pkl).G
     embedding_input_dir = os.path.join(embedding_input_dir_prefix, pkl.split('.')[0])
     if not os.path.exists(embedding_input_dir):
