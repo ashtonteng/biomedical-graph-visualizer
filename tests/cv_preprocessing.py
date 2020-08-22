@@ -1,4 +1,4 @@
-"""This script covers steps 1-5 of the following CV pipeline:
+"""This script executes steps 1-5 of the following CV pipeline:
 1. Get a set of all nodes 1-hop away from the condition
 2. Split 80/20 train/test
 3. Remove direct edges between condition and test set
@@ -17,6 +17,14 @@ from module.graph_lib.graph import Graph
 from module.similarity_tool.preprocessing import preprocess_graph_for_relation_prediction
 
 N_FOLDS = 5
+
+
+def _write_to_file(path, data):
+    f = open(path, 'w')
+    for x in data:
+        f.write(x)
+    f.close()
+    print('Done writing data to {}'.format(path))
 
 
 def get_drugs_used_to_treat_condition(G, medical_condition):
@@ -38,13 +46,13 @@ def get_drugs_used_to_treat_condition(G, medical_condition):
     return drugs_used_for_treatment
 
 
-def gen_cv_graphs(G, medical_condition):
+def gen_cv_graphs(G, medical_condition, data_prefix='./data'):
     """Takes a single Graph instance as input and outputs Nn_FOLDS graphs for each CV split
 
     Args:
         G (Graph): The full biomedical graph taken from WikiData
         medical_condition (dict): The condition from test_constants to run CV on
-
+        data_prefix (str): location to save CV graph .pkl files
     Returns: pkl_paths list(string) of file paths where CV graphs are saved
 
     """
@@ -66,14 +74,17 @@ def gen_cv_graphs(G, medical_condition):
         print("Test  neighbors: ", len(test_index))
         # Save each fold as a separate graph
         lowercase_name = medical_condition['Name'].replace(' ', '_').lower()
-        pkl_path = "cv_graph_{}_{}.pkl".format(lowercase_name, fold)
+        txt_path = os.path.join(data_prefix, "cv_graph_{}_{}_test_instance_ids.txt".format(lowercase_name, fold))
+        print("Saving test instance_ids in {}".format(lowercase_name, txt_path))
+        _write_to_file(txt_path, X_test)
+        pkl_path = os.path.join(data_prefix, "cv_graph_{}_{}.pkl".format(lowercase_name, fold))
         print("Saving CV fold graph for {} in {}".format(lowercase_name, pkl_path))
         g.save_graph_to_pickle(pkl_path)
         pkl_paths.append(pkl_path)
     return pkl_paths
 
 
-def gen_embeddings_input(pkl, embedding_input_dir_prefix='.'):
+def gen_embeddings_input(pkl, embedding_input_dir_prefix='./data'):
     """Takes a graph pkl file as input and saves .txt files for generating embeddings as output.
 
     Args:
