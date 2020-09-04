@@ -23,7 +23,8 @@ N_FOLDS = 5
 def _write_to_file(path, data):
     f = open(path, 'w')
     for x in data:
-        f.write(x)
+	fstr = x + '\n'
+        f.write(fstr)
     f.close()
     print('Done writing data to {}'.format(path))
 
