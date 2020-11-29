@@ -14,5 +14,11 @@ The completion of this project will allow researchers direct access to comprehen
 # Advisors
 Our advisors and collaborators include Sam Piekos, Dan Sosa, Russ Altman, Jaap Suermondt, Erika Strandberg, and Larry Kalesinskas. We thank them for project inspiration and advice.
 
+# Citation
+The full research paper can be viewed [here](https://www.biorxiv.org/content/10.1101/2020.11.27.368811v1).  
+
+Please cite the paper as followed:  
+*Ashton Teng, Blanca Villanueva, Derek Russell Jow, Shih-Cheng Huang, Samantha N Piekos, Russ B Altman bioRxiv 2020.11.27.368811; doi: https://doi.org/10.1101/2020.11.27.368811*
+
 # License
 This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)

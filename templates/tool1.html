@@ -97,7 +97,10 @@
 
     </div>
 
-    <div class="border" id="network_viz"></div>
+    <div class="container">
+        <div class="border" id="network_viz"></div>
+    </div>
+
 
     <div class="container my-3 results-panel" id="results">
         <h1>Results<a href="#top" class="btn btn-primary mx-4">Scroll to Top</a></h1>
@@ -453,10 +456,13 @@
     }
 
     function drawGraph(data) {
-        const width = window.innerWidth;
-        const height = 700;
 
         let el = document.getElementById("network_viz");
+
+        const width = el.offsetWidth;
+        const height = 700;
+
+
         while (el.childElementCount > 0) {
             el.removeChild(el.childNodes[0]);
         }
