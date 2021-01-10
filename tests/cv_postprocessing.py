@@ -38,11 +38,11 @@ def load_cv_embeddings(cond, fold):
     rids = pd.read_csv(os.path.join(fold_data_path, 'relation2id.txt'), header=None, delimiter='\t')
     remb = pd.read_csv(os.path.join(fold_data_path, 'relation2vec.txt'), header=None, delimiter='\t')
     remb = remb.values[:, :-1]
-    treated_by_id = rids[rids[0] == 'P2175'][1]  # Get the relation vec ID
+    treated_by_id = rids[rids[0] == 'P2176'][1]  # Get the relation vec ID
     treated_by_emb = remb[treated_by_id]
     cond_vec = eemb[np.where(eids[0].values == cond['ID'])]
     cond_treated_by_vec = cond_vec + treated_by_emb 
-    # Get pairwise distances between the 
+    # Get pairwise distances between the cond_treated_by_vec and all entity embeddings in the graph
     distances = np.linalg.norm(eemb - cond_treated_by_vec, axis=0)
     # Option 1: Use a distance threshold
     indices = np.argwhere(distances < 50).flatten()
@@ -61,14 +61,15 @@ def load_cv_embeddings(cond, fold):
             if concept_id == DRUG_ID and e not in drugs_found:
                 drugs_found.append(e)
                 n_drugs_found += 1
-        #if n_drugs_found < n_test:
-        #    print("Found {} drugs in this round, expanding search".format(n_drugs_found))
-        #else: 
-        #    print("Found {} drugs in this round".format(n_drugs_found))
+        if n_drugs_found < n_test:
+            print("Found {} drugs in this round, expanding search".format(n_drugs_found))
+        else:
+            print("Found {} drugs in this round".format(n_drugs_found))
         k += 1
     # Now compute performance metrics
     all_drugs_used_for_treatment = cond['DrugIDs']
     train_drugs = set(all_drugs_used_for_treatment).difference(set(labels))
+    print(drugs_found)
     acc = len(set(drugs_found).intersection(all_drugs_used_for_treatment)) / float(len(labels))
     print("Accuracy for {} fold {}: {}".format(cond['Name'], fold, acc))
 
@@ -77,6 +78,7 @@ if __name__ == "__main__":
     for cond in TEST_CONDITIONS:
         for fold in range(N_FOLDS):
             load_cv_embeddings(cond, fold) 
+        break  # TODO: Remove this break if we want to test more conditions
     # Load embeddings
     # Load train indices/node instance IDs
     # Load test indices/node instance IDs
