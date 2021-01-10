@@ -23,7 +23,7 @@ N_FOLDS = 5
 def _write_to_file(path, data):
     f = open(path, 'w')
     for x in data:
-	fstr = x + '\n'
+        fstr = x + '\n'
         f.write(fstr)
     f.close()
     print('Done writing data to {}'.format(path))
@@ -111,4 +111,3 @@ if __name__ == "__main__":
         pkl_paths = gen_cv_graphs(G, cond)
         for pkl in pkl_paths:
             gen_embeddings_input(pkl)
-
