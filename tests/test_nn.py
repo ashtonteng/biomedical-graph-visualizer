@@ -2,8 +2,7 @@ import random
 import numpy as np
 import tqdm
 import os
-import sys
-sys.path.append(os.getcwd())
+
 from collections import defaultdict
 from module.similarity_tool.tests.test_constants import TEST_CONDITIONS, FDA_TEST_CONDITIONS
 from module.similarity_tool.nearest_neighbors import NearestNeighbors
